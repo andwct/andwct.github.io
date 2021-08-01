@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Academic</title>
+    <title>Anderson Wu</title>
     <link>https://andwct.github.io/</link>
       <atom:link href="https://andwct.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <description>Academic</description>
+    <description>Anderson Wu</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://andwct.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Academic</title>
+      <url>https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png</url>
+      <title>Anderson Wu</title>
       <link>https://andwct.github.io/</link>
     </image>
     
@@ -244,9 +244,9 @@ Three
     
     <item>
       <title>An example conference paper</title>
-      <link>https://andwct.github.io/publication/example/</link>
+      <link>https://andwct.github.io/publication/my-master-thesis/</link>
       <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>https://andwct.github.io/publication/example/</guid>
+      <guid>https://andwct.github.io/publication/my-master-thesis/</guid>
       <description>&lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
