@@ -1,0 +1,3644 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Anderson Wu" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This is summary" />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#EF525B" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.1e75974c6945afa9e52fa8182894548d.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.ebafa0b7fe0678dfb3aa7eeb0870f306.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Anderson Wu" />
+  <meta property="og:url" content="https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/" />
+  <meta property="og:title" content="Unlocking the Secrets behind Machine Learning Models in Financial Credit Risk Modeling (1) — Binary Classification | Anderson Wu" />
+  <meta property="og:description" content="This is summary" /><meta property="og:image" content="https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png" />
+    <meta property="twitter:image" content="https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-08-02T05:27:20&#43;08:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-08-02T05:27:20&#43;08:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Unlocking the Secrets behind Machine Learning Models in Financial Credit Risk Modeling (1) — Binary Classification | Anderson Wu</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="46d436cd1f5edfd767e438e67e1998b3" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Anderson Wu</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Anderson Wu</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Unlocking the Secrets behind Machine Learning Models in Financial Credit Risk Modeling (1) — Binary Classification</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 2, 2021
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <div class="toc">
+    <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#一introduction一introduction">一、Introduction<a href="#%E4%B8%80%E3%80%81Introduction">¶</a></a></li>
+            <li><a href="#二task1-binary-classifiation-on-home-credit-default-risk二task1-binary-classifiation-on-home-credit-default-risk">二、Task1: Binary Classifiation on Home Credit Default Risk<a href="#%E4%BA%8C%E3%80%81Task1:-Binary-Classifiation-on-Home-Credit-Default-Risk">¶</a></a></li>
+            <li><a href="#三task2-ai-fairness-with-aif360-on-home-credit-default-risk三task2-ai-fairness-with-aif360-on-home-credit-default-risk">三、Task2: AI Fairness with AIF360 on Home Credit Default Risk<a href="#%E4%B8%89%E3%80%81Task2:-AI-Fairness-with-AIF360-on-Home-Credit-Default-Risk">¶</a></a></li>
+            <li><a href="#四project-summary--conclusion四project-summary--conclusion">四、Project Summary &amp; Conclusion<a href="#%E5%9B%9B%E3%80%81Project-Summary-&amp;-Conclusion">¶</a></a></li>
+            <li><a href="#五references五references">五、References<a href="#%E4%BA%94%E3%80%81References">¶</a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#一-frame-the-problem-and-look-at-the-big-picture一-frame-the-problem-and-look-at-the-big-picture">(一) Frame the Problem and Look at the Big Picture<a href="#(%E4%B8%80)-Frame-the-Problem-and-Look-at-the-Big-Picture">¶</a></a></li>
+    <li><a href="#二-get-the-data二-get-the-data">(二) Get the data<a href="#(%E4%BA%8C)-Get-the-data">¶</a></a></li>
+    <li><a href="#三-explore-the-data-to-gain-insights三-explore-the-data-to-gain-insights">(三) Explore the data to gain insights<a href="#(%E4%B8%89)-Explore-the-data-to-gain-insights">¶</a></a>
+      <ol>
+        <li><a href="#features-description">Features Description</a>
+          <ol>
+            <li><a href="#notable-features">Notable Features</a></li>
+          </ol>
+        </li>
+        <li><a href="#continuous_float_variablescontinuous_float_variables">continuous_float_variables<a href="#continuous_float_variables">¶</a></a></li>
+        <li><a href="#categorical_variablescategorical_variables">Categorical_variables<a href="#Categorical_variables">¶</a></a></li>
+        <li><a href="#integer_variablesinteger_variables">integer_variables<a href="#integer_variables">¶</a></a></li>
+        <li><a href="#eda-on-binary-y-label-extremely-imbalancededa-on-binary-y-label-extremely-imbalanced">EDA on Binary Y label (extremely imbalanced)<a href="#EDA-on-Binary-Y-label-(extremely-imbalanced)">¶</a></a></li>
+        <li><a href="#eda-on-notable_continuous_variableseda-on-notable_continuous_variables">EDA on Notable_continuous_variables<a href="#EDA-on-Notable_continuous_variables">¶</a></a></li>
+        <li><a href="#eda-on-na-valueseda-on-na-values">EDA on NA values<a href="#EDA-on-NA-values">¶</a></a>
+          <ol>
+            <li><a href="#nas-of-float-variablesnas-of-float-variables">NAs of float variables<a href="#NAs-of-float-variables">¶</a></a></li>
+            <li><a href="#nas-of-integer-variablesnas-of-integer-variables">NAs of integer variables<a href="#NAs-of-integer-variables">¶</a></a></li>
+            <li><a href="#nas-of-categorical-variablesnas-of-categorical-variables">NAs of categorical variables<a href="#NAs-of-categorical-variables">¶</a></a></li>
+            <li><a href="#attribute-correlations-with-target--feature-importanceattribute-correlations-with-target--feature-importance">Attribute Correlations with target &amp; Feature Importance<a href="#Attribute-Correlations-with-target-&amp;-Feature-Importance">¶</a></a></li>
+            <li><a href="#貸款人年齡貸款人年齡">貸款人年齡<a href="#%E8%B2%B8%E6%AC%BE%E4%BA%BA%E5%B9%B4%E9%BD%A1">¶</a></a></li>
+            <li><a href="#external-sourceexternal-source">External Source<a href="#External-Source">¶</a></a></li>
+            <li><a href="#當前工作的就職天數-days-employed當前工作的就職天數-days-employed">當前工作的就職天數 Days Employed<a href="#%E7%95%B6%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9A%84%E5%B0%B1%E8%81%B7%E5%A4%A9%E6%95%B8-Days-Employed">¶</a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#四-data-preparation四-data-preparation">(四) Data Preparation<a href="#(%E5%9B%9B)-Data-Preparation">¶</a></a>
+      <ol>
+        <li><a href="#-prepare-the-data-to-better-expose-the-underlying-data-patterns-to-machine-learning-algorithms">        — Prepare the data to better expose the underlying data patterns to Machine Learning algorithms</a>
+          <ol>
+            <li><a href="#drop-rows-which-contain-nandrop-rows-which-contain-nan">Drop rows which contain NaN<a href="#Drop-rows-which-contain-NaN">¶</a></a></li>
+            <li><a href="#drop-columnsdrop-columns">Drop columns<a href="#Drop-columns">¶</a></a></li>
+            <li><a href="#刪除包含-nan-的-rows刪除包含-nan-的-rows">刪除包含 NaN 的 rows<a href="#%E5%88%AA%E9%99%A4%E5%8C%85%E5%90%AB-NaN-%E7%9A%84-rows">¶</a></a></li>
+            <li><a href="#刪除性別欄位-code_gender-值為-xna-的-rows刪除性別欄位-code_gender-值為-xna-的-rows">刪除性別欄位 CODE_GENDER 值為 XNA 的 rows<a href="#%E5%88%AA%E9%99%A4%E6%80%A7%E5%88%A5%E6%AC%84%E4%BD%8D-CODE_GENDER-%E5%80%BC%E7%82%BA-XNA-%E7%9A%84-rows">¶</a></a></li>
+            <li><a href="#分出特征集-x-和目標標籤-y分出特征集-x-和目標標籤-y">分出特征集 X 和目標標籤 y<a href="#%E5%88%86%E5%87%BA%E7%89%B9%E5%BE%81%E9%9B%86-X-%E5%92%8C%E7%9B%AE%E6%A8%99%E6%A8%99%E7%B1%A4-y">¶</a></a></li>
+            <li><a href="#將資料集切割成-training-set-和-testing-set將資料集切割成-training-set-和-testing-set">將資料集切割成 training set 和 testing set<a href="#%E5%B0%87%E8%B3%87%E6%96%99%E9%9B%86%E5%88%87%E5%89%B2%E6%88%90-training-set-%E5%92%8C-testing-set">¶</a></a></li>
+            <li><a href="#data-standardization-for-numerical-data-and-one-hot-encoding-for-categorical-datadata-standardization-for-numerical-data-and-one-hot-encoding-for-categorical-data">Data Standardization (for numerical data) and One-hot encoding (for categorical data)<a href="#Data-Standardization-(for-numerical-data)-and-One-hot-encoding-(for-categorical-data)">¶</a></a></li>
+            <li><a href="#合併回完整的-x_train-和-x_test合併回完整的-x_train-和-x_test">合併回完整的 X_train 和 X_test<a href="#%E5%90%88%E4%BD%B5%E5%9B%9E%E5%AE%8C%E6%95%B4%E7%9A%84-X_train-%E5%92%8C-X_test">¶</a></a></li>
+            <li><a href="#處理-protected-attributes處理-protected-attributes">處理 protected attributes<a href="#%E8%99%95%E7%90%86-protected-attributes">¶</a></a></li>
+            <li><a href="#將-json-格式的-column-name-以底線取代冒號與空白將-json-格式的-column-name-以底線取代冒號與空白">將 JSON 格式的 column name 以底線取代冒號與空白<a href="#%E5%B0%87-JSON-%E6%A0%BC%E5%BC%8F%E7%9A%84-column-name-%E4%BB%A5%E5%BA%95%E7%B7%9A%E5%8F%96%E4%BB%A3%E5%86%92%E8%99%9F%E8%88%87%E7%A9%BA%E7%99%BD">¶</a></a></li>
+            <li><a href="#為了緩和資料不平衡的問題其中一種方法是對-training-data-做-resampling以下採用結合-over-sampling-和-under-sampling-的做法為了緩和資料不平衡的問題其中一種方法是對-training-data-做-resampling以下採用結合-over-sampling-和-under-sampling-的做法"><strong>為了緩和資料不平衡的問題</strong>，其中一種方法是對 training data 做 <code>resampling</code>。以下採用結合 over sampling 和 under sampling 的做法。<a href="#%E7%82%BA%E4%BA%86%E7%B7%A9%E5%92%8C%E8%B3%87%E6%96%99%E4%B8%8D%E5%B9%B3%E8%A1%A1%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%8C%E5%85%B6%E4%B8%AD%E4%B8%80%E7%A8%AE%E6%96%B9%E6%B3%95%E6%98%AF%E5%B0%8D-training-data-%E5%81%9A-resampling%E3%80%82%E4%BB%A5%E4%B8%8B%E6%8E%A1%E7%94%A8%E7%B5%90%E5%90%88-over-sampling-%E5%92%8C-under-sampling-%E7%9A%84%E5%81%9A%E6%B3%95%E3%80%82">¶</a></a></li>
+            <li><a href="#結合-smotenc-和-tomek-links先合成新的少數量的點再去除-tomek-links結合-smotenc-和-tomek-links先合成新的少數量的點再去除-tomek-links">結合 SMOTENC 和 Tomek Links，先合成新的少數量的點，再去除 Tomek Links。<a href="#%E7%B5%90%E5%90%88-SMOTENC-%E5%92%8C-Tomek-Links%EF%BC%8C%E5%85%88%E5%90%88%E6%88%90%E6%96%B0%E7%9A%84%E5%B0%91%E6%95%B8%E9%87%8F%E7%9A%84%E9%BB%9E%EF%BC%8C%E5%86%8D%E5%8E%BB%E9%99%A4-Tomek-Links%E3%80%82">¶</a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#五-model-exploration五-model-exploration">(五) Model Exploration<a href="#(%E4%BA%94)-Model-Exploration">¶</a></a>
+      <ol>
+        <li><a href="#explore-many-different-models-and-short-list-the-best-ones">        —Explore many different models and short-list the best ones</a></li>
+        <li><a href="#model-trainingmodel-training">Model Training<a href="#Model-Training">¶</a></a>
+          <ol>
+            <li><a href="#discussiondiscussion"><strong>Discussion:</strong><a href="#Discussion:">¶</a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#六-models-fine-tuning六-models-fine-tuning">(六) Models Fine-tuning<a href="#(%E5%85%AD)-Models-Fine-tuning">¶</a></a>
+      <ol>
+        <li><a href="#fine-tune-the-models-and-combine-them-into-a-great-solution">        —Fine-tune the models and combine them into a great solution</a></li>
+        <li><a href="#grid-search---logisticregressiongrid-search---logisticregression">Grid search - LogisticRegression<a href="#Grid-search---LogisticRegression">¶</a></a></li>
+        <li><a href="#train-the-model-using-the-grid-search-resulttrain-the-model-using-the-grid-search-result">Train the model using the grid search result<a href="#Train-the-model-using-the-grid-search-result">¶</a></a></li>
+        <li><a href="#grid-search---randomforestclassifiergrid-search---randomforestclassifier">Grid search - RandomForestClassifier<a href="#Grid-search---RandomForestClassifier">¶</a></a></li>
+        <li><a href="#grid-search---adaboostgrid-search---adaboost">Grid search - AdaBoost<a href="#Grid-search---AdaBoost">¶</a></a></li>
+        <li><a href="#grid-search---gradientboostingclassifiergrid-search---gradientboostingclassifier">Grid search - GradientBoostingClassifier<a href="#Grid-search---GradientBoostingClassifier">¶</a></a></li>
+        <li><a href="#grid-search---xgbclassifiergrid-search---xgbclassifier">Grid search - XGBClassifier<a href="#Grid-search---XGBClassifier">¶</a></a></li>
+        <li><a href="#grid-search---lgbmclassifiergrid-search---lgbmclassifier">Grid search - LGBMClassifier<a href="#Grid-search---LGBMClassifier">¶</a></a></li>
+      </ol>
+    </li>
+    <li><a href="#七-present-your-solution七-present-your-solution">(七) Present your solution<a href="#(%E4%B8%83)-Present-your-solution">¶</a></a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#一-fairness-and-explainability-in-credit-default-risk-modeling一-fairness-and-explainability-in-credit-default-risk-modeling">(一) Fairness and explainability in credit default risk modeling<a href="#(%E4%B8%80)-Fairness-and-explainability-in-credit-default-risk-modeling">¶</a></a></li>
+    <li><a href="#二-analyzing-fairness-on-a-machine-learning-task二-analyzing-fairness-on-a-machine-learning-task">(二) Analyzing Fairness on a Machine Learning Task<a href="#(%E4%BA%8C)-Analyzing-Fairness-on-a-Machine-Learning-Task">¶</a></a>
+      <ol>
+        <li><a href="#1-individual-fairness-vs-group-fairness1-individual-fairness-vs-group-fairness">1. Individual Fairness vs. Group Fairness<a href="#1.-Individual-Fairness-vs.-Group-Fairness">¶</a></a></li>
+        <li><a href="#2-data-vs-model2-data-vs-model">2. Data vs. Model<a href="#2.-Data-vs.-Model">¶</a></a></li>
+        <li><a href="#3-group-fairness-were-all-equal-vs-what-you-see-is-what-you-get3-group-fairness-were-all-equal-vs-what-you-see-is-what-you-get">3. Group Fairness: We’re All Equal vs. What You See Is What You Get<a href="#3.-Group-Fairness:-We%E2%80%99re-All-Equal-vs.-What-You-See-Is-What-You-Get">¶</a></a></li>
+        <li><a href="#4-group-fairness-ratios-vs-differences4-group-fairness-ratios-vs-differences">4. Group Fairness: Ratios vs. Differences<a href="#4.-Group-Fairness:-Ratios-vs.-Differences">¶</a></a></li>
+      </ol>
+    </li>
+    <li><a href="#三-introducing-evaluation-metrics三-introducing-evaluation-metrics">(三) Introducing Evaluation Metrics<a href="#(%E4%B8%89)-Introducing-Evaluation-Metrics">¶</a></a>
+      <ol>
+        <li><a href="#1-statistical-parity-difference1-statistical-parity-difference">1. Statistical Parity Difference<a href="#1.-Statistical-Parity-Difference">¶</a></a></li>
+        <li><a href="#2-disparate-impact2-disparate-impact">2. Disparate Impact<a href="#2.-Disparate-Impact">¶</a></a></li>
+        <li><a href="#3-average-odds-differnece3-average-odds-differnece">3. Average odds differnece<a href="#3.-Average-odds-differnece">¶</a></a></li>
+        <li><a href="#4-equal-opportunity-difference4-equal-opportunity-difference">4. Equal opportunity difference<a href="#4.-Equal-opportunity-difference">¶</a></a></li>
+      </ol>
+    </li>
+    <li><a href="#四-introducing-our-protected-attributes四-introducing-our-protected-attributes">(四) Introducing our Protected Attributes:<a href="#(%E5%9B%9B)-Introducing-our-Protected-Attributes:">¶</a></a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#1年紀2性別3教育程度1年紀2性別3教育程度">(1)年紀(2)性別(3)教育程度<a href="#(1)%E5%B9%B4%E7%B4%80(2)%E6%80%A7%E5%88%A5(3)%E6%95%99%E8%82%B2%E7%A8%8B%E5%BA%A6">¶</a></a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#五資料特性五資料特性">(五)資料特性<a href="#(%E4%BA%94)%E8%B3%87%E6%96%99%E7%89%B9%E6%80%A7">¶</a></a>
+      <ol>
+        <li><a href="#1-檢查訓練資料中是否有bias存在1-檢查訓練資料中是否有bias存在">1. 檢查訓練資料中是否有bias存在<a href="#1.-%E6%AA%A2%E6%9F%A5%E8%A8%93%E7%B7%B4%E8%B3%87%E6%96%99%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89bias%E5%AD%98%E5%9C%A8">¶</a></a>
+          <ol>
+            <li><a href="#disparate-impact-statistical-parity-difference-in-training-datasetdisparate-impact-statistical-parity-difference-in-training-dataset">Disparate Impact, Statistical Parity Difference in training dataset<a href="#Disparate-Impact,-Statistical-Parity-Difference-in-training-dataset">¶</a></a></li>
+          </ol>
+        </li>
+        <li><a href="#2-檢查logistic-regression預測結果中是否有bias2-檢查logistic-regression預測結果中是否有bias">2. 檢查Logistic Regression預測結果中是否有bias<a href="#2.-%E6%AA%A2%E6%9F%A5Logistic-Regression%E9%A0%90%E6%B8%AC%E7%B5%90%E6%9E%9C%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89bias">¶</a></a>
+          <ol>
+            <li><a href="#predict-output-by-logisticregressionpredict-output-by-logisticregression">Predict Output by LogisticRegression<a href="#Predict-Output-by-LogisticRegression">¶</a></a></li>
+            <li><a href="#model-performancemodel-performance">Model Performance<a href="#Model-Performance">¶</a></a></li>
+            <li><a href="#bias-metricbias-metric">Bias Metric<a href="#Bias-Metric">¶</a></a></li>
+          </ol>
+        </li>
+        <li><a href="#3-檢查light-gbm的預測結果中是否有bias3-檢查light-gbm的預測結果中是否有bias">3. 檢查Light-GBM的預測結果中是否有bias<a href="#3.-%E6%AA%A2%E6%9F%A5Light-GBM%E7%9A%84%E9%A0%90%E6%B8%AC%E7%B5%90%E6%9E%9C%E4%B8%AD%E6%98%AF%E5%90%A6%E6%9C%89bias">¶</a></a>
+          <ol>
+            <li><a href="#predict-output-by-lgbmpredict-output-by-lgbm">Predict Output by LGBM<a href="#Predict-Output-by-LGBM">¶</a></a></li>
+            <li><a href="#model-performancemodel-performance-1">Model Performance<a href="#Model-Performance">¶</a></a></li>
+            <li><a href="#bias-metricbias-metric-1">Bias Metric<a href="#Bias-Metric">¶</a></a></li>
+          </ol>
+        </li>
+        <li><a href="#4-比較logistic-regression-model-與-light-gbm預測結果中的bias大小4-比較logistic-regression-model-與-light-gbm預測結果中的bias大小">4. 比較Logistic Regression Model 與 Light-GBM預測結果中的Bias大小<a href="#4.-%E6%AF%94%E8%BC%83Logistic-Regression-Model-%E8%88%87-Light-GBM%E9%A0%90%E6%B8%AC%E7%B5%90%E6%9E%9C%E4%B8%AD%E7%9A%84Bias%E5%A4%A7%E5%B0%8F">¶</a></a></li>
+      </ol>
+    </li>
+    <li><a href="#六-mitigation-algorithms-in-practice六-mitigation-algorithms-in-practice">(六) Mitigation Algorithms in Practice<a href="#(%E5%85%AD)-Mitigation-Algorithms-in-Practice">¶</a></a>
+      <ol>
+        <li><a href="#1-which-mitigation-algorithm-is-prefered1-which-mitigation-algorithm-is-prefered">1. Which mitigation algorithm is prefered?<a href="#1.-Which-mitigation-algorithm-is-prefered?">¶</a></a></li>
+        <li><a href="#2-prediction-output-by-lgbm-after-reweighing2-prediction-output-by-lgbm-after--reweighing">2. Prediction Output by LGBM After Reweighing<a href="#2.-Prediction-Output-by-LGBM-After--Reweighing">¶</a></a>
+          <ol>
+            <li><a href="#prediction-outcome-分佈prediction-outcome-分佈">Prediction outcome 分佈<a href="#Prediction-outcome-%E5%88%86%E4%BD%88">¶</a></a></li>
+          </ol>
+        </li>
+        <li><a href="#3-comparison-of-model-quality-and-bias-after-mitigation3-comparison-of-model-quality-and-bias-after-mitigation">3. Comparison of model quality and bias after mitigation<a href="#3.-Comparison-of-model-quality-and-bias-after-mitigation">¶</a></a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+  </div>
+<!-- raw HTML omitted -->
+<hr>
+<p>Dataset: Home Credit Default Risk<a href="#Dataset:-Home-Credit-Default-Risk">¶</a></p>
+<p><a href="https://www.kaggle.com/c/home-credit-default-risk" target="_blank" rel="noopener">https://www.kaggle.com/c/home-credit-default-risk</a></p>
+<h1 id="table-of-contentstable-of-contents">Table of Contents<a href="#Table-of-Contents">¶</a></h1>
+<hr>
+<h4 id="一introduction一introduction">一、Introduction<a href="#%e4%b8%80%e3%80%81Introduction">¶</a></h4>
+<h4 id="二task1-binary-classifiation-on-home-credit-default-risk二task1-binary-classifiation-on-home-credit-default-risk">二、Task1: Binary Classifiation on Home Credit Default Risk<a href="#%e4%ba%8c%e3%80%81Task1:-Binary-Classifiation-on-Home-Credit-Default-Risk">¶</a></h4>
+<ul>
+<li>
+<p>(一) Frame the Problem and Look at the Big Picture</p>
+</li>
+<li>
+<p>(二) Get the data</p>
+</li>
+<li>
+<p>(三) Data Exploration<br>
+        — Explore the data to gain insights</p>
+</li>
+<li>
+<p>(四) Data Preparation<br>
+        — Prepare the data to better expose the underlying data patterns to Machine Learning algorithms</p>
+</li>
+<li>
+<p>(五) Model Exploration<br>
+        — Explore many different models and short-list the best ones</p>
+</li>
+<li>
+<p>(六) Model Fine-tuning<br>
+        — Fine-tune the models and combine them into a great solution</p>
+</li>
+<li>
+<p>(七) Present Solution</p>
+</li>
+</ul>
+<h4 id="三task2-ai-fairness-with-aif360-on-home-credit-default-risk三task2-ai-fairness-with-aif360-on-home-credit-default-risk">三、Task2: AI Fairness with AIF360 on Home Credit Default Risk<a href="#%e4%b8%89%e3%80%81Task2:-AI-Fairness-with-AIF360-on-Home-Credit-Default-Risk">¶</a></h4>
+<ul>
+<li>(一) Fairness and explainability in credit default risk modeling</li>
+<li>(二) Analyzing Fairness on a Machine Learning Task</li>
+<li>(三) Introducing Evaluation Metrics</li>
+<li>(四) Introducing our Protected Attributes</li>
+<li>(五) 資料特性</li>
+<li>(六) Mitigation Algorithms in practice</li>
+<li>(七) Conclusion on Task 2</li>
+</ul>
+<h4 id="四project-summary--conclusion四project-summary--conclusion">四、Project Summary &amp; Conclusion<a href="#%e5%9b%9b%e3%80%81Project-Summary-&amp;-Conclusion">¶</a></h4>
+<h4 id="五references五references">五、References<a href="#%e4%ba%94%e3%80%81References">¶</a></h4>
+<hr>
+<h1 id="一introduction一introduction-1">一、Introduction<a href="#%e4%b8%80%e3%80%81Introduction">¶</a></h1>
+<p>        在當今巨量資料的時代，機器從資料中學習的能力不斷的超乎人類的期待，因此在現實生活中，我們開始仰賴機器學習演算法解決生活中種種的問題。<br>
+        在2015年開始，學者開始著手研究機器學習模型產生的「偏見」，這個偏見如果帶入到關乎到人權的社會問題中，會衍生出社會的不公正性，更嚴重的情況，會造成針對社會弱勢族群的歧視(discrimination)。<br>
+        最知名的例子，莫過於美國非營利新聞機構 ProPublica，揭發了美國法院使用的一款預測犯人未來再犯罪的風險評估模型所造成的不公正，這個模型偏向將非裔美國人評估為高風險，將白人評估為低風險，而美國法院卻仰賴該模型，作為犯人是否能夠假釋或是緩刑的決策指標，造成了對非裔美國人的歧視。<br>
+        而我們期末專題的主題範疇是金融業，對金融機構來說，信用風險的評估一直是一個很大的挑戰，銀行或借貸平台自然非常希望有向他們貸款的顧客量很多，但是他們同時也擔心顧客的償還能力。當今社會正處於AI熱潮，許多金融機構都搭上了風潮，藉由統計或機器學習模型來評估貸款申請人的信用，並仰賴機器學習模型作為是否承接申請人業務的主要依據。但是，機器一定是對的嗎?如果機器犯錯了，影響到的是許多申請人的權益，因此我們的專案會著重在探索信用評價過程中，機器學習的公正性。<br>
+        2018年9月，IBM開發了一個能夠在機器學習過程中探索並修正 bias 的工具— AI Fairness 360，我們針對選定的主題，會進行兩個主要的任務，一個是二元分類 task，對 Home Credit Default Risk Dataset 進行分類器的訓練；另一個task則是觀察第一個task，模型在訓練過程是否有產生不公正性，對於這個不公正性，我們會嘗試使用 AI Fairness 360 去探索並消弭 (mitigate) bias的影響。</p>
+<hr>
+<h1 id="二-task-1-binary-classification-on-home-credit-default-risk二-task-1-binary-classification-on-home-credit-default-risk">二、 Task 1: Binary Classification on Home Credit Default Risk<a href="#%e4%ba%8c%e3%80%81-Task-1:-Binary-Classification-on-Home-Credit-Default-Risk">¶</a></h1>
+<blockquote>
+<p>**(一) Frame the Problem and Look at the Big Picture<br>
+****(二) Get the data<br>
+****(三) Data Exploration<br>
+**        — Explore the data to gain insights<br>
+**(四) Data Preparation<br>
+**        — Prepare the data to better expose the underlying data patterns to Machine Learning algorithms<br>
+**(五) Model Exploration<br>
+**        — Explore many different models and short-list the best ones<br>
+**(六) Model Fine-tuning<br>
+**        — Fine-tune the models and combine them into a great solution<br>
+**(七) Present Solution<br>
+**</p>
+</blockquote>
+<h2 id="一-frame-the-problem-and-look-at-the-big-picture一-frame-the-problem-and-look-at-the-big-picture">(一) Frame the Problem and Look at the Big Picture<a href="#%28%e4%b8%80%29-Frame-the-Problem-and-Look-at-the-Big-Picture">¶</a></h2>
+<p>        我們目標在於使用監督式學習的模型，根據貸款者得申請資料及歷史資料，來協助我們判斷他在銀行放貸後是否有可能會違約。由於在大部分的情況銀行都是會放行貸款，且真正的違約的案例相比沒有違約的案例還少非常多，因此此問題為 Imbalanced Binary Classification 的問題。有鑑於資料的不平衡，在分類的效果評估上就不能單純仰賴 Precision 及 Recall，因為若我們直接把 test 的 data 全部 label 成不會違約，此兩個值就已經非常高。因此我們主要會使用 ROC_AUC 及 F1 去訓練一個效果不錯但在預測上相對不會太偏差的模型。</p>
+<p>         此資料集在 kaggle 前幾名的 ROC AUC 大致為 0.8，我們會以此來評估我們效能表現。由於我們缺乏信貸相關的 domain knowledge，因此沒有辦法以使用者的角度來看更高層次的問題，也無法以專家的角度評估分類器是否有用，我們只能說分析的workflow 似乎可以套用於其他會碰到 imbalanced data 的專案中，這個專案也讓我們了解到，僅了解數據分析的工具是遠遠不夠的，必須要與一個有 domain knowledge 的人協作才能有更多的 insight 。</p>
+<h2 id="二-get-the-data二-get-the-data">(二) Get the data<a href="#%28%e4%ba%8c%29-Get-the-data">¶</a></h2>
+<p>        我們使用kaggle上 Home Credit Default Risk 提供的application_train.csv，裡面包含所有申請貸款的資料，一個 row 代表一個貸款申請案件。</p>
+<p>In [ ]:</p>
+<p>from IPython.display import display, Markdown
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns</p>
+<p>import warnings
+warnings.simplefilter(action=&lsquo;ignore&rsquo;, category=FutureWarning)</p>
+<p>app_train_raw = pd.read_csv('./data/application_train.csv')</p>
+<h2 id="三-explore-the-data-to-gain-insights三-explore-the-data-to-gain-insights">(三) Explore the data to gain insights<a href="#%28%e4%b8%89%29-Explore-the-data-to-gain-insights">¶</a></h2>
+<p>The data is provided by Home Credit, a service dedicated to provided lines of credit (loans) to the unbanked population.</p>
+<ul>
+<li>application_train: 主要的資料集，每一筆資料都代表著一次的貸款，每筆貸款都有target label(0 or 1)，0代表該筆貸款最後有付清，1則是代表該筆貸款最後沒有付清，因此算是違約(default)</li>
+</ul>
+<p>In [5]:</p>
+<p>print(&ldquo;number of instances: &ldquo;,application_train.shape[0])
+print(&ldquo;number of features: &ldquo;, application_train.shape[1])
+application_train.head(10)</p>
+<p>number of instances:  307511
+number of features:  122</p>
+<p>Out[5]:</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>SK_ID_CURR</p>
+<p>TARGET</p>
+<p>NAME_CONTRACT_TYPE</p>
+<p>CODE_GENDER</p>
+<p>FLAG_OWN_CAR</p>
+<p>FLAG_OWN_REALTY</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>&hellip;</p>
+<p>FLAG_DOCUMENT_18</p>
+<p>FLAG_DOCUMENT_19</p>
+<p>FLAG_DOCUMENT_20</p>
+<p>FLAG_DOCUMENT_21</p>
+<p>AMT_REQ_CREDIT_BUREAU_HOUR</p>
+<p>AMT_REQ_CREDIT_BUREAU_DAY</p>
+<p>AMT_REQ_CREDIT_BUREAU_WEEK</p>
+<p>AMT_REQ_CREDIT_BUREAU_MON</p>
+<p>AMT_REQ_CREDIT_BUREAU_QRT</p>
+<p>AMT_REQ_CREDIT_BUREAU_YEAR</p>
+<p>0</p>
+<p>100002</p>
+<p>1</p>
+<p>Cash loans</p>
+<p>M</p>
+<p>N</p>
+<p>Y</p>
+<p>0</p>
+<p>202500.0</p>
+<p>406597.5</p>
+<p>24700.5</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>1</p>
+<p>100003</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>F</p>
+<p>N</p>
+<p>N</p>
+<p>0</p>
+<p>270000.0</p>
+<p>1293502.5</p>
+<p>35698.5</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>2</p>
+<p>100004</p>
+<p>0</p>
+<p>Revolving loans</p>
+<p>M</p>
+<p>Y</p>
+<p>Y</p>
+<p>0</p>
+<p>67500.0</p>
+<p>135000.0</p>
+<p>6750.0</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>3</p>
+<p>100006</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>F</p>
+<p>N</p>
+<p>Y</p>
+<p>0</p>
+<p>135000.0</p>
+<p>312682.5</p>
+<p>29686.5</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>4</p>
+<p>100007</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>M</p>
+<p>N</p>
+<p>Y</p>
+<p>0</p>
+<p>121500.0</p>
+<p>513000.0</p>
+<p>21865.5</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>5</p>
+<p>100008</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>M</p>
+<p>N</p>
+<p>Y</p>
+<p>0</p>
+<p>99000.0</p>
+<p>490495.5</p>
+<p>27517.5</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>1.0</p>
+<p>6</p>
+<p>100009</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>F</p>
+<p>Y</p>
+<p>Y</p>
+<p>1</p>
+<p>171000.0</p>
+<p>1560726.0</p>
+<p>41301.0</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>1.0</p>
+<p>2.0</p>
+<p>7</p>
+<p>100010</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>M</p>
+<p>Y</p>
+<p>Y</p>
+<p>0</p>
+<p>360000.0</p>
+<p>1530000.0</p>
+<p>42075.0</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>8</p>
+<p>100011</p>
+<p>0</p>
+<p>Cash loans</p>
+<p>F</p>
+<p>N</p>
+<p>Y</p>
+<p>0</p>
+<p>112500.0</p>
+<p>1019610.0</p>
+<p>33826.5</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>9</p>
+<p>100012</p>
+<p>0</p>
+<p>Revolving loans</p>
+<p>M</p>
+<p>N</p>
+<p>Y</p>
+<p>0</p>
+<p>135000.0</p>
+<p>405000.0</p>
+<p>20250.0</p>
+<p>&hellip;</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>NaN</p>
+<p>10 rows × 122 columns</p>
+<h3 id="features-description">Features Description</h3>
+<ul>
+<li><strong>SK_ID_CURR</strong>: (Index) Index of loan</li>
+<li><strong>TARGET</strong>: (categorical variable: 0/1) Target variable (1 - client with payment difficulties: he/she had late payment more than X days on at least one of the first Y installments of the loan in our sample, 0 - all other cases)</li>
+</ul>
+<h4 id="notable-features">Notable Features</h4>
+<ul>
+<li><strong>NAME_CONTRACT_Type</strong>:(categorical variable:Cash loans/Revolving loans) Identification if loan is cash or revolving(allows for the loan amount to be withdrawn, repaid, and redrawn again in any manner and any number of times, until the arrangement expires. Credit card loans and overdrafts are revolving loans. )</li>
+<li><strong>Code Gender</strong>:(categorical variable:M/F) Gender of the Client</li>
+<li><strong>FLAG_OWN_Car</strong>:(categorical variable: 0/1) If the client owns a car</li>
+<li><strong>FLAG_OWN_REALTY</strong>:(categorical variable: 0/1) If the client owns a real estate</li>
+<li><strong>CNT_CHILDREN</strong>:(continuous variable) Number of childrens</li>
+<li><strong>AMT_INCOME_TOTAL</strong>:(continuous variable) Annual Income of client in USD</li>
+<li><strong>AMT_CREDIT</strong>:(continuous variable) Credit amount of the loan</li>
+<li><strong>AMT_ANNUITY</strong>:(continuous variable) Loan annuity(每年要支付的貸款金額)</li>
+<li><strong>AMT_GOODS_PRICE</strong>: The price of the goods for which the loan is given</li>
+<li><strong>NAME_TYPE_SUITE</strong>:(categorical variable: ) Who was accompanying client when he was applying for the loan</li>
+<li><strong>NAME_INCOME_TYPE</strong>:(categorical variable:businessman, working, maternity leave,?) Clients income type</li>
+<li><strong>NAME_EDUCATION_TYPE</strong>: Level of highest education the client achieved</li>
+<li><strong>NAME_FAMILY_STATUS</strong>: Family status of the client</li>
+<li><strong>NAME_HOUSING_TYPE</strong>: What is the housing situation of the client (renting, living with parents, &hellip;)</li>
+<li><strong>REGION_POPULATION_RELATIVE</strong>: Normalized population of region where client lives (higher number means the client lives in more populated region)</li>
+<li><strong>DAYS_BIRTH</strong>: Client&rsquo;s age in days at the time of application</li>
+<li><strong>DAYS_EMPLOYED</strong>: How many days before the application the person started current employment</li>
+<li><strong>DAYS_REGISTRATION</strong>: How many days before the application did client change his registration</li>
+<li><strong>DAYS_ID_PUBLISH</strong>: How many days before the application did client change the identity document with which he applied for the loan</li>
+<li><strong>OWN_CAR_AGE</strong>: Age of client&rsquo;s car</li>
+</ul>
+<p>In [6]:</p>
+<p># Number of each type of column
+application_train.dtypes.value_counts()</p>
+<p>Out[6]:</p>
+<p>float64    65
+int64      41
+object     16
+dtype: int64</p>
+<p>In [32]:</p>
+<p>all_variables = application_train.columns
+continuous_float_variables = list(application_train.select_dtypes(include=[np.float]).columns)
+display(Markdown(&quot;### continuous_float_variables&rdquo;))
+print(len(continuous_float_variables))
+print(continuous_float_variables)</p>
+<p>categorical_variables = list(application_train.select_dtypes(include=[np.object]).columns)
+display(Markdown(&quot;### Categorical_variables&rdquo;))
+print(len(categorical_variables))
+print(categorical_variables)</p>
+<p>integer_variables = list(application_train.select_dtypes(include=[np.int64]).columns)
+display(Markdown(&quot;### integer_variables&rdquo;))
+print(len(integer_variables))
+print(integer_variables)</p>
+<h3 id="continuous_float_variablescontinuous_float_variables">continuous_float_variables<a href="#continuous_float_variables">¶</a></h3>
+<p>65
+[&lsquo;AMT_INCOME_TOTAL&rsquo;, &lsquo;AMT_CREDIT&rsquo;, &lsquo;AMT_ANNUITY&rsquo;, &lsquo;AMT_GOODS_PRICE&rsquo;, &lsquo;REGION_POPULATION_RELATIVE&rsquo;, &lsquo;DAYS_REGISTRATION&rsquo;, &lsquo;OWN_CAR_AGE&rsquo;, &lsquo;CNT_FAM_MEMBERS&rsquo;, &lsquo;EXT_SOURCE_1&rsquo;, &lsquo;EXT_SOURCE_2&rsquo;, &lsquo;EXT_SOURCE_3&rsquo;, &lsquo;APARTMENTS_AVG&rsquo;, &lsquo;BASEMENTAREA_AVG&rsquo;, &lsquo;YEARS_BEGINEXPLUATATION_AVG&rsquo;, &lsquo;YEARS_BUILD_AVG&rsquo;, &lsquo;COMMONAREA_AVG&rsquo;, &lsquo;ELEVATORS_AVG&rsquo;, &lsquo;ENTRANCES_AVG&rsquo;, &lsquo;FLOORSMAX_AVG&rsquo;, &lsquo;FLOORSMIN_AVG&rsquo;, &lsquo;LANDAREA_AVG&rsquo;, &lsquo;LIVINGAPARTMENTS_AVG&rsquo;, &lsquo;LIVINGAREA_AVG&rsquo;, &lsquo;NONLIVINGAPARTMENTS_AVG&rsquo;, &lsquo;NONLIVINGAREA_AVG&rsquo;, &lsquo;APARTMENTS_MODE&rsquo;, &lsquo;BASEMENTAREA_MODE&rsquo;, &lsquo;YEARS_BEGINEXPLUATATION_MODE&rsquo;, &lsquo;YEARS_BUILD_MODE&rsquo;, &lsquo;COMMONAREA_MODE&rsquo;, &lsquo;ELEVATORS_MODE&rsquo;, &lsquo;ENTRANCES_MODE&rsquo;, &lsquo;FLOORSMAX_MODE&rsquo;, &lsquo;FLOORSMIN_MODE&rsquo;, &lsquo;LANDAREA_MODE&rsquo;, &lsquo;LIVINGAPARTMENTS_MODE&rsquo;, &lsquo;LIVINGAREA_MODE&rsquo;, &lsquo;NONLIVINGAPARTMENTS_MODE&rsquo;, &lsquo;NONLIVINGAREA_MODE&rsquo;, &lsquo;APARTMENTS_MEDI&rsquo;, &lsquo;BASEMENTAREA_MEDI&rsquo;, &lsquo;YEARS_BEGINEXPLUATATION_MEDI&rsquo;, &lsquo;YEARS_BUILD_MEDI&rsquo;, &lsquo;COMMONAREA_MEDI&rsquo;, &lsquo;ELEVATORS_MEDI&rsquo;, &lsquo;ENTRANCES_MEDI&rsquo;, &lsquo;FLOORSMAX_MEDI&rsquo;, &lsquo;FLOORSMIN_MEDI&rsquo;, &lsquo;LANDAREA_MEDI&rsquo;, &lsquo;LIVINGAPARTMENTS_MEDI&rsquo;, &lsquo;LIVINGAREA_MEDI&rsquo;, &lsquo;NONLIVINGAPARTMENTS_MEDI&rsquo;, &lsquo;NONLIVINGAREA_MEDI&rsquo;, &lsquo;TOTALAREA_MODE&rsquo;, &lsquo;OBS_30_CNT_SOCIAL_CIRCLE&rsquo;, &lsquo;DEF_30_CNT_SOCIAL_CIRCLE&rsquo;, &lsquo;OBS_60_CNT_SOCIAL_CIRCLE&rsquo;, &lsquo;DEF_60_CNT_SOCIAL_CIRCLE&rsquo;, &lsquo;DAYS_LAST_PHONE_CHANGE&rsquo;, &lsquo;AMT_REQ_CREDIT_BUREAU_HOUR&rsquo;, &lsquo;AMT_REQ_CREDIT_BUREAU_DAY&rsquo;, &lsquo;AMT_REQ_CREDIT_BUREAU_WEEK&rsquo;, &lsquo;AMT_REQ_CREDIT_BUREAU_MON&rsquo;, &lsquo;AMT_REQ_CREDIT_BUREAU_QRT&rsquo;, &lsquo;AMT_REQ_CREDIT_BUREAU_YEAR&rsquo;]</p>
+<h3 id="categorical_variablescategorical_variables">Categorical_variables<a href="#Categorical_variables">¶</a></h3>
+<p>16
+[&lsquo;NAME_CONTRACT_TYPE&rsquo;, &lsquo;CODE_GENDER&rsquo;, &lsquo;FLAG_OWN_CAR&rsquo;, &lsquo;FLAG_OWN_REALTY&rsquo;, &lsquo;NAME_TYPE_SUITE&rsquo;, &lsquo;NAME_INCOME_TYPE&rsquo;, &lsquo;NAME_EDUCATION_TYPE&rsquo;, &lsquo;NAME_FAMILY_STATUS&rsquo;, &lsquo;NAME_HOUSING_TYPE&rsquo;, &lsquo;OCCUPATION_TYPE&rsquo;, &lsquo;WEEKDAY_APPR_PROCESS_START&rsquo;, &lsquo;ORGANIZATION_TYPE&rsquo;, &lsquo;FONDKAPREMONT_MODE&rsquo;, &lsquo;HOUSETYPE_MODE&rsquo;, &lsquo;WALLSMATERIAL_MODE&rsquo;, &lsquo;EMERGENCYSTATE_MODE&rsquo;]</p>
+<h3 id="integer_variablesinteger_variables">integer_variables<a href="#integer_variables">¶</a></h3>
+<p>41
+[&lsquo;SK_ID_CURR&rsquo;, &lsquo;TARGET&rsquo;, &lsquo;CNT_CHILDREN&rsquo;, &lsquo;DAYS_BIRTH&rsquo;, &lsquo;DAYS_EMPLOYED&rsquo;, &lsquo;DAYS_ID_PUBLISH&rsquo;, &lsquo;FLAG_MOBIL&rsquo;, &lsquo;FLAG_EMP_PHONE&rsquo;, &lsquo;FLAG_WORK_PHONE&rsquo;, &lsquo;FLAG_CONT_MOBILE&rsquo;, &lsquo;FLAG_PHONE&rsquo;, &lsquo;FLAG_EMAIL&rsquo;, &lsquo;REGION_RATING_CLIENT&rsquo;, &lsquo;REGION_RATING_CLIENT_W_CITY&rsquo;, &lsquo;HOUR_APPR_PROCESS_START&rsquo;, &lsquo;REG_REGION_NOT_LIVE_REGION&rsquo;, &lsquo;REG_REGION_NOT_WORK_REGION&rsquo;, &lsquo;LIVE_REGION_NOT_WORK_REGION&rsquo;, &lsquo;REG_CITY_NOT_LIVE_CITY&rsquo;, &lsquo;REG_CITY_NOT_WORK_CITY&rsquo;, &lsquo;LIVE_CITY_NOT_WORK_CITY&rsquo;, &lsquo;FLAG_DOCUMENT_2&rsquo;, &lsquo;FLAG_DOCUMENT_3&rsquo;, &lsquo;FLAG_DOCUMENT_4&rsquo;, &lsquo;FLAG_DOCUMENT_5&rsquo;, &lsquo;FLAG_DOCUMENT_6&rsquo;, &lsquo;FLAG_DOCUMENT_7&rsquo;, &lsquo;FLAG_DOCUMENT_8&rsquo;, &lsquo;FLAG_DOCUMENT_9&rsquo;, &lsquo;FLAG_DOCUMENT_10&rsquo;, &lsquo;FLAG_DOCUMENT_11&rsquo;, &lsquo;FLAG_DOCUMENT_12&rsquo;, &lsquo;FLAG_DOCUMENT_13&rsquo;, &lsquo;FLAG_DOCUMENT_14&rsquo;, &lsquo;FLAG_DOCUMENT_15&rsquo;, &lsquo;FLAG_DOCUMENT_16&rsquo;, &lsquo;FLAG_DOCUMENT_17&rsquo;, &lsquo;FLAG_DOCUMENT_18&rsquo;, &lsquo;FLAG_DOCUMENT_19&rsquo;, &lsquo;FLAG_DOCUMENT_20&rsquo;, &lsquo;FLAG_DOCUMENT_21&rsquo;]</p>
+<h3 id="eda-on-binary-y-label-extremely-imbalancededa-on-binary-y-label-extremely-imbalanced">EDA on Binary Y label (extremely imbalanced)<a href="#EDA-on-Binary-Y-label-%28extremely-imbalanced%29">¶</a></h3>
+<p>In [9]:</p>
+<p>#number of target labels for both 0 and 1
+sns.catplot(x=&ldquo;TARGET&rdquo;, kind=&ldquo;count&rdquo;, data=application_train)
+application_train[&lsquo;TARGET&rsquo;].value_counts()</p>
+<p>Out[9]:</p>
+<p>0    282686
+1     24825
+Name: TARGET, dtype: int64</p>
+<p>)</p>
+<h3 id="eda-on-notable_continuous_variableseda-on-notable_continuous_variables">EDA on Notable_continuous_variables<a href="#EDA-on-Notable_continuous_variables">¶</a></h3>
+<p>In [43]:</p>
+<p>Notable_continuous_variables = [&lsquo;AMT_INCOME_TOTAL&rsquo;, &lsquo;AMT_CREDIT&rsquo;, &lsquo;AMT_ANNUITY&rsquo;,&lsquo;CNT_CHILDREN&rsquo;, &lsquo;DAYS_REGISTRATION&rsquo;,
+&lsquo;OWN_CAR_AGE&rsquo;, &lsquo;CNT_FAM_MEMBERS&rsquo;,&lsquo;DAYS_BIRTH&rsquo;, &lsquo;DAYS_EMPLOYED&rsquo;, &lsquo;DAYS_ID_PUBLISH&rsquo;]
+for each_variable in Notable_continuous_variables:
+plt.hist(application_train[each_variable].dropna(),color = &ldquo;g&rdquo;)
+plt.title(&ldquo;Histogram on &ldquo;+each_variable)
+plt.show()</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<h3 id="eda-on-na-valueseda-on-na-values">EDA on NA values<a href="#EDA-on-NA-values">¶</a></h3>
+<p>In [83]:</p>
+<p>def print_na_col(df):
+na = df.isna().sum().sort_values(ascending = False)
+not_na = []
+for name, val in na.items():
+if val != 0:
+print(name, val)
+else:
+not_na.append(name)</p>
+<pre><code>print('Zero NaN:')
+print(not\_na)
+</code></pre>
+<p>def slice_by_typ(df):
+return df.select_dtypes(include=[&lsquo;float64&rsquo;]), df.select_dtypes(include=[&lsquo;int64&rsquo;]), df.select_dtypes(include=[&lsquo;object&rsquo;])</p>
+<p>In [84]:</p>
+<p>app_float, app_int64, app_obj = slice_by_typ(application_train)</p>
+<h4 id="nas-of-float-variablesnas-of-float-variables">NAs of float variables<a href="#NAs-of-float-variables">¶</a></h4>
+<p>In [85]:</p>
+<p>print_na_col(app_float)</p>
+<p>COMMONAREA_AVG 214865
+COMMONAREA_MEDI 214865
+COMMONAREA_MODE 214865
+NONLIVINGAPARTMENTS_MODE 213514
+NONLIVINGAPARTMENTS_AVG 213514
+NONLIVINGAPARTMENTS_MEDI 213514
+LIVINGAPARTMENTS_AVG 210199
+LIVINGAPARTMENTS_MODE 210199
+LIVINGAPARTMENTS_MEDI 210199
+FLOORSMIN_AVG 208642
+FLOORSMIN_MEDI 208642
+FLOORSMIN_MODE 208642
+YEARS_BUILD_MODE 204488
+YEARS_BUILD_MEDI 204488
+YEARS_BUILD_AVG 204488
+OWN_CAR_AGE 202929
+LANDAREA_MODE 182590
+LANDAREA_MEDI 182590
+LANDAREA_AVG 182590
+BASEMENTAREA_MODE 179943
+BASEMENTAREA_AVG 179943
+BASEMENTAREA_MEDI 179943
+EXT_SOURCE_1 173378
+NONLIVINGAREA_MEDI 169682
+NONLIVINGAREA_AVG 169682
+NONLIVINGAREA_MODE 169682
+ELEVATORS_MEDI 163891
+ELEVATORS_AVG 163891
+ELEVATORS_MODE 163891
+APARTMENTS_MODE 156061
+APARTMENTS_MEDI 156061
+APARTMENTS_AVG 156061
+ENTRANCES_AVG 154828
+ENTRANCES_MODE 154828
+ENTRANCES_MEDI 154828
+LIVINGAREA_MODE 154350
+LIVINGAREA_MEDI 154350
+LIVINGAREA_AVG 154350
+FLOORSMAX_MODE 153020
+FLOORSMAX_AVG 153020
+FLOORSMAX_MEDI 153020
+YEARS_BEGINEXPLUATATION_MODE 150007
+YEARS_BEGINEXPLUATATION_AVG 150007
+YEARS_BEGINEXPLUATATION_MEDI 150007
+TOTALAREA_MODE 148431
+EXT_SOURCE_3 60965
+AMT_REQ_CREDIT_BUREAU_YEAR 41519
+AMT_REQ_CREDIT_BUREAU_QRT 41519
+AMT_REQ_CREDIT_BUREAU_HOUR 41519
+AMT_REQ_CREDIT_BUREAU_MON 41519
+AMT_REQ_CREDIT_BUREAU_DAY 41519
+AMT_REQ_CREDIT_BUREAU_WEEK 41519
+DEF_60_CNT_SOCIAL_CIRCLE 1021
+OBS_60_CNT_SOCIAL_CIRCLE 1021
+OBS_30_CNT_SOCIAL_CIRCLE 1021
+DEF_30_CNT_SOCIAL_CIRCLE 1021
+EXT_SOURCE_2 660
+AMT_GOODS_PRICE 278
+AMT_ANNUITY 12
+CNT_FAM_MEMBERS 2
+DAYS_LAST_PHONE_CHANGE 1
+Zero NaN:
+[&lsquo;DAYS_REGISTRATION&rsquo;, &lsquo;REGION_POPULATION_RELATIVE&rsquo;, &lsquo;AMT_CREDIT&rsquo;, &lsquo;AMT_INCOME_TOTAL&rsquo;]</p>
+<h4 id="nas-of-integer-variablesnas-of-integer-variables">NAs of integer variables<a href="#NAs-of-integer-variables">¶</a></h4>
+<p>In [86]:</p>
+<p>print_na_col(app_int64)</p>
+<p>Zero NaN:
+[&lsquo;FLAG_DOCUMENT_21&rsquo;, &lsquo;REG_CITY_NOT_WORK_CITY&rsquo;, &lsquo;LIVE_REGION_NOT_WORK_REGION&rsquo;, &lsquo;REG_REGION_NOT_WORK_REGION&rsquo;, &lsquo;REG_REGION_NOT_LIVE_REGION&rsquo;, &lsquo;HOUR_APPR_PROCESS_START&rsquo;, &lsquo;REGION_RATING_CLIENT_W_CITY&rsquo;, &lsquo;REGION_RATING_CLIENT&rsquo;, &lsquo;FLAG_EMAIL&rsquo;, &lsquo;FLAG_PHONE&rsquo;, &lsquo;FLAG_CONT_MOBILE&rsquo;, &lsquo;FLAG_WORK_PHONE&rsquo;, &lsquo;FLAG_EMP_PHONE&rsquo;, &lsquo;FLAG_MOBIL&rsquo;, &lsquo;DAYS_ID_PUBLISH&rsquo;, &lsquo;DAYS_EMPLOYED&rsquo;, &lsquo;DAYS_BIRTH&rsquo;, &lsquo;CNT_CHILDREN&rsquo;, &lsquo;TARGET&rsquo;, &lsquo;REG_CITY_NOT_LIVE_CITY&rsquo;, &lsquo;LIVE_CITY_NOT_WORK_CITY&rsquo;, &lsquo;FLAG_DOCUMENT_20&rsquo;, &lsquo;FLAG_DOCUMENT_2&rsquo;, &lsquo;FLAG_DOCUMENT_19&rsquo;, &lsquo;FLAG_DOCUMENT_18&rsquo;, &lsquo;FLAG_DOCUMENT_17&rsquo;, &lsquo;FLAG_DOCUMENT_16&rsquo;, &lsquo;FLAG_DOCUMENT_15&rsquo;, &lsquo;FLAG_DOCUMENT_14&rsquo;, &lsquo;FLAG_DOCUMENT_13&rsquo;, &lsquo;FLAG_DOCUMENT_12&rsquo;, &lsquo;FLAG_DOCUMENT_11&rsquo;, &lsquo;FLAG_DOCUMENT_10&rsquo;, &lsquo;FLAG_DOCUMENT_9&rsquo;, &lsquo;FLAG_DOCUMENT_8&rsquo;, &lsquo;FLAG_DOCUMENT_7&rsquo;, &lsquo;FLAG_DOCUMENT_6&rsquo;, &lsquo;FLAG_DOCUMENT_5&rsquo;, &lsquo;FLAG_DOCUMENT_4&rsquo;, &lsquo;FLAG_DOCUMENT_3&rsquo;, &lsquo;SK_ID_CURR&rsquo;]</p>
+<h4 id="nas-of-categorical-variablesnas-of-categorical-variables">NAs of categorical variables<a href="#NAs-of-categorical-variables">¶</a></h4>
+<p>In [87]:</p>
+<p>print_na_col(app_obj)</p>
+<p>FONDKAPREMONT_MODE 210295
+WALLSMATERIAL_MODE 156341
+HOUSETYPE_MODE 154297
+EMERGENCYSTATE_MODE 145755
+OCCUPATION_TYPE 96391
+NAME_TYPE_SUITE 1292
+Zero NaN:
+[&lsquo;ORGANIZATION_TYPE&rsquo;, &lsquo;WEEKDAY_APPR_PROCESS_START&rsquo;, &lsquo;NAME_HOUSING_TYPE&rsquo;, &lsquo;NAME_FAMILY_STATUS&rsquo;, &lsquo;NAME_EDUCATION_TYPE&rsquo;, &lsquo;NAME_INCOME_TYPE&rsquo;, &lsquo;FLAG_OWN_REALTY&rsquo;, &lsquo;FLAG_OWN_CAR&rsquo;, &lsquo;CODE_GENDER&rsquo;, &lsquo;NAME_CONTRACT_TYPE&rsquo;]</p>
+<p>In [7]:</p>
+<p>application_train_NA_dropped = application_train.dropna(subset =list(application_train.columns), inplace=False)
+application_train_NA_dropped.shape</p>
+<p>Out[7]:</p>
+<p>(8602, 122)</p>
+<p>        這個資料集的複雜程度比較高,有大量的 NAN 值,如果按照統初作業2的處理方式, 將所有有NAN值的row刪掉的話, 資料量會從28000筆變成剩下8602筆, 所以不能這麼做。</p>
+<h4 id="attribute-correlations-with-target--feature-importanceattribute-correlations-with-target--feature-importance">Attribute Correlations with target &amp; Feature Importance<a href="#Attribute-Correlations-with-target-&amp;-Feature-Importance">¶</a></h4>
+<p>In [48]:</p>
+<p># Find correlations with the target
+sorted_correlations = application_train.corr(method=&lsquo;pearson&rsquo;)[&lsquo;TARGET&rsquo;].sort_values()</p>
+<p># Display correlations
+print(&lsquo;Most Positive Correlations:\n&rsquo;, sorted_correlations.tail(15))
+print('\nMost Negative Correlations:\n', sorted_correlations.head(15))</p>
+<p>Most Positive Correlations:
+DEF_60_CNT_SOCIAL_CIRCLE       0.031276
+DEF_30_CNT_SOCIAL_CIRCLE       0.032248
+LIVE_CITY_NOT_WORK_CITY        0.032518
+OWN_CAR_AGE                    0.037612
+DAYS_REGISTRATION              0.041975
+FLAG_DOCUMENT_3                0.044346
+REG_CITY_NOT_LIVE_CITY         0.044395
+FLAG_EMP_PHONE                 0.045982
+REG_CITY_NOT_WORK_CITY         0.050994
+DAYS_ID_PUBLISH                0.051457
+DAYS_LAST_PHONE_CHANGE         0.055218
+REGION_RATING_CLIENT           0.058899
+REGION_RATING_CLIENT_W_CITY    0.060893
+DAYS_BIRTH                     0.078239
+TARGET                         1.000000
+Name: TARGET, dtype: float64</p>
+<p>Most Negative Correlations:
+EXT_SOURCE_3                 -0.178919
+EXT_SOURCE_2                 -0.160472
+EXT_SOURCE_1                 -0.155317
+DAYS_EMPLOYED                -0.044932
+FLOORSMAX_AVG                -0.044003
+FLOORSMAX_MEDI               -0.043768
+FLOORSMAX_MODE               -0.043226
+AMT_GOODS_PRICE              -0.039645
+REGION_POPULATION_RELATIVE   -0.037227
+ELEVATORS_AVG                -0.034199
+ELEVATORS_MEDI               -0.033863
+FLOORSMIN_AVG                -0.033614
+FLOORSMIN_MEDI               -0.033394
+LIVINGAREA_AVG               -0.032997
+LIVINGAREA_MEDI              -0.032739
+Name: TARGET, dtype: float64</p>
+<p>        經過皮爾森相關係數的計算，可以看到各個 feature 與 target label 的相關性都滿低的，通常正負0.3以下都算是低度相關。因此上面的排名只能當作參考，不能夠因此斷定排名前面的幾個 feature 是比較重要的。 可以看到與 target label 正相關最大的是 DAYS_BIRTH，也就是貸款人的年齡。 而負相關最大的是 EXT_SOURCE(external source)，這個 feature在kaggle 上的介紹是 Normalized score from external data source，沒有明確的定義 external data source 是甚麼 data，不過它的相關性係數是所有 feature 裡面比較令人注目的。</p>
+<h4 id="貸款人年齡貸款人年齡">貸款人年齡<a href="#%e8%b2%b8%e6%ac%be%e4%ba%ba%e5%b9%b4%e9%bd%a1">¶</a></h4>
+<p>In [114]:</p>
+<p>plt.style.use(&lsquo;fivethirtyeight&rsquo;)
+# Plot the distribution of ages in years
+plt.hist(application_train[&lsquo;DAYS_BIRTH&rsquo;]*(-1), edgecolor = &lsquo;b&rsquo;, bins = 20)
+plt.title(&lsquo;Days of Birth&rsquo;); plt.xlabel(&lsquo;Days of Birth&rsquo;); plt.ylabel(&lsquo;Count&rsquo;);</p>
+<p>)</p>
+<p>In [109]:</p>
+<p>plt.figure(figsize = (10, 8))</p>
+<p># KDE plot of loans that were repaid on time
+sns.kdeplot(application_train.loc[application_train[&lsquo;TARGET&rsquo;] == 0, &lsquo;DAYS_BIRTH&rsquo;]* (-1), label = &lsquo;target == 0, non-default&rsquo;)
+# KDE plot of loans which were not repaid on time
+sns.kdeplot(application_train.loc[application_train[&lsquo;TARGET&rsquo;] == 1, &lsquo;DAYS_BIRTH&rsquo;]*(-1), label = &lsquo;target == 1, default&rsquo;)</p>
+<p>plt.xlabel(&lsquo;Days of birth&rsquo;); plt.ylabel(&lsquo;Density&rsquo;); plt.title(&lsquo;Distribution of Ages&rsquo;);</p>
+<p>)</p>
+<p>        我們可以看到 target 0 與 target 1 在年齡上的分布曲線，可以看到年齡較大的人，確實有比較不會違約的傾向(藍色曲線高於紅色曲線)，而年齡較低的貸款人，確實比較有可能違約。</p>
+<h4 id="external-sourceexternal-source">External Source<a href="#External-Source">¶</a></h4>
+<p>In [138]:</p>
+<p>plt.figure(figsize = (10, 12))</p>
+<p>for i, source in enumerate([&lsquo;EXT_SOURCE_1&rsquo;, &lsquo;EXT_SOURCE_2&rsquo;, &lsquo;EXT_SOURCE_3&rsquo;]):
+plt.subplot(3, 1, i + 1)
+# plot repaid loans
+sns.kdeplot(application_train.loc[application_train[&lsquo;TARGET&rsquo;] == 0, source], label = &lsquo;target 0&rsquo;)
+# plot loans that were not repaid
+sns.kdeplot(application_train.loc[application_train[&lsquo;TARGET&rsquo;] == 1, source], label = &lsquo;target 1&rsquo;)</p>
+<pre><code>\# Label the plots
+plt.title('Distribution of %s by Target Value' % source)
+plt.xlabel('%s' % source); plt.ylabel('Density');
+</code></pre>
+<p>plt.tight_layout(h_pad = 2)</p>
+<p>)</p>
+<p>        上面三張圖可以看到，與 target correlation 最高的 attribute EXT_SOURCE_3 , EXT_SOURCE_2, EXT_SOURCE_1 三個 attributes 的分布，可以看到 EXT_SOURCE_3, target0 與 target1 的分布是比較能夠區分的, 這也可以推測到, 它將會是我們在執行這個二元分類任務時，必須讓分類模型學習到的重要 feature。</p>
+<h4 id="當前工作的就職天數-days-employed當前工作的就職天數-days-employed">當前工作的就職天數 Days Employed<a href="#%e7%95%b6%e5%89%8d%e5%b7%a5%e4%bd%9c%e7%9a%84%e5%b0%b1%e8%81%b7%e5%a4%a9%e6%95%b8-Days-Employed">¶</a></h4>
+<p>In [130]:</p>
+<p>application_train[&ldquo;DAYS_EMPLOYED&rdquo;].describe()</p>
+<p>Out[130]:</p>
+<p>count    307511.000000
+mean      63815.045904
+std      141275.766519
+min      -17912.000000
+25%       -2760.000000
+50%       -1213.000000
+75%        -289.000000
+max      365243.000000
+Name: DAYS_EMPLOYED, dtype: float64</p>
+<p>In [123]:</p>
+<p>application_train[&ldquo;DAYS_EMPLOYED&rdquo;].head()</p>
+<p>Out[123]:</p>
+<p>0    -637
+1   -1188
+2    -225
+3   -3039
+4   -3038
+Name: DAYS_EMPLOYED, dtype: int64</p>
+<p>In [137]:</p>
+<p>plt.figure(figsize = (10, 8))</p>
+<p># KDE plot of loans that were repaid on time
+sns.kdeplot(application_train.loc[application_train[&lsquo;TARGET&rsquo;] == 0, &lsquo;DAYS_EMPLOYED&rsquo;]/(365), label = &lsquo;target == 0, non-default&rsquo;)
+# KDE plot of loans which were not repaid on time
+sns.kdeplot(application_train.loc[application_train[&lsquo;TARGET&rsquo;] == 1, &lsquo;DAYS_EMPLOYED&rsquo;]/(365), label = &lsquo;target == 1, default&rsquo;)</p>
+<p>plt.xlabel(&lsquo;Days Employed&rsquo;); plt.ylabel(&lsquo;Density&rsquo;); plt.title(&lsquo;Distribution of Days_employed&rsquo;);</p>
+<p>)</p>
+<p>        Days_Employed雖然排在External Source後面，但是其相關係數非常低，可以看到target = 1與target = 0的分布幾乎重疊，無法區分兩者。</p>
+<h2 id="四-data-preparation四-data-preparation">(四) Data Preparation<a href="#%28%e5%9b%9b%29-Data-Preparation">¶</a></h2>
+<h3 id="-prepare-the-data-to-better-expose-the-underlying-data-patterns-to-machine-learning-algorithms">        — Prepare the data to better expose the underlying data patterns to Machine Learning algorithms</h3>
+<h4 id="drop-rows-which-contain-nandrop-rows-which-contain-nan">Drop rows which contain NaN<a href="#Drop-rows-which-contain-NaN">¶</a></h4>
+<p>        將 index 設為貸款申請的 ID</p>
+<p>In [3]:</p>
+<p>app_train_raw = app_train_raw.set_index(&lsquo;SK_ID_CURR&rsquo;)</p>
+<p>        我們試過直接將有包含 NaN 的 row 全部 drop 掉，此動作會損失過多的資料，因此我們決定先去掉那些 NaN 數量大於 1/3樣本數的 column 後，再將有NaN 的 row 去掉。</p>
+<h4 id="drop-columnsdrop-columns">Drop columns<a href="#Drop-columns">¶</a></h4>
+<p>In [4]:</p>
+<p>def drop_column_by_na(df, threshold=None):
+if not threshold:
+threshold = int(df.shape[0]/3)
+na = df.isna().sum().sort_values(ascending = False)
+display(Markdown('**Drop Columns:**'))
+for name, val in na.items():
+if val &gt;= threshold:
+print(name, end=',')
+df.drop(columns=[name], inplace = True)</p>
+<p>drop_column_by_na(app_train_raw)</p>
+<p><strong>Drop Columns:</strong></p>
+<p>COMMONAREA_MEDI,COMMONAREA_AVG,COMMONAREA_MODE,NONLIVINGAPARTMENTS_MODE,NONLIVINGAPARTMENTS_MEDI,NONLIVINGAPARTMENTS_AVG,FONDKAPREMONT_MODE,LIVINGAPARTMENTS_MEDI,LIVINGAPARTMENTS_MODE,LIVINGAPARTMENTS_AVG,FLOORSMIN_AVG,FLOORSMIN_MEDI,FLOORSMIN_MODE,YEARS_BUILD_MEDI,YEARS_BUILD_MODE,YEARS_BUILD_AVG,OWN_CAR_AGE,LANDAREA_AVG,LANDAREA_MEDI,LANDAREA_MODE,BASEMENTAREA_AVG,BASEMENTAREA_MODE,BASEMENTAREA_MEDI,EXT_SOURCE_1,NONLIVINGAREA_MEDI,NONLIVINGAREA_AVG,NONLIVINGAREA_MODE,ELEVATORS_AVG,ELEVATORS_MEDI,ELEVATORS_MODE,WALLSMATERIAL_MODE,APARTMENTS_MODE,APARTMENTS_MEDI,APARTMENTS_AVG,ENTRANCES_MEDI,ENTRANCES_MODE,ENTRANCES_AVG,LIVINGAREA_MEDI,LIVINGAREA_MODE,LIVINGAREA_AVG,HOUSETYPE_MODE,FLOORSMAX_AVG,FLOORSMAX_MEDI,FLOORSMAX_MODE,YEARS_BEGINEXPLUATATION_AVG,YEARS_BEGINEXPLUATATION_MEDI,YEARS_BEGINEXPLUATATION_MODE,TOTALAREA_MODE,EMERGENCYSTATE_MODE,</p>
+<h4 id="刪除包含-nan-的-rows刪除包含-nan-的-rows">刪除包含 NaN 的 rows<a href="#%e5%88%aa%e9%99%a4%e5%8c%85%e5%90%ab-NaN-%e7%9a%84-rows">¶</a></h4>
+<p>In [5]:</p>
+<p>app_train_dropped = app_train_raw.dropna()
+display(Markdown(f'**Shape of dataset after dropping rows that contain NaN: {app_train_dropped.shape}**'))</p>
+<p><strong>Shape of dataset after dropping rows that contain NaN: (167732, 72)</strong></p>
+<h4 id="刪除性別欄位-code_gender-值為-xna-的-rows刪除性別欄位-code_gender-值為-xna-的-rows">刪除性別欄位 CODE_GENDER 值為 XNA 的 rows<a href="#%e5%88%aa%e9%99%a4%e6%80%a7%e5%88%a5%e6%ac%84%e4%bd%8d-CODE_GENDER-%e5%80%bc%e7%82%ba-XNA-%e7%9a%84-rows">¶</a></h4>
+<p>In [6]:</p>
+<p>app_train_dropped = app_train_dropped[app_train_dropped[&lsquo;CODE_GENDER&rsquo;] != &lsquo;XNA&rsquo;]</p>
+<h4 id="分出特征集-x-和目標標籤-y分出特征集-x-和目標標籤-y">分出特征集 X 和目標標籤 y<a href="#%e5%88%86%e5%87%ba%e7%89%b9%e5%be%81%e9%9b%86-X-%e5%92%8c%e7%9b%ae%e6%a8%99%e6%a8%99%e7%b1%a4-y">¶</a></h4>
+<p>In [7]:</p>
+<p>app_train_dropped_y = app_train_dropped[&lsquo;TARGET&rsquo;]
+app_train_dropped_X = app_train_dropped.drop(columns=[&lsquo;TARGET&rsquo;])</p>
+<h4 id="將資料集切割成-training-set-和-testing-set將資料集切割成-training-set-和-testing-set">將資料集切割成 training set 和 testing set<a href="#%e5%b0%87%e8%b3%87%e6%96%99%e9%9b%86%e5%88%87%e5%89%b2%e6%88%90-training-set-%e5%92%8c-testing-set">¶</a></h4>
+<p>In [8]:</p>
+<p>from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(app_train_dropped_X, app_train_dropped_y, test_size=0.3, random_state=42)
+display(Markdown(f'**- X_train\&rsquo;s shape: {X_train.shape}**'))
+display(Markdown(f'**- y_train\&rsquo;s shape: {y_train.shape}**'))
+display(Markdown(f'**- X_test\&rsquo;s shape: {X_test.shape}**'))
+display(Markdown(f'**- y_test\&rsquo;s shape: {y_test.shape}**'))</p>
+<p><strong>- X_train&rsquo;s shape: (117411, 71)</strong></p>
+<p><strong>- y_train&rsquo;s shape: (117411,)</strong></p>
+<p><strong>- X_test&rsquo;s shape: (50319, 71)</strong></p>
+<p><strong>- y_test&rsquo;s shape: (50319,)</strong></p>
+<h4 id="data-standardization-for-numerical-data-and-one-hot-encoding-for-categorical-datadata-standardization-for-numerical-data-and-one-hot-encoding-for-categorical-data">Data Standardization (for numerical data) and One-hot encoding (for categorical data)<a href="#Data-Standardization-%28for-numerical-data%29-and-One-hot-encoding-%28for-categorical-data%29">¶</a></h4>
+<p>In [9]:</p>
+<p>from sklearn.preprocessing import StandardScaler, OneHotEncoder</p>
+<p>categorical_columns = [col for col in X_train.columns if X_train[col].dtype == &lsquo;object&rsquo;]
+binaryDataColumns = [col for col in X_train if np.isin(X_train[col].unique(), [0, 1]).all()]
+numericalDataColumns = [col for col in X_train.columns if col not in binaryDataColumns and col not in categorical_columns]
+categoricalData_train, categoricalData_test = X_train[categorical_columns], X_test[categorical_columns]
+binaryData_train, binaryData_test = X_train[binaryDataColumns], X_test[binaryDataColumns]
+numericalData_train, numericalData_test = X_train[numericalDataColumns], X_test[numericalDataColumns]</p>
+<p>def one_hot_encoder(df_train, df_test):
+df_train_index = df_train.index
+df_test_index = df_test.index
+ohe = OneHotEncoder(sparse=False, handle_unknown=&lsquo;ignore&rsquo;)
+df_train = pd.DataFrame(ohe.fit_transform(df_train), columns=ohe.get_feature_names(), index=df_train_index)
+df_test = pd.DataFrame(ohe.transform(df_test), columns=ohe.get_feature_names(), index=df_test_index)
+return df_train, df_test</p>
+<p>display(Markdown(f'**Before One-hot encoding:**'))
+display(Markdown(f'**- X_train categorical data\&rsquo;s shape: {categoricalData_train.shape}**'))
+display(Markdown(f'**- X_test categorical data\&rsquo;s shape: {categoricalData_test.shape}**'))
+categoricalData_train, categoricalData_test = one_hot_encoder(categoricalData_train, categoricalData_test)
+display(Markdown(f'**After One-hot encoding:**'))
+display(Markdown(f'**- X_train categorical data\&rsquo;s shape: {categoricalData_train.shape}**'))
+display(Markdown(f'**- X_test categorical data\&rsquo;s shape: {categoricalData_test.shape}**'))</p>
+<p>def standardization(df_train, df_test):
+df_train_index = df_train.index
+df_test_index = df_test.index
+scaler = StandardScaler()
+df_train = pd.DataFrame(scaler.fit_transform(df_train), columns=numericalDataColumns, index=df_train_index)
+df_test = pd.DataFrame(scaler.transform(df_test), columns=numericalDataColumns, index=df_test.index)
+return df_train, df_test</p>
+<p>display(Markdown(f'**Before standardization:**'))
+display(Markdown(f'**- X_train numerical data\&rsquo;s head(3):**'))
+display(numericalData_train.head(3))
+display(Markdown(f'**- X_test numerical data\&rsquo;s head(3):**'))
+display(numericalData_test.head(3))
+numericalData_train, numericalData_test = standardization(numericalData_train, numericalData_test)
+display(Markdown(f'**After standardization:**'))
+display(Markdown(f'**- X_train numerical data\&rsquo;s head(3):**'))
+display(numericalData_train.head(3))
+display(Markdown(f'**- X_test numerical data\&rsquo;s head(3):**'))
+display(numericalData_test.head(3))</p>
+<p><strong>Before One-hot encoding:</strong></p>
+<p><strong>- X_train categorical data&rsquo;s shape: (117411, 12)</strong></p>
+<p><strong>- X_test categorical data&rsquo;s shape: (50319, 12)</strong></p>
+<p><strong>After One-hot encoding:</strong></p>
+<p><strong>- X_train categorical data&rsquo;s shape: (117411, 119)</strong></p>
+<p><strong>- X_test categorical data&rsquo;s shape: (50319, 119)</strong></p>
+<p><strong>Before standardization:</strong></p>
+<p><strong>- X_train numerical data&rsquo;s head(3):</strong></p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>AMT_GOODS_PRICE</p>
+<p>REGION_POPULATION_RELATIVE</p>
+<p>DAYS_BIRTH</p>
+<p>DAYS_EMPLOYED</p>
+<p>DAYS_REGISTRATION</p>
+<p>DAYS_ID_PUBLISH</p>
+<p>&hellip;</p>
+<p>DEF_30_CNT_SOCIAL_CIRCLE</p>
+<p>OBS_60_CNT_SOCIAL_CIRCLE</p>
+<p>DEF_60_CNT_SOCIAL_CIRCLE</p>
+<p>DAYS_LAST_PHONE_CHANGE</p>
+<p>AMT_REQ_CREDIT_BUREAU_HOUR</p>
+<p>AMT_REQ_CREDIT_BUREAU_DAY</p>
+<p>AMT_REQ_CREDIT_BUREAU_WEEK</p>
+<p>AMT_REQ_CREDIT_BUREAU_MON</p>
+<p>AMT_REQ_CREDIT_BUREAU_QRT</p>
+<p>AMT_REQ_CREDIT_BUREAU_YEAR</p>
+<p>SK_ID_CURR</p>
+<p>423876</p>
+<p>0</p>
+<p>225000.0</p>
+<p>180000.0</p>
+<p>9000.0</p>
+<p>180000.0</p>
+<p>0.009630</p>
+<p>-15704</p>
+<p>-7008</p>
+<p>-8368.0</p>
+<p>-4283</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>-1015.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>2.0</p>
+<p>364563</p>
+<p>2</p>
+<p>315000.0</p>
+<p>157500.0</p>
+<p>16960.5</p>
+<p>157500.0</p>
+<p>0.072508</p>
+<p>-15552</p>
+<p>-1577</p>
+<p>-8733.0</p>
+<p>-4624</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>-408.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>3.0</p>
+<p>397002</p>
+<p>1</p>
+<p>180000.0</p>
+<p>917140.5</p>
+<p>46957.5</p>
+<p>805500.0</p>
+<p>0.020713</p>
+<p>-11459</p>
+<p>-519</p>
+<p>-3111.0</p>
+<p>-3462</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>2.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>3 rows × 27 columns</p>
+<p><strong>- X_test numerical data&rsquo;s head(3):</strong></p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>AMT_GOODS_PRICE</p>
+<p>REGION_POPULATION_RELATIVE</p>
+<p>DAYS_BIRTH</p>
+<p>DAYS_EMPLOYED</p>
+<p>DAYS_REGISTRATION</p>
+<p>DAYS_ID_PUBLISH</p>
+<p>&hellip;</p>
+<p>DEF_30_CNT_SOCIAL_CIRCLE</p>
+<p>OBS_60_CNT_SOCIAL_CIRCLE</p>
+<p>DEF_60_CNT_SOCIAL_CIRCLE</p>
+<p>DAYS_LAST_PHONE_CHANGE</p>
+<p>AMT_REQ_CREDIT_BUREAU_HOUR</p>
+<p>AMT_REQ_CREDIT_BUREAU_DAY</p>
+<p>AMT_REQ_CREDIT_BUREAU_WEEK</p>
+<p>AMT_REQ_CREDIT_BUREAU_MON</p>
+<p>AMT_REQ_CREDIT_BUREAU_QRT</p>
+<p>AMT_REQ_CREDIT_BUREAU_YEAR</p>
+<p>SK_ID_CURR</p>
+<p>319636</p>
+<p>0</p>
+<p>112500.0</p>
+<p>225000.0</p>
+<p>13045.5</p>
+<p>225000.0</p>
+<p>0.030755</p>
+<p>-14217</p>
+<p>-2621</p>
+<p>-4417.0</p>
+<p>-4421</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>-1594.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>226750</p>
+<p>0</p>
+<p>202500.0</p>
+<p>545040.0</p>
+<p>36553.5</p>
+<p>450000.0</p>
+<p>0.010147</p>
+<p>-16187</p>
+<p>-1238</p>
+<p>-959.0</p>
+<p>-1181</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>-294.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>307689</p>
+<p>2</p>
+<p>148500.0</p>
+<p>1006920.0</p>
+<p>42790.5</p>
+<p>900000.0</p>
+<p>0.035792</p>
+<p>-14838</p>
+<p>-4857</p>
+<p>-7309.0</p>
+<p>-4830</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>-3355.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>3.0</p>
+<p>3 rows × 27 columns</p>
+<p><strong>After standardization:</strong></p>
+<p><strong>- X_train numerical data&rsquo;s head(3):</strong></p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>AMT_GOODS_PRICE</p>
+<p>REGION_POPULATION_RELATIVE</p>
+<p>DAYS_BIRTH</p>
+<p>DAYS_EMPLOYED</p>
+<p>DAYS_REGISTRATION</p>
+<p>DAYS_ID_PUBLISH</p>
+<p>&hellip;</p>
+<p>DEF_30_CNT_SOCIAL_CIRCLE</p>
+<p>OBS_60_CNT_SOCIAL_CIRCLE</p>
+<p>DEF_60_CNT_SOCIAL_CIRCLE</p>
+<p>DAYS_LAST_PHONE_CHANGE</p>
+<p>AMT_REQ_CREDIT_BUREAU_HOUR</p>
+<p>AMT_REQ_CREDIT_BUREAU_DAY</p>
+<p>AMT_REQ_CREDIT_BUREAU_WEEK</p>
+<p>AMT_REQ_CREDIT_BUREAU_MON</p>
+<p>AMT_REQ_CREDIT_BUREAU_QRT</p>
+<p>AMT_REQ_CREDIT_BUREAU_YEAR</p>
+<p>SK_ID_CURR</p>
+<p>423876</p>
+<p>-0.665432</p>
+<p>0.127460</p>
+<p>-1.079335</p>
+<p>-1.302826</p>
+<p>-1.007892</p>
+<p>-0.814100</p>
+<p>-0.231679</p>
+<p>-1.893769</p>
+<p>-1.152044</p>
+<p>-0.939145</p>
+<p>&hellip;</p>
+<p>-0.315153</p>
+<p>-0.568833</p>
+<p>-0.270642</p>
+<p>-0.008301</p>
+<p>-0.075914</p>
+<p>-0.060747</p>
+<p>-0.170569</p>
+<p>-0.300715</p>
+<p>-0.426944</p>
+<p>0.077447</p>
+<p>364563</p>
+<p>1.926128</p>
+<p>0.378915</p>
+<p>-1.134366</p>
+<p>-0.754310</p>
+<p>-1.067871</p>
+<p>3.842681</p>
+<p>-0.189449</p>
+<p>0.373570</p>
+<p>-1.264624</p>
+<p>-1.166518</p>
+<p>&hellip;</p>
+<p>-0.315153</p>
+<p>-0.568833</p>
+<p>-0.270642</p>
+<p>0.718242</p>
+<p>-0.075914</p>
+<p>-0.060747</p>
+<p>-0.170569</p>
+<p>-0.300715</p>
+<p>-0.426944</p>
+<p>0.628343</p>
+<p>397002</p>
+<p>0.630348</p>
+<p>0.001733</p>
+<p>0.723594</p>
+<p>1.312628</p>
+<p>0.659512</p>
+<p>0.006713</p>
+<p>0.947721</p>
+<p>0.815264</p>
+<p>0.469422</p>
+<p>-0.391715</p>
+<p>&hellip;</p>
+<p>-0.315153</p>
+<p>0.236959</p>
+<p>-0.270642</p>
+<p>1.206594</p>
+<p>-0.075914</p>
+<p>-0.060747</p>
+<p>-0.170569</p>
+<p>0.740612</p>
+<p>-0.426944</p>
+<p>-1.024346</p>
+<p>3 rows × 27 columns</p>
+<p><strong>- X_test numerical data&rsquo;s head(3):</strong></p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>AMT_GOODS_PRICE</p>
+<p>REGION_POPULATION_RELATIVE</p>
+<p>DAYS_BIRTH</p>
+<p>DAYS_EMPLOYED</p>
+<p>DAYS_REGISTRATION</p>
+<p>DAYS_ID_PUBLISH</p>
+<p>&hellip;</p>
+<p>DEF_30_CNT_SOCIAL_CIRCLE</p>
+<p>OBS_60_CNT_SOCIAL_CIRCLE</p>
+<p>DEF_60_CNT_SOCIAL_CIRCLE</p>
+<p>DAYS_LAST_PHONE_CHANGE</p>
+<p>AMT_REQ_CREDIT_BUREAU_HOUR</p>
+<p>AMT_REQ_CREDIT_BUREAU_DAY</p>
+<p>AMT_REQ_CREDIT_BUREAU_WEEK</p>
+<p>AMT_REQ_CREDIT_BUREAU_MON</p>
+<p>AMT_REQ_CREDIT_BUREAU_QRT</p>
+<p>AMT_REQ_CREDIT_BUREAU_YEAR</p>
+<p>SK_ID_CURR</p>
+<p>319636</p>
+<p>-0.665432</p>
+<p>-0.186858</p>
+<p>-0.969272</p>
+<p>-1.024072</p>
+<p>-0.887935</p>
+<p>0.750429</p>
+<p>0.181458</p>
+<p>-0.062280</p>
+<p>0.066600</p>
+<p>-1.031161</p>
+<p>&hellip;</p>
+<p>-0.315153</p>
+<p>-0.165937</p>
+<p>-0.270642</p>
+<p>-0.701330</p>
+<p>-0.075914</p>
+<p>-0.060747</p>
+<p>-0.170569</p>
+<p>-0.300715</p>
+<p>-0.426944</p>
+<p>-0.473450</p>
+<p>226750</p>
+<p>-0.665432</p>
+<p>0.064597</p>
+<p>-0.186505</p>
+<p>0.595742</p>
+<p>-0.288149</p>
+<p>-0.775811</p>
+<p>-0.365873</p>
+<p>0.515096</p>
+<p>1.133184</p>
+<p>1.129219</p>
+<p>&hellip;</p>
+<p>-0.315153</p>
+<p>-0.568833</p>
+<p>-0.270642</p>
+<p>0.854693</p>
+<p>-0.075914</p>
+<p>-0.060747</p>
+<p>-0.170569</p>
+<p>-0.300715</p>
+<p>-0.426944</p>
+<p>-0.473450</p>
+<p>307689</p>
+<p>1.926128</p>
+<p>-0.086276</p>
+<p>0.943180</p>
+<p>1.025502</p>
+<p>0.911422</p>
+<p>1.123472</p>
+<p>0.008924</p>
+<p>-0.995767</p>
+<p>-0.825406</p>
+<p>-1.303876</p>
+<p>&hellip;</p>
+<p>-0.315153</p>
+<p>-0.165937</p>
+<p>-0.270642</p>
+<p>-2.809143</p>
+<p>-0.075914</p>
+<p>-0.060747</p>
+<p>-0.170569</p>
+<p>-0.300715</p>
+<p>1.239100</p>
+<p>0.628343</p>
+<p>3 rows × 27 columns</p>
+<h4 id="合併回完整的-x_train-和-x_test合併回完整的-x_train-和-x_test">合併回完整的 X_train 和 X_test<a href="#%e5%90%88%e4%bd%b5%e5%9b%9e%e5%ae%8c%e6%95%b4%e7%9a%84-X_train-%e5%92%8c-X_test">¶</a></h4>
+<p>In [10]:</p>
+<p>X_train = pd.concat([numericalData_train, binaryData_train, categoricalData_train], axis=1)
+X_test = pd.concat([numericalData_test, binaryData_test, categoricalData_test], axis=1)</p>
+<h4 id="處理-protected-attributes處理-protected-attributes">處理 protected attributes<a href="#%e8%99%95%e7%90%86-protected-attributes">¶</a></h4>
+<p>In [11]:</p>
+<p>def processProtectedAttributes(df):
+df[&lsquo;age_lt0&rsquo;] = np.zeros(df.shape[0])
+df[&lsquo;education&rsquo;] = np.zeros(df.shape[0])
+df[&lsquo;GENDER_F&rsquo;] = np.zeros(df.shape[0])
+df[&lsquo;GENDER_M&rsquo;] = np.zeros(df.shape[0])</p>
+<pre><code>df.loc\[df\['DAYS\_BIRTH'\] \&gt;= 0, 'age\_lt0'\] \= 1
+df.loc\[df\['DAYS\_BIRTH'\] &lt; 0, 'age\_lt0'\] \= 0
+
+df.loc\[df\['x6\_Academic degree'\] \&gt; 0.5, 'education'\] \= 1
+df.loc\[df\['x6\_Higher education'\] \&gt; 0.5, 'education'\] \= 1
+df.loc\[df\['x6\_Incomplete higher'\] \&gt; 0.5, 'education'\] \= 0
+df.loc\[df\['x6\_Lower secondary'\] \&gt; 0.5, 'education'\] \= 0
+df.loc\[df\['x6\_Secondary / secondary special'\] \&gt; 0.5, 'education'\] \= 0
+
+df.loc\[df\['x1\_F'\] \&gt; 0.5, 'GENDER\_F'\] \= 1
+df.loc\[df\['x1\_M'\] \&gt; 0.5, 'GENDER\_M'\] \= 1
+
+df \= df.drop('DAYS\_BIRTH', axis\=1)
+df \= df.drop('x6\_Academic degree', axis\=1)
+df \= df.drop('x6\_Higher education', axis\=1)
+df \= df.drop('x6\_Incomplete higher', axis\=1)
+df \= df.drop('x6\_Lower secondary', axis\=1)
+df \= df.drop('x6\_Secondary / secondary special', axis\=1)
+df \= df.drop('x1\_F', axis\=1)
+df \= df.drop('x1\_M', axis\=1)
+
+return df
+</code></pre>
+<p>X_train = processProtectedAttributes(X_train)
+X_test = processProtectedAttributes(X_test)</p>
+<h4 id="將-json-格式的-column-name-以底線取代冒號與空白將-json-格式的-column-name-以底線取代冒號與空白">將 JSON 格式的 column name 以底線取代冒號與空白<a href="#%e5%b0%87-JSON-%e6%a0%bc%e5%bc%8f%e7%9a%84-column-name-%e4%bb%a5%e5%ba%95%e7%b7%9a%e5%8f%96%e4%bb%a3%e5%86%92%e8%99%9f%e8%88%87%e7%a9%ba%e7%99%bd">¶</a></h4>
+<p>In [12]:</p>
+<p>X_train.columns = [&quot;&quot;.join (c if c.isalnum() else &ldquo;_&rdquo; for c in str(x)) for x in X_train.columns]
+X_test.columns = [&quot;&quot;.join (c if c.isalnum() else &ldquo;_&rdquo; for c in str(x)) for x in X_test.columns]</p>
+<p>In [13]:</p>
+<p>display(Markdown(f'**After processing bias features:**'))
+display(Markdown(f'**- X_train\&rsquo;s shape: {X_train.shape}**'))
+display(Markdown(f'**- X_test\&rsquo;s shape: {X_test.shape}**'))</p>
+<p><strong>After processing bias features:</strong></p>
+<p><strong>- X_train&rsquo;s shape: (117411, 174)</strong></p>
+<p><strong>- X_test&rsquo;s shape: (50319, 174)</strong></p>
+<h4 id="為了緩和資料不平衡的問題其中一種方法是對-training-data-做-resampling以下採用結合-over-sampling-和-under-sampling-的做法為了緩和資料不平衡的問題其中一種方法是對-training-data-做-resampling以下採用結合-over-sampling-和-under-sampling-的做法"><strong>為了緩和資料不平衡的問題</strong>，其中一種方法是對 training data 做 <code>resampling</code>。以下採用結合 over sampling 和 under sampling 的做法。<a href="#%e7%82%ba%e4%ba%86%e7%b7%a9%e5%92%8c%e8%b3%87%e6%96%99%e4%b8%8d%e5%b9%b3%e8%a1%a1%e7%9a%84%e5%95%8f%e9%a1%8c%ef%bc%8c%e5%85%b6%e4%b8%ad%e4%b8%80%e7%a8%ae%e6%96%b9%e6%b3%95%e6%98%af%e5%b0%8d-training-data-%e5%81%9a-resampling%e3%80%82%e4%bb%a5%e4%b8%8b%e6%8e%a1%e7%94%a8%e7%b5%90%e5%90%88-over-sampling-%e5%92%8c-under-sampling-%e7%9a%84%e5%81%9a%e6%b3%95%e3%80%82">¶</a></h4>
+<blockquote>
+<p><strong>Over sampling (新增樣本)</strong>: 在此使用 SMOTE (Synthetic Minority Over-sampling Technique) 演算法，通過隨機選擇一個少數類（minority）的點，檢測其最近鄰來生成新的樣本。由於資料集中存在著 Nominal 和 Continuous 的資料，因此使用 SMOTENC 來做 resampling。</p>
+<p><strong>Under sampling (減少樣本)</strong>: 在此使用 Tomek Links 演算法，對於少數類的點，如果其 1NN 剛好是多數類（majority），則構成了一個 Tomek Link。在 under sampling 的情況下，認為這個多數類的點離少數類的點太近了，就會刪除該多數類的點。</p>
+</blockquote>
+<h4 id="結合-smotenc-和-tomek-links先合成新的少數量的點再去除-tomek-links結合-smotenc-和-tomek-links先合成新的少數量的點再去除-tomek-links">結合 SMOTENC 和 Tomek Links，先合成新的少數量的點，再去除 Tomek Links。<a href="#%e7%b5%90%e5%90%88-SMOTENC-%e5%92%8c-Tomek-Links%ef%bc%8c%e5%85%88%e5%90%88%e6%88%90%e6%96%b0%e7%9a%84%e5%b0%91%e6%95%b8%e9%87%8f%e7%9a%84%e9%bb%9e%ef%bc%8c%e5%86%8d%e5%8e%bb%e9%99%a4-Tomek-Links%e3%80%82">¶</a></h4>
+<p>In [14]:</p>
+<p>from imblearn.over_sampling import SMOTENC
+from imblearn.under_sampling import TomekLinks
+from imblearn.pipeline import Pipeline</p>
+<p>binaryDataColumns = [col for col in X_train if np.isin(X_train[col].unique(), [0, 1]).all()]
+binaryDataColumnIndex = [X_train.columns.get_loc(col) for col in binaryDataColumns]</p>
+<p># define pipeline
+# sampling_strategy=0.1: 10% the number of examples of the majority class
+over = SMOTENC(categorical_features=binaryDataColumnIndex, sampling_strategy=0.1)
+under = TomekLinks()
+steps = [(&lsquo;o&rsquo;, over), (&lsquo;u&rsquo;, under)]
+pipeline = Pipeline(steps=steps)</p>
+<p># transform the dataset
+X_train_over_under, y_train_over_under = pipeline.fit_resample(X_train, y_train)</p>
+<p>In [15]:</p>
+<p>display(Markdown('**After resampling:**'))
+display(Markdown(f'**- X_train\' shape: {X_train_over_under.shape}**'))
+display(Markdown(f'**- y_train\' shape: {y_train_over_under.shape}**'))</p>
+<p><strong>After resampling:</strong></p>
+<p><strong>- X_train' shape: (116308, 174)</strong></p>
+<p><strong>- y_train' shape: (116308,)</strong></p>
+<p>In [16]:</p>
+<p>y_train_over_under = pd.DataFrame(y_train_over_under, columns=[&lsquo;TARGET&rsquo;])
+y_test = pd.DataFrame(y_test, columns=[&lsquo;TARGET&rsquo;])</p>
+<p>X_train_over_under.to_csv(&lsquo;X_train.csv&rsquo;)
+y_train_over_under.to_csv(&lsquo;y_train.csv&rsquo;)
+X_test.to_csv(&lsquo;X_test.csv&rsquo;)
+y_test.to_csv(&lsquo;y_test.csv&rsquo;)</p>
+<p>In [17]:</p>
+<p>display(X_train_over_under.head())
+display(y_train_over_under.head())
+display(X_test.head())
+display(y_test.head())</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>AMT_GOODS_PRICE</p>
+<p>REGION_POPULATION_RELATIVE</p>
+<p>DAYS_EMPLOYED</p>
+<p>DAYS_REGISTRATION</p>
+<p>DAYS_ID_PUBLISH</p>
+<p>CNT_FAM_MEMBERS</p>
+<p>&hellip;</p>
+<p>x11_Trade__type_7</p>
+<p>x11_Transport__type_1</p>
+<p>x11_Transport__type_2</p>
+<p>x11_Transport__type_3</p>
+<p>x11_Transport__type_4</p>
+<p>x11_University</p>
+<p>age_lt0</p>
+<p>education</p>
+<p>GENDER_F</p>
+<p>GENDER_M</p>
+<p>0</p>
+<p>-0.665432</p>
+<p>0.127460</p>
+<p>-1.079335</p>
+<p>-1.302826</p>
+<p>-1.007892</p>
+<p>-0.814100</p>
+<p>-1.893769</p>
+<p>-1.152044</p>
+<p>-0.939145</p>
+<p>-0.295510</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>1</p>
+<p>1.926128</p>
+<p>0.378915</p>
+<p>-1.134366</p>
+<p>-0.754310</p>
+<p>-1.067871</p>
+<p>3.842681</p>
+<p>0.373570</p>
+<p>-1.264624</p>
+<p>-1.166518</p>
+<p>1.823013</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>2</p>
+<p>0.630348</p>
+<p>0.001733</p>
+<p>0.723594</p>
+<p>1.312628</p>
+<p>0.659512</p>
+<p>0.006713</p>
+<p>0.815264</p>
+<p>0.469422</p>
+<p>-0.391715</p>
+<p>0.763752</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>3</p>
+<p>-0.665432</p>
+<p>-0.061131</p>
+<p>0.497800</p>
+<p>-0.252304</p>
+<p>0.347623</p>
+<p>-0.112673</p>
+<p>-1.487560</p>
+<p>0.586629</p>
+<p>-0.913807</p>
+<p>-0.295510</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>4</p>
+<p>0.630348</p>
+<p>-0.136567</p>
+<p>-0.186505</p>
+<p>-0.096338</p>
+<p>-0.288149</p>
+<p>-1.000437</p>
+<p>0.234131</p>
+<p>0.023110</p>
+<p>0.839168</p>
+<p>0.763752</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>5 rows × 174 columns</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>TARGET</p>
+<p>0</p>
+<p>0</p>
+<p>1</p>
+<p>0</p>
+<p>2</p>
+<p>0</p>
+<p>3</p>
+<p>0</p>
+<p>4</p>
+<p>1</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>CNT_CHILDREN</p>
+<p>AMT_INCOME_TOTAL</p>
+<p>AMT_CREDIT</p>
+<p>AMT_ANNUITY</p>
+<p>AMT_GOODS_PRICE</p>
+<p>REGION_POPULATION_RELATIVE</p>
+<p>DAYS_EMPLOYED</p>
+<p>DAYS_REGISTRATION</p>
+<p>DAYS_ID_PUBLISH</p>
+<p>CNT_FAM_MEMBERS</p>
+<p>&hellip;</p>
+<p>x11_Trade__type_7</p>
+<p>x11_Transport__type_1</p>
+<p>x11_Transport__type_2</p>
+<p>x11_Transport__type_3</p>
+<p>x11_Transport__type_4</p>
+<p>x11_University</p>
+<p>age_lt0</p>
+<p>education</p>
+<p>GENDER_F</p>
+<p>GENDER_M</p>
+<p>SK_ID_CURR</p>
+<p>319636</p>
+<p>-0.665432</p>
+<p>-0.186858</p>
+<p>-0.969272</p>
+<p>-1.024072</p>
+<p>-0.887935</p>
+<p>0.750429</p>
+<p>-0.062280</p>
+<p>0.066600</p>
+<p>-1.031161</p>
+<p>-0.295510</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>226750</p>
+<p>-0.665432</p>
+<p>0.064597</p>
+<p>-0.186505</p>
+<p>0.595742</p>
+<p>-0.288149</p>
+<p>-0.775811</p>
+<p>0.515096</p>
+<p>1.133184</p>
+<p>1.129219</p>
+<p>-1.354772</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>307689</p>
+<p>1.926128</p>
+<p>-0.086276</p>
+<p>0.943180</p>
+<p>1.025502</p>
+<p>0.911422</p>
+<p>1.123472</p>
+<p>-0.995767</p>
+<p>-0.825406</p>
+<p>-1.303876</p>
+<p>1.823013</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>1.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>132682</p>
+<p>-0.665432</p>
+<p>0.127460</p>
+<p>0.131357</p>
+<p>0.241330</p>
+<p>0.311636</p>
+<p>0.427303</p>
+<p>0.240811</p>
+<p>1.310228</p>
+<p>0.023025</p>
+<p>-0.295510</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>236166</p>
+<p>-0.665432</p>
+<p>-0.061131</p>
+<p>0.128605</p>
+<p>-0.556484</p>
+<p>0.011743</p>
+<p>-0.899714</p>
+<p>0.335996</p>
+<p>0.682245</p>
+<p>-1.105174</p>
+<p>-0.295510</p>
+<p>&hellip;</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>1.0</p>
+<p>0.0</p>
+<p>5 rows × 174 columns</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>TARGET</p>
+<p>SK_ID_CURR</p>
+<p>319636</p>
+<p>0</p>
+<p>226750</p>
+<p>0</p>
+<p>307689</p>
+<p>0</p>
+<p>132682</p>
+<p>0</p>
+<p>236166</p>
+<p>0</p>
+<hr>
+<h2 id="五-model-exploration五-model-exploration">(五) Model Exploration<a href="#%28%e4%ba%94%29-Model-Exploration">¶</a></h2>
+<h3 id="explore-many-different-models-and-short-list-the-best-ones">        —Explore many different models and short-list the best ones</h3>
+<p>In [18]:</p>
+<p>from sklearn import metrics</p>
+<p>from yellowbrick.classifier import ConfusionMatrix
+from yellowbrick.classifier import ClassificationReport
+from yellowbrick.classifier import ClassPredictionError
+from yellowbrick.classifier import PrecisionRecallCurve
+from yellowbrick.classifier import DiscriminationThreshold
+from yellowbrick.classifier import ROCAUC</p>
+<p>from yellowbrick.style import set_palette
+set_palette(&lsquo;sns_muted&rsquo;)</p>
+<p>SMALL_SIZE = 14
+MEDIUM_SIZE = 16
+BIGGER_SIZE = 18</p>
+<p>plt.rc(&lsquo;font&rsquo;, size=SMALL_SIZE)          # controls default text sizes
+plt.rc(&lsquo;axes&rsquo;, titlesize=BIGGER_SIZE)     # fontsize of the axes title
+plt.rc(&lsquo;axes&rsquo;, labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+plt.rc(&lsquo;xtick&rsquo;, labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc(&lsquo;ytick&rsquo;, labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc(&lsquo;legend&rsquo;, fontsize=SMALL_SIZE)    # legend fontsize
+plt.rc(&lsquo;figure&rsquo;, titlesize=BIGGER_SIZE)  # fontsize of the figure title</p>
+<p>def predictedEvaluation(model, X_train, y_train, X_test, y_test):
+# Predictions on the test dataset
+predicted = pd.DataFrame(model.predict(X_test))
+# Probabilities on the test dataset
+probs = pd.DataFrame(model.predict_proba(X_test))</p>
+<pre><code>\# Store metrics 
+roc\_auc \= metrics.roc\_auc\_score(y\_test, probs\[1\])
+accuracy \= metrics.accuracy\_score(y\_test, predicted)    
+precision\_1 \= metrics.precision\_score(y\_test, predicted, pos\_label\=1)
+recall\_1 \= metrics.recall\_score(y\_test, predicted, pos\_label\=1)
+f1\_1 \= metrics.f1\_score(y\_test, predicted, pos\_label\=1)
+
+display(Markdown(f'\*\*ROC\_AUC: {roc\_auc}\*\*'))
+
+visualizer \= ConfusionMatrix(model, classes\=\[0,1\], support\=True)
+visualizer.fit(X\_train, y\_train)
+visualizer.score(X\_test, y\_test)
+visualizer.show()
+
+visualizer \= ClassificationReport(model, classes\=\[0,1\], support\=True)
+visualizer.fit(X\_train, y\_train)
+visualizer.score(X\_test, y\_test)
+visualizer.show()
+
+visualizer \= ROCAUC(model)
+visualizer.fit(X\_train, y\_train)
+visualizer.score(X\_test, y\_test)
+visualizer.show()
+
+return roc\_auc, accuracy, precision\_1, recall\_1, f1\_1
+</code></pre>
+<p>In [19]:</p>
+<p>XTrain = X_train_over_under.copy()
+yTrain = y_train_over_under[&lsquo;TARGET&rsquo;].copy()
+XTest = X_test.copy()
+yTest = y_test[&lsquo;TARGET&rsquo;].copy()</p>
+<h3 id="model-trainingmodel-training">Model Training<a href="#Model-Training">¶</a></h3>
+<blockquote>
+<p>由於此資料集的屬於 Binary Classification 的問題，且 Label 非常的 imbalance，因此我們會使用 ROC AUC 來作為效能評估的指標。 在訓練 Model 的部分，我們會先挑選幾個 classifier，使用預設的 hyperparametes 來觀察 AUC的值，去掉表現與其他模型相比差異太大的 Model，並選定的幾個 Model 使用 10-fold Cross-Validation 進行 Fine Tune。 我們挑選的 classifier 包含以下所列：</p>
+<ul>
+<li>Logistic Regression</li>
+<li>Decision Tree Classifier</li>
+<li>Random Forest Classifier</li>
+<li>AdaBoost Classifier</li>
+<li>Gradient Boosting Classifier</li>
+<li>eXtreme Gradient Boosting (XGB) Classifier</li>
+<li>Light Gradient Boosting Machine (LGBM) Classifier</li>
+</ul>
+</blockquote>
+<p>In [20]:</p>
+<p>from sklearn.linear_model import LogisticRegression</p>
+<p>LR_model = LogisticRegression()
+LR_model = LR_model.fit(XTrain, yTrain)
+LR_result = predictedEvaluation(LR_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p>/home/master/r08725053/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.</p>
+<p>Increase the number of iterations (max_iter) or scale the data as shown in:
+<a href="https://scikit-learn.org/stable/modules/preprocessing.html">https://scikit-learn.org/stable/modules/preprocessing.html</a>
+Please also refer to the documentation for alternative solver options:
+<a href="https://scikit-learn.org/stable/modules/linear">https://scikit-learn.org/stable/modules/linear</a>_model.html#logistic-regression
+extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)</p>
+<p><strong>ROC_AUC: 0.7438432954502258</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [21]:</p>
+<p>from sklearn.tree import DecisionTreeClassifier</p>
+<p>DC_model = DecisionTreeClassifier()
+DC_model = DC_model.fit(XTrain, yTrain)
+DC_result = predictedEvaluation(DC_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.5424362410227351</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [22]:</p>
+<p>from sklearn.ensemble import RandomForestClassifier</p>
+<p>RF_model = RandomForestClassifier()
+RF_model = RF_model.fit(XTrain, yTrain)
+RF_result = predictedEvaluation(RF_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7139185079950018</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [23]:</p>
+<p>from sklearn.ensemble import AdaBoostClassifier</p>
+<p>AdaB_model = AdaBoostClassifier()
+AdaB_model = AdaB_model.fit(XTrain, yTrain)
+AdaB_result = predictedEvaluation(AdaB_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7377181013119651</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [32]:</p>
+<p>from sklearn.ensemble import GradientBoostingClassifier</p>
+<p>GBC_model = GradientBoostingClassifier()
+GBC_model = GBC_model.fit(XTrain, yTrain)
+GBC_result = predictedEvaluation(GBC_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7449991278246184</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [29]:</p>
+<p>from xgboost import XGBClassifier</p>
+<p>XGBC_model = XGBClassifier()
+XGBC_model = XGBC_model.fit(XTrain, yTrain)
+XGBC_result = predictedEvaluation(XGBC_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7386133139511181</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [30]:</p>
+<p>from lightgbm import LGBMClassifier</p>
+<p>LGBM_model = LGBMClassifier()
+LGBM_model = RF_model.fit(XTrain, yTrain)
+LGBM_result = predictedEvaluation(LGBM_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7139219686467683</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<p>In [31]:</p>
+<p>def summary(result_dict):
+metricColumns = [&lsquo;ROC_AUC&rsquo;, &lsquo;Accuracy&rsquo;, &lsquo;Precision (label 1)&rsquo;, &lsquo;Recall (label 1)&rsquo;, &lsquo;F1 (label 1)']
+summary = pd.DataFrame(result_dict.values(), index=result_dict.keys(), columns=metricColumns)
+display(summary)</p>
+<p>result_dict = {
+&lsquo;LogisticRegression&rsquo;: LR_result,
+&lsquo;DecisionTreeClassifier&rsquo;: DC_result,
+&lsquo;RandomForestClassifier&rsquo;: RF_result,
+&lsquo;AdaBoostClassifier&rsquo;: AdaB_result,
+&lsquo;GradientBoostingClassifier&rsquo;: GBC_result,
+&lsquo;XGBClassifier&rsquo;: XGBC_result, <br>
+&lsquo;LGBMClassifier&rsquo;: LGBM_result,
+}
+summary(result_dict)</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>ROC_AUC</p>
+<p>Accuracy</p>
+<p>Precision (label 1)</p>
+<p>Recall (label 1)</p>
+<p>F1 (label 1)</p>
+<p>LogisticRegression</p>
+<p>0.743843</p>
+<p>0.914525</p>
+<p>0.470588</p>
+<p>0.018644</p>
+<p>0.035866</p>
+<p>DecisionTreeClassifier</p>
+<p>0.542436</p>
+<p>0.843518</p>
+<p>0.150303</p>
+<p>0.179445</p>
+<p>0.163586</p>
+<p>RandomForestClassifier</p>
+<p>0.713919</p>
+<p>0.914744</p>
+<p>0.529412</p>
+<p>0.002097</p>
+<p>0.004178</p>
+<p>AdaBoostClassifier</p>
+<p>0.737718</p>
+<p>0.914366</p>
+<p>0.466667</p>
+<p>0.029364</p>
+<p>0.055251</p>
+<p>GradientBoostingClassifier</p>
+<p>0.746355</p>
+<p>0.914823</p>
+<p>0.519380</p>
+<p>0.015614</p>
+<p>0.030317</p>
+<p>XGBClassifier</p>
+<p>0.738613</p>
+<p>0.913114</p>
+<p>0.400000</p>
+<p>0.037753</p>
+<p>0.068995</p>
+<p>LGBMClassifier</p>
+<p>0.713922</p>
+<p>0.914605</p>
+<p>0.350000</p>
+<p>0.001631</p>
+<p>0.003248</p>
+<h4 id="discussiondiscussion"><strong>Discussion:</strong><a href="#Discussion:">¶</a></h4>
+<p>        在數個我們嘗試的 Model 當中，可見有數個 Model 的 ROC_AUC 皆差不多落在 0.7 ~ 0.75 之間。以下將嘗試對這些 Model 進行 Fine-Tuning，期望可找出能夠提升 ROC_AUC 和對 Label 1 的分數之模型參數。</p>
+<h2 id="六-models-fine-tuning六-models-fine-tuning">(六) Models Fine-tuning<a href="#%28%e5%85%ad%29-Models-Fine-tuning">¶</a></h2>
+<h3 id="fine-tune-the-models-and-combine-them-into-a-great-solution">        —Fine-tune the models and combine them into a great solution</h3>
+<p>In [33]:</p>
+<p>from sklearn.model_selection import GridSearchCV, RepeatedStratifiedKFold</p>
+<p>def gridSearch(model, params, X, y):
+# define grid search
+cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=1)
+grid_search = GridSearchCV(estimator=model, param_grid=params, n_jobs=-1, cv=cv, scoring=&lsquo;roc_auc&rsquo;, error_score=&lsquo;raise&rsquo;, verbose=1)
+grid_result = grid_search.fit(X, y)</p>
+<pre><code>\# summarize results
+display(Markdown(f'\*\*The best ROC\_AUC: {grid\_result.best\_score\_} using parameters as below\*\*'))
+display(grid\_result.best\_params\_)
+
+return grid\_result
+</code></pre>
+<h3 id="grid-search---logisticregressiongrid-search---logisticregression">Grid search - LogisticRegression<a href="#Grid-search---LogisticRegression">¶</a></h3>
+<p>In [37]:</p>
+<p>c_values = [100, 10, 1.0, 0.1, 0.01]
+lr_params = dict(
+C = c_values
+)
+lr_model = LogisticRegression(penalty=&lsquo;l2&rsquo;, solver=&lsquo;newton-cg&rsquo;)
+lr_gridSearch_result = gridSearch(lr_model, lr_params, XTrain, yTrain)</p>
+<p>i_range = np.linspace(0.1, 0.5, 5)
+j_range = [1-i for i in i_range]
+class_weights = [{0:i, 1:j} for i, j in zip(i_range, j_range)]
+lr_params = dict( <br>
+class_weight = class_weights,
+)
+C_value = lr_gridSearch_result.best_params_[&lsquo;C&rsquo;]
+lr_model = LogisticRegression(penalty=&lsquo;l2&rsquo;, solver=&lsquo;newton-cg&rsquo;, C=C_value)
+lr_gridSearch_result = gridSearch(lr_model, lr_params, XTrain, yTrain)</p>
+<p>Fitting 15 folds for each of 5 candidates, totalling 75 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed: 38.2min
+[Parallel(n_jobs=-1)]: Done  75 out of  75 | elapsed: 44.8min finished</p>
+<p><strong>The best ROC_AUC: 0.7746998152812963 using parameters as below</strong></p>
+<p>{&lsquo;C&rsquo;: 10}</p>
+<p>Fitting 15 folds for each of 5 candidates, totalling 75 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed: 16.4min
+[Parallel(n_jobs=-1)]: Done  75 out of  75 | elapsed: 39.2min finished</p>
+<p><strong>The best ROC_AUC: 0.7747455874941702 using parameters as below</strong></p>
+<p>{&lsquo;class_weight&rsquo;: {0: 0.30000000000000004, 1: 0.7}}</p>
+<h3 id="train-the-model-using-the-grid-search-resulttrain-the-model-using-the-grid-search-result">Train the model using the grid search result<a href="#Train-the-model-using-the-grid-search-result">¶</a></h3>
+<p>In [72]:</p>
+<p>p = {
+&lsquo;penalty&rsquo;: &lsquo;l2&rsquo;,
+&lsquo;solver&rsquo;: &lsquo;newton-cg&rsquo;,
+&lsquo;C&rsquo;: 10,
+&lsquo;class_weight&rsquo;: {0:0.3, 1:0.7}
+}
+lr = LogisticRegression(**p)
+lr = lr.fit(XTrain, yTrain)
+lrResult = predictedEvaluation(lr, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7444959384251674</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<h3 id="grid-search---randomforestclassifiergrid-search---randomforestclassifier">Grid search - RandomForestClassifier<a href="#Grid-search---RandomForestClassifier">¶</a></h3>
+<p>In [41]:</p>
+<p>n_estimators = [10, 100, 150, 200, 500, 1000]
+rf_params = dict(
+n_estimators = n_estimators,
+)
+rf_model = RandomForestClassifier()
+rf_gridSearch_result = gridSearch(rf_model, rf_params, XTrain, yTrain)</p>
+<p>In [42]:</p>
+<p>max_depths = [5, 10, 15, 20, 30, 50]
+rf_params = dict(
+max_depth = max_depths,
+)
+n_estimators = rf_gridSearch_result.best_params_[&lsquo;n_estimators&rsquo;]
+rf_model = RandomForestClassifier(n_estimators=n_estimators)
+rf_gridSearch_result = gridSearch(rf_model, rf_params, XTrain, yTrain)</p>
+<p>Fitting 15 folds for each of 6 candidates, totalling 90 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+/home/master/r08725053/anaconda3/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py:706: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+&ldquo;timeout or by a memory leak.&rdquo;, UserWarning
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:  9.2min
+[Parallel(n_jobs=-1)]: Done  90 out of  90 | elapsed: 50.8min finished</p>
+<p><strong>The best ROC_AUC: 0.7642148955967402 using parameters as below</strong></p>
+<p>{&lsquo;max_depth&rsquo;: 50}</p>
+<p>In [71]:</p>
+<p>p = {
+&lsquo;n_estimators&rsquo;: 1000,
+&lsquo;max_depth&rsquo;: 50
+}
+rf = RandomForestClassifier(**p)
+rf = rf.fit(XTrain, yTrain)
+rfResult = predictedEvaluation(rf, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.732306479897527</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<h3 id="grid-search---adaboostgrid-search---adaboost">Grid search - AdaBoost<a href="#Grid-search---AdaBoost">¶</a></h3>
+<p>In [44]:</p>
+<p>tree_nums = [10, 30, 50, 100, 150, 180, 200, 300, 500, 700, 1000]
+params = {
+&lsquo;n_estimators&rsquo;: tree_nums,
+}</p>
+<p>AdaB_model = AdaBoostClassifier(random_state = 1)
+AdaB_grid_result = gridSearch(AdaB_model, params, X_train, y_train)</p>
+<p>Fitting 15 folds for each of 11 candidates, totalling 165 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   34.7s
+/home/master/r08725053/anaconda3/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py:706: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+&ldquo;timeout or by a memory leak.&rdquo;, UserWarning
+[Parallel(n_jobs=-1)]: Done 165 out of 165 | elapsed: 43.2min finished</p>
+<p><strong>The best ROC_AUC: 0.7525551958893458 using parameters as below</strong></p>
+<p>{&lsquo;n_estimators&rsquo;: 300}</p>
+<p>In [45]:</p>
+<p>AdaB_model = AdaBoostClassifier(**AdaB_grid_result.best_params_)
+AdaB_model = AdaB_model.fit(XTrain, yTrain)
+AdaB_result = predictedEvaluation(AdaB_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7444464057898592</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<h3 id="grid-search---gradientboostingclassifiergrid-search---gradientboostingclassifier">Grid search - GradientBoostingClassifier<a href="#Grid-search---GradientBoostingClassifier">¶</a></h3>
+<p>In [46]:</p>
+<p>tree_nums = [10, 30, 50, 100, 150, 180, 200, 300, 500, 700, 1000]
+params = {
+&lsquo;n_estimators&rsquo;: tree_nums,
+}</p>
+<p>gbm_model = GradientBoostingClassifier()
+gbm_grid_result = gridSearch(gbm_model, params, X_train, y_train)</p>
+<p>Fitting 15 folds for each of 11 candidates, totalling 165 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+/home/master/r08725053/anaconda3/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py:706: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+&ldquo;timeout or by a memory leak.&rdquo;, UserWarning
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   56.8s
+[Parallel(n_jobs=-1)]: Done 165 out of 165 | elapsed: 72.9min finished</p>
+<p><strong>The best ROC_AUC: 0.7567454369555229 using parameters as below</strong></p>
+<p>{&lsquo;n_estimators&rsquo;: 300}</p>
+<p>In [73]:</p>
+<p>GBM_model = GradientBoostingClassifier(**gbm_grid_result.best_params_)
+GBM_model = GBM_model.fit(XTrain, yTrain)
+GBM_result = predictedEvaluation(GBM_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7480093075381128</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<h3 id="grid-search---xgbclassifiergrid-search---xgbclassifier">Grid search - XGBClassifier<a href="#Grid-search---XGBClassifier">¶</a></h3>
+<p>In [ ]:</p>
+<p>tree_nums = [10, 30, 50, 100, 150, 180, 200, 300, 500, 700, 1000]
+params = {
+&lsquo;n_estimators&rsquo;: tree_nums,
+}</p>
+<p>xgbc = XGBClassifier(learning_rate =0.1, seed=27)
+xgbc_grid_result = gridSearch(xgbc, params, X_train, y_train)</p>
+<p>params = {
+&lsquo;max_depth&rsquo;:range(3,10,2),
+&lsquo;min_child_weight&rsquo;:range(1,6,2)
+}</p>
+<p>xgbc = XGBClassifier(learning_rate =0.1, n_estimators = 100, seed=27)
+xgbc_grid_result = gridSearch(xgbc, params, X_train, y_train)</p>
+<p>params = {
+&lsquo;subsample&rsquo;:[i/10.0 for i in range(6,10)],
+&lsquo;colsample_bytree&rsquo;:[i/10.0 for i in range(6,10)]
+}</p>
+<p>xgbc = XGBClassifier(learning_rate =0.1, n_estimators = 100, seed=27, max_depth = 5, min_child_weight = 3)
+xgbc_grid_result = gridSearch(xgbc, params, X_train, y_train)</p>
+<p>Fitting 15 folds for each of 11 candidates, totalling 165 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   55.6s
+/home/master/r08725053/anaconda3/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py:706: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+&ldquo;timeout or by a memory leak.&rdquo;, UserWarning
+[Parallel(n_jobs=-1)]: Done 165 out of 165 | elapsed: 65.6min finished</p>
+<p><strong>The best ROC_AUC: 0.7536684451373297 using parameters as below</strong></p>
+<p>{&lsquo;n_estimators&rsquo;: 100}</p>
+<p>Fitting 15 folds for each of 12 candidates, totalling 180 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:  2.6min
+/home/master/r08725053/anaconda3/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py:706: UserWarning: A worker stopped while some jobs were given to the executor. This can be caused by a too short worker timeout or by a memory leak.
+&ldquo;timeout or by a memory leak.&rdquo;, UserWarning</p>
+<p>In [70]:</p>
+<p>p = {
+&lsquo;learning_rate&rsquo;: 0.1,
+&lsquo;n_estimators&rsquo;: 100,
+&lsquo;max_depth&rsquo;: 5,
+&lsquo;min_child_weight&rsquo;: 3,
+&lsquo;seed&rsquo;: 27
+}
+XGBC_model = XGBClassifier(**p)
+XGBC_model = XGBC_model.fit(XTrain, yTrain)
+XGBC_result = predictedEvaluation(XGBC_model, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7466231785351815</strong></p>
+<p>)</p>
+<p>)</p>
+<p>)</p>
+<h3 id="grid-search---lgbmclassifiergrid-search---lgbmclassifier">Grid search - LGBMClassifier<a href="#Grid-search---LGBMClassifier">¶</a></h3>
+<p>In [75]:</p>
+<p>n_estimators = [10, 100, 150, 200, 500, 1000]
+lgbm_params = dict(
+n_estimators = n_estimators,
+)
+lgbm_model = LGBMClassifier(boosting_type=&lsquo;gbdt&rsquo;, is_unbalance=True)
+lgbm_gridSearch_result = gridSearch(lgbm_model, lgbm_params, XTrain, yTrain)</p>
+<p>num_leaves = [5, 10, 15, 20, 30, 50]
+lgbm_params = dict(
+num_leaves = num_leaves,
+)
+n_estimators = lgbm_gridSearch_result.best_params_[&lsquo;n_estimators&rsquo;]
+lgbm_model = LGBMClassifier(boosting_type=&lsquo;gbdt&rsquo;, is_unbalance=True, n_estimators=n_estimators)
+lgbm_gridSearch_result = gridSearch(lgbm_model, lgbm_params, XTrain, yTrain)</p>
+<p>learning_rates = np.linspace(0.1, 1, 10)
+lgbm_params = dict(
+learning_rate = learning_rates
+)
+num_leaves = lgbm_gridSearch_result.best_params_[&lsquo;num_leaves&rsquo;]
+lgbm_model = LGBMClassifier(boosting_type=&lsquo;gbdt&rsquo;, is_unbalance=True, n_estimators=n_estimators, num_leaves=num_leaves)
+lgbm_gridSearch_result = gridSearch(lgbm_model, lgbm_params, XTrain, yTrain)</p>
+<p>Fitting 15 folds for each of 6 candidates, totalling 90 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   13.1s
+[Parallel(n_jobs=-1)]: Done  90 out of  90 | elapsed:  1.8min finished</p>
+<p><strong>The best ROC_AUC: 0.7688887403349118 using parameters as below</strong></p>
+<p>{&lsquo;n_estimators&rsquo;: 100}</p>
+<p>Fitting 15 folds for each of 6 candidates, totalling 90 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   14.5s
+[Parallel(n_jobs=-1)]: Done  90 out of  90 | elapsed:   44.8s finished</p>
+<p><strong>The best ROC_AUC: 0.7694315880272913 using parameters as below</strong></p>
+<p>{&lsquo;num_leaves&rsquo;: 15}</p>
+<p>Fitting 15 folds for each of 10 candidates, totalling 150 fits</p>
+<p>[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   15.9s
+[Parallel(n_jobs=-1)]: Done 150 out of 150 | elapsed:  1.0min finished</p>
+<p><strong>The best ROC_AUC: 0.7694315880272913 using parameters as below</strong></p>
+<p>{&lsquo;learning_rate&rsquo;: 0.1}</p>
+<p>In [76]:</p>
+<p>p = {
+&lsquo;boosting_type&rsquo;: &lsquo;gbdt&rsquo;,
+&lsquo;is_unbalance&rsquo;: True,
+&lsquo;learning_rate&rsquo;: 0.1,
+&lsquo;num_leaves&rsquo;: 15,
+&lsquo;n_estimators&rsquo;: 100
+}
+lgbm = LGBMClassifier(**p)
+lgbm = lgbm.fit(XTrain, yTrain)
+lgbmResult = predictedEvaluation(lgbm, XTrain, yTrain, XTest, yTest.values.reshape(-1,1))</p>
+<p><strong>ROC_AUC: 0.7474317558965304</strong></p>
+<p>)
+)</p>
+<p>)</p>
+<p>In [77]:</p>
+<p>result_dict = {
+&lsquo;LogisticRegression&rsquo;: lrResult,
+&lsquo;RandomForestClassifier&rsquo;: rfResult,
+&lsquo;AdaBoostClassifier&rsquo;: AdaB_result,
+&lsquo;GradientBoostingClassifier&rsquo;: GBM_result,
+&lsquo;XGBClassifier&rsquo;: XGBC_result,
+&lsquo;LightGBM Classifier&rsquo;: lgbmResult,
+}
+summary(result_dict)</p>
+<p>.dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; }</p>
+<p>ROC_AUC</p>
+<p>Accuracy</p>
+<p>Precision (label 1)</p>
+<p>Recall (label 1)</p>
+<p>F1 (label 1)</p>
+<p>LogisticRegression</p>
+<p>0.744496</p>
+<p>0.904390</p>
+<p>0.350230</p>
+<p>0.141692</p>
+<p>0.201759</p>
+<p>RandomForestClassifier</p>
+<p>0.732306</p>
+<p>0.914645</p>
+<p>0.357143</p>
+<p>0.001165</p>
+<p>0.002323</p>
+<p>AdaBoostClassifier</p>
+<p>0.744446</p>
+<p>0.914267</p>
+<p>0.467422</p>
+<p>0.038453</p>
+<p>0.071059</p>
+<p>GradientBoostingClassifier</p>
+<p>0.748009</p>
+<p>0.914664</p>
+<p>0.494737</p>
+<p>0.032859</p>
+<p>0.061626</p>
+<p>XGBClassifier</p>
+<p>0.746623</p>
+<p>0.914585</p>
+<p>0.481865</p>
+<p>0.021673</p>
+<p>0.041481</p>
+<p>LightGBM Classifier</p>
+<p>0.747432</p>
+<p>0.700829</p>
+<p>0.173472</p>
+<p>0.666278</p>
+<p>0.275274</p>
+<h2 id="七-present-your-solution七-present-your-solution">(七) Present your solution<a href="#%28%e4%b8%83%29-Present-your-solution">¶</a></h2>
+<p>        我們在此作業中，希望能夠透過客戶基本資料、申請貸款資料、財務資料等等資訊，預測客戶貸款是否會違約。<br>
+        在資料集的探索過程中，我們發現資料集有非常多空值，因此分別進行了 column 和 row 的裁切。同時我們也發現此資料集存在著 imbalance 的問題，亦即大多數的資料標籤都是不會違約的（佔據約九成）。因此在資料預處理的過程中，我們對 Training dataset 進行了 resampling，採取結合 over sampling 和 under sampling。<br>
+        我們探索了數個常用的二分類分類器模型，以 ROC_AUC 作為模型的主要評估指標。接著，選擇了數個 ROC_AUC 分數落於 0.71 ~ 0.75 之間的模型進行 Fine-Tuning。<br>
+        在 Fine-Tuning 的過程中，對於 LogisticRegression 和 LightGBM 都有設定對 imbalance 的 mitigation，最終可見兩者經 training 後皆可獲得較高的 Label 1 的 F1-score。<br>
+        在 Fine-Tuning 得出的結果來看，最終能夠透過 LGBMClassifier 模型從 ROC_AUC、Label 1 的 F1-score、效能等各方面都得到相當理想的結果。</p>
+<hr>
+<h1 id="task-2--ai-fairness-with-aif360-on-home-credit-default-risktask-2--ai-fairness-with-aif360-on-home-credit-default-risk">Task 2 : AI Fairness with AIF360 on Home Credit Default Risk<a href="#Task-2-:-AI-Fairness-with-AIF360-on-Home-Credit-Default-Risk">¶</a></h1>
+<blockquote>
+<p>(一) Fairness and explainability in credit default risk modeling<br>
+(二) Analyzing Fairness on a Machine Learning Task<br>
+(三) Introducing Evaluation Metrics<br>
+(四) Introducing our Protected Attributes<br>
+(五) 資料特性<br>
+(六) Mitigation Algorithms in practice<br>
+(七) Conclusion on Task 2</p>
+</blockquote>
+<h2 id="一-fairness-and-explainability-in-credit-default-risk-modeling一-fairness-and-explainability-in-credit-default-risk-modeling">(一) Fairness and explainability in credit default risk modeling<a href="#%28%e4%b8%80%29-Fairness-and-explainability-in-credit-default-risk-modeling">¶</a></h2>
+<p>        借貸服務是金融業的主要業務之一，當今巨量資料的時代，許多金融機構開始使用顧客的過往資料訓練機器學習模型，並讓模型輸出的結果作為借貸者會不會違約的關鍵指標。但是許多欲貸款的申請人因為不具備有模型偏好的條件，因此即使具有償還貸款的能力，還是會被模型排除在外。</p>
+<p>        我們在第一個 task 訓練出了一個分類模型，在第二個 task 這個部分，我們會著重在使用 IBM 的 AIF360 套件，衡量我們訓練出的模型在分類過程中會不會產生偏見，這個偏見發生在哪一個 feature 上，能不能夠被解釋?而如果偏見確實有發生，我們會嘗試使用 AIF360 的演算法消弭或減少不公正性。</p>
+<p>In [161]:</p>
+<p>import aif360
+import numpy as np
+from aif360.datasets import GermanDataset,BinaryLabelDataset
+from aif360.metrics import BinaryLabelDatasetMetric
+from aif360.metrics import ClassificationMetric
+from aif360.algorithms.preprocessing import Reweighing,DisparateImpactRemover,OptimPreproc
+from aif360.algorithms.preprocessing.optim_preproc_helpers.opt_tools import OptTools
+from IPython.display import Markdown, display
+import pandas as pd
+from os import path
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pickle
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn import metrics
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = &ldquo;all&rdquo;
+from  lightgbm import LGBMClassifier
+import warnings
+warnings.filterwarnings(&lsquo;ignore&rsquo;)</p>
+<p>In [162]:</p>
+<p>from aif360.algorithms.preprocessing.optim_preproc_helpers.distortion_functions\<br>
+import get_distortion_adult, get_distortion_german, get_distortion_compas</p>
+<h2 id="二-analyzing-fairness-on-a-machine-learning-task二-analyzing-fairness-on-a-machine-learning-task">(二) Analyzing Fairness on a Machine Learning Task<a href="#%28%e4%ba%8c%29-Analyzing-Fairness-on-a-Machine-Learning-Task">¶</a></h2>
+<p>        要衡量機器學習的公平性，要先了解下面幾個構面，定義出我們想要探討的議題，我們才知道要如何使用 aif360 的工具。</p>
+<h3 id="1-individual-fairness-vs-group-fairness1-individual-fairness-vs-group-fairness">1. Individual Fairness vs. Group Fairness<a href="#1.-Individual-Fairness-vs.-Group-Fairness">¶</a></h3>
+<p>         Individual fairness 是在追求相近的個體，能夠被機器學習模型公平的對待；而 Group fainess 強調的是透過我們自己選擇的 protected attributes 將人分成多個 groups，期望機器學習模型可以公平的看待這些不同的 groups。我們想要探討的是這個 Home Credit Default Risk 資料集中，模型是不是對一個群體比另外一個群體有利，例如:男性與女性兩個群體，模型是公平的看待他們嗎?還是會對其中一個群體比較有利因而比較傾向於借貸給這個群體呢?因此我們會著重在 Group Fariness 的討論。</p>
+<h3 id="2-data-vs-model2-data-vs-model">2. Data vs. Model<a href="#2.-Data-vs.-Model">¶</a></h3>
+<p>        aif360的設計上可以讓 Fairness 在機器學習任務過程的三個階段被衡量，pre-processing（直接在training data上衡量）、in-processing (在機器學習模型上衡量)和 post-processing (對機器學習模型的output進行衡量)。分成三個階段是有原因的，主要是我們在執行機器學習任務時，不一定會有權限可以可以更動 training data，有時候我們只能套用不同的模型，或是對模型的輸出做處理。而aif360 tool kit 在三個階段中提供了不同的 mitigation algorithm，aif360 documentation 中有解釋到，如果我們的任務有最大的權限可以直接更動training data，那麼就可以直接使用 pre-processing 階段中的 evaluation metrics 還有消除 bias 的演算法。依照 documentation 的建議，我們會著重在 pre-processing 的階段探索 fainess。</p>
+<h3 id="3-group-fairness-were-all-equal-vs-what-you-see-is-what-you-get3-group-fairness-were-all-equal-vs-what-you-see-is-what-you-get">3. Group Fairness: We’re All Equal vs. What You See Is What You Get<a href="#3.-Group-Fairness:-We%e2%80%99re-All-Equal-vs.-What-You-See-Is-What-You-Get">¶</a></h3>
+<p>        探索Group Fairness有兩大陣營：We&rsquo;re All Equal(WAE) 和 What You See Is What You Get(WYSIWYG)，兩陣營各自對 Group Fairness 有完全不同的定義。WAE 認為，在一個機器學習任務中，依照 protected attributes 區分的各個 groups 能力都是一樣的;但是 WYSIWYG 認為機器學習任務中，可以透過觀察或衡量的機制去區分每個 group 的能力。 舉一個例子來說，美國大學入學體制採用 SAT 分數作為衡量學生在大學階段是否會成功的關鍵因素。WYSIWYG 會覺得這是一個很好的作法，因為可以透過SAT考試去區分或比較每個學生的學習能力。但是從 WAE 的角度來看，因為他認為每個人的學習能力都是一樣的，所以 SAT 分數的高低不能反應出個人的學習能力的強弱。</p>
+<p>        為甚麼要討論這兩個面向呢? 因為 aif360 有提供衡量兩個面向的 evaluation metrics ，要怎麼使用這個 metrics，是依照我們想要探討的面向所決定的，而我們會使用到兩個面相做討論。後面內容會明確的解釋兩個 metrics。</p>
+<h3 id="4-group-fairness-ratios-vs-differences4-group-fairness-ratios-vs-differences">4. Group Fairness: Ratios vs. Differences<a href="#4.-Group-Fairness:-Ratios-vs.-Differences">¶</a></h3>
+<p>         AIF360 toolkit 提供了 Ratios 和 difference 的 evaluation metrics 。但兩者所表達的意義是一樣的。只是一個是用 ratio 所呈現，一個是由兩個群體的 differences 所呈現。</p>
+<p>In [163]:</p>
+<p>X_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_train.csv&rdquo;))
+y_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_train.csv&rdquo;))
+X_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_test.csv&rdquo;))
+y_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_test.csv&rdquo;))</p>
+<p>X_train = X_train.drop(&ldquo;Unnamed: 0&rdquo;,axis=1)
+X_test = X_test.drop(&ldquo;SK_ID_CURR&rdquo;,axis=1)
+y_train = y_train.drop(&ldquo;Unnamed: 0&rdquo;,axis=1)
+y_test = y_test.drop(&ldquo;SK_ID_CURR&rdquo;,axis=1)</p>
+<p>orig_LR_output = {}
+orig_LGBM_output = {}
+rw_LGBM_output = {}</p>
+<p>dataset = pd.concat([X_train,y_train],axis=1)</p>
+<h2 id="三-introducing-evaluation-metrics三-introducing-evaluation-metrics">(三) Introducing Evaluation Metrics<a href="#%28%e4%b8%89%29-Introducing-Evaluation-Metrics">¶</a></h2>
+<p>如同前面所說，用來衡量 AI fairness 的指標很多，而每個指標所衡量的 bias 的意義不盡相同，以下僅選用 AIF360 中所使用的四種指標做為參考</p>
+<h3 id="1-statistical-parity-difference1-statistical-parity-difference">1. Statistical Parity Difference<a href="#1.-Statistical-Parity-Difference">¶</a></h3>
+<p>$$p_1: \frac{the\, number \, of \, favorable\, outcome}{the\, length\, of\, target\, value}\, in\, priviliged\, group$$$$p_2:\frac{the\, number \, of \, favorable\, outcome}{the\, length\, of\, target\, value}\, in\, unpriviliged\, group$$$$Statistical\, Parity\, Difference=p_2-p_1 $$</p>
+<p>分別可對 input dataset 或是 predicted dataset 計算其 SPD，若是 SPD=0 表示兩群體的利益相等，若是 SPD&lt;0 表示該資料結構對 privileged group 比較有利，反之若是 SPD&gt;0 則對 unprivileged group 比較有利</p>
+<h3 id="2-disparate-impact2-disparate-impact">2. Disparate Impact<a href="#2.-Disparate-Impact">¶</a></h3>
+<p>$$p_1,\, p_2 \, are\, identical\, to\ those\, in\,Statistical\, Parity\, Difference $$$$Disparate Impact= \frac{p_2}{p_1} $$</p>
+<p>同樣地在 input dataset 或是 predicted dataset 都可計算其 Disparate Impact，若是 DI=1 表示兩群體的利益相等，若是 DI&lt;1 表示該資料結構傾向偏袒 privileged group，反之若是 DI&gt;1 則傾向維護 unprivileged group</p>
+<h3 id="3-average-odds-differnece3-average-odds-differnece">3. Average odds differnece<a href="#3.-Average-odds-differnece">¶</a></h3>
+<p>$$TPR_i=true\, positive\, rate,\, FPR_i=false\, positive\, rate $$$$i =1,2,\, 1\, represents\, privileged\, group;\, 2\, represents\, unprivileged\, group $$$$ Average\, odds\, differnece= \frac{(FPR_2-FPR_1)+(TPR_2-TPR_1)}{2}$$</p>
+<p>計算Average\, odds\, differnece 需要 input dataset 以及 predicted dataset。若是 AOD=0 表示兩群體的利益相等，若是 AOD&lt;0 表示該資料結構對 privileged group 比較有利，相反地若是 AOD&gt;0 則對 unprivileged group 比較有利</p>
+<h3 id="4-equal-opportunity-difference4-equal-opportunity-difference">4. Equal opportunity difference<a href="#4.-Equal-opportunity-difference">¶</a></h3>
+<p>$$Equal\, opportunity\, difference= TPR_2-TPR_1 $$</p>
+<p>同樣地計算 Equal opportunity difference 時需要 input 以及 predicted 兩個資料集。若是 EOD=0 表示兩群體的利益相等，若是 EOD&lt;0 顯示該資料結構有利於 privileged group，若是 EOD&gt;0 則對 unprivileged group 比較有利</p>
+<p>其中 Statistical Parity Difference 與 Disparate Impact 兩線指標是由 We’re All Equal 的價值觀出發所設計，且兩個指標的就衡量 bias 的意義上十分接近，認為不論是哪一群體，其預測出favorable outcome的比例應該要相同。而 Average odds differnece 與 Equal opportunity difference 則是基於 What You See Is What You Get 的理念所設計，認為在群體之內，其預測出 favorable outcome 的比例要相同，因此用 TPR, FPR衡量 bias 大小</p>
+<p>In [164]:</p>
+<p>def fairness_metrics(Keyword,dataset):
+parameter = parameters[Keyword]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]
+dataset_orig = aif360.datasets.BinaryLabelDataset(favorable_label=0, unfavorable_label=1,df = dataset,label_names = [&ldquo;TARGET&rdquo;],protected_attribute_names = protected_attributes)
+metric_orig = BinaryLabelDatasetMetric(dataset_orig,
+privileged_groups=privileged_groups,
+unprivileged_groups=unprivileged_groups)
+#     display(Markdown(&quot;#### &ldquo;+Keyword))
+#     print(&ldquo;Difference in mean outcomes between unprivileged and privileged groups = %f&rdquo; % metric_orig.disparate_impact())
+#     print(&ldquo;Statistical Parity Differences between unprivileged and privileged groups = %f&rdquo; % metric_orig.statistical_parity_difference())
+return metric_orig.disparate_impact(),metric_orig.statistical_parity_difference()</p>
+<h2 id="四-introducing-our-protected-attributes四-introducing-our-protected-attributes">(四) Introducing our Protected Attributes:<a href="#%28%e5%9b%9b%29-Introducing-our-Protected-Attributes:">¶</a></h2>
+<h4 id="1年紀2性別3教育程度1年紀2性別3教育程度">(1)年紀(2)性別(3)教育程度<a href="#%281%29%e5%b9%b4%e7%b4%80%282%29%e6%80%a7%e5%88%a5%283%29%e6%95%99%e8%82%b2%e7%a8%8b%e5%ba%a6">¶</a></h4>
+<p>        銀行在貸款審核的過程會參考幾項重要的核貸條件，像是:無擔保貸款餘額是否超過月收的22倍、無法提供收入證明，或是貸款過去12個月曾遲繳&hellip;等等，這些指標確實可以幫助銀行合理且客觀地評判申請者的還款能力，以及違約的風險。然而我們在探索資料的過程中，發現年齡、性別與教育程度這3項個人基本資料的變數，在 feacture impotance 中都排名在前10名以內，表示在機器學習的過程中，年齡、性別與教育程度對於模型的預測能力影響甚多，不過客觀而言這3個變數與還款能力並沒有絕對相關，若是根據這3變數衡量客戶的違約風險，恐怕有失公允，因此我們選擇年齡、性別與教育程度作為 protected attributes，分別觀察在不同 protected attributes 中是否確實有 bias 存在，以及如何消弭 bias 的效應。<br>
+        定義不同面向中的 privileged, unprivileged groups:</p>
+<p>性別</p>
+<p>年齡</p>
+<p>教育程度</p>
+<p>privileged</p>
+<p>女</p>
+<p>平均以上</p>
+<p>大專以上</p>
+<p>unprivileged</p>
+<p>男</p>
+<p>平均以下</p>
+<p>大專以下</p>
+<p>In [165]:</p>
+<p>parameters = {}
+parameters[&ldquo;年齡&rdquo;] = {&ldquo;protected_attributes&rdquo;:[&lsquo;age_lt0&rsquo;],&ldquo;privileged_groups&rdquo; : [{&lsquo;age_lt0&rsquo;: 0}],&ldquo;unprivileged_groups&rdquo;:[{&lsquo;age_lt0&rsquo;: 1}]}
+parameters[&ldquo;性別&rdquo;] = {&ldquo;protected_attributes&rdquo;:[&lsquo;GENDER_F&rsquo;,&lsquo;GENDER_M&rsquo;],&ldquo;privileged_groups&rdquo; : [{&lsquo;GENDER_F&rsquo;: 1}],&ldquo;unprivileged_groups&rdquo;:[{&lsquo;GENDER_M&rsquo;: 1}]}
+parameters[&ldquo;教育程度&rdquo;] = {&ldquo;protected_attributes&rdquo;:[&lsquo;education&rsquo;],&ldquo;privileged_groups&rdquo; : [{&lsquo;education&rsquo;: 1}],&ldquo;unprivileged_groups&rdquo;:[{&lsquo;education&rsquo;: 0}]}</p>
+<h2 id="五資料特性五資料特性">(五)資料特性<a href="#%28%e4%ba%94%29%e8%b3%87%e6%96%99%e7%89%b9%e6%80%a7">¶</a></h2>
+<h3 id="1-檢查訓練資料中是否有bias存在1-檢查訓練資料中是否有bias存在">1. 檢查訓練資料中是否有bias存在<a href="#1.-%e6%aa%a2%e6%9f%a5%e8%a8%93%e7%b7%b4%e8%b3%87%e6%96%99%e4%b8%ad%e6%98%af%e5%90%a6%e6%9c%89bias%e5%ad%98%e5%9c%a8">¶</a></h3>
+<p>In [242]:</p>
+<p>key = &ldquo;性別&rdquo;
+fairness_metrics(key,dataset)
+key = &ldquo;年齡&rdquo;
+fairness_metrics(key,dataset)
+key = &ldquo;教育程度&rdquo;
+fairness_metrics(key,dataset)</p>
+<p>Out[242]:</p>
+<p>(0.9699456305573455, -0.027591799271784456)</p>
+<p>Out[242]:</p>
+<p>(0.9608756065851228, -0.03624443931820687)</p>
+<p>Out[242]:</p>
+<p>(0.9467016811973007, -0.0503415155178889)</p>
+<h4 id="disparate-impact-statistical-parity-difference-in-training-datasetdisparate-impact-statistical-parity-difference-in-training-dataset">Disparate Impact, Statistical Parity Difference in training dataset<a href="#Disparate-Impact,-Statistical-Parity-Difference-in-training-dataset">¶</a></h4>
+<p>性別</p>
+<p>年齡</p>
+<p>教育程度</p>
+<p>DI</p>
+<p>0.9699</p>
+<p>0.9609</p>
+<p>0.9467</p>
+<p>SPD</p>
+<p>-0.0276</p>
+<p>-0.0362</p>
+<p>-0.0503</p>
+<p>        Disparate Impact 以及 Statistical Parity Difference 兩種指標可以用來衡量不論是 training dataset 或是 predicted output 中的 bias ，而 DI 若是&lt;1，或是 SPD&lt;0 表示該資料結構不利於 unprivileged groups。在我們訓練資料中觀察到不論是性別、年齡、或是教育程度三個面向中 DI 都小於1，SPD 都&lt;0，且經過檢定都有統計顯著，表示在這筆訓練資料中男性沒有違約的比例顯著低於女性、年輕族群沒有違約的比例顯著低於年紀較長的族群、學歷在高中以下的人沒有違約的比例也顯著低於學歷在大專以上的人。而這樣的資料結構可能會讓該筆資料訓練出來的模型帶有相同的偏差，因此銀行會認為女性、年紀較長、或是教育程度高的客戶違約風險較低，而比較願意借貸給這些人，相反地，男性、年輕、或是教育程度較低的客戶則比較不容易申請到貸款。</p>
+<h3 id="2-檢查logistic-regression預測結果中是否有bias2-檢查logistic-regression預測結果中是否有bias">2. 檢查Logistic Regression預測結果中是否有bias<a href="#2.-%e6%aa%a2%e6%9f%a5Logistic-Regression%e9%a0%90%e6%b8%ac%e7%b5%90%e6%9e%9c%e4%b8%ad%e6%98%af%e5%90%a6%e6%9c%89bias">¶</a></h3>
+<h4 id="predict-output-by-logisticregressionpredict-output-by-logisticregression">Predict Output by LogisticRegression<a href="#Predict-Output-by-LogisticRegression">¶</a></h4>
+<p>In [170]:</p>
+<p>lmod = LogisticRegression(C=10,class_weight= { 0: 0.2, 1: 0.8},penalty= &ldquo;l2&rdquo;,solver= &ldquo;newton-cg&rdquo;)
+lmod.fit(X_train, y_train)
+y_pred = lmod.predict(X_test)
+y_pred_prob =pd.DataFrame(lmod.predict_proba(X_test))
+y_pred = pd.Series(y_pred,name = &ldquo;TARGET&rdquo;)</p>
+<p>Out[170]:</p>
+<p>LogisticRegression(C=10, class_weight={0: 0.2, 1: 0.8}, dual=False,
+fit_intercept=True, intercept_scaling=1, max_iter=100,
+multi_class=&lsquo;warn&rsquo;, n_jobs=None, penalty=&lsquo;l2&rsquo;, random_state=None,
+solver=&lsquo;newton-cg&rsquo;, tol=0.0001, verbose=0, warm_start=False)</p>
+<h4 id="model-performancemodel-performance">Model Performance<a href="#Model-Performance">¶</a></h4>
+<p>In [171]:</p>
+<p>print(&ldquo;Accuracy :&rdquo; , accuracy_score(y_test,y_pred))
+print(&ldquo;Precision : &quot; , metrics.precision_score(y_test, y_pred))
+print(&ldquo;Recall : &quot; , metrics.recall_score(y_test, y_pred))
+print(&ldquo;ROC : &quot; , metrics.roc_auc_score(y_test, y_pred_prob[1]))</p>
+<p>Accuracy : 0.8687374550368648
+Precision :  0.26416632694659603
+Recall :  0.3020274994173852
+ROC :  0.744551587325778</p>
+<p>In [172]:</p>
+<p>dataset_orig = pd.concat([X_test,y_test],axis=1)
+dataset_pred = pd.concat([X_test,y_pred],axis=1)</p>
+<h4 id="bias-metricbias-metric">Bias Metric<a href="#Bias-Metric">¶</a></h4>
+<p>In [173]:</p>
+<p>#性別
+key = &ldquo;性別&rdquo;
+parameter = parameters[key]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]</p>
+<p>AOD,EOD = cal_ClassicationMetric(key,dataset_orig,dataset_pred,protected_attributes,privileged_groups,unprivileged_groups)
+DI,SPD = fairness_metrics(key,dataset_pred)
+orig_LR_output[key] = {&ldquo;AOD&rdquo;:AOD,&ldquo;EOD&rdquo;:EOD,&ldquo;DI&rdquo;:DI,&ldquo;SPD&rdquo;:SPD}</p>
+<p>#年齡
+key = &ldquo;年齡&rdquo;
+parameter = parameters[key]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]</p>
+<p>AOD,EOD = cal_ClassicationMetric(key,dataset_orig,dataset_pred,protected_attributes,privileged_groups,unprivileged_groups)
+DI,SPD = fairness_metrics(key,dataset_pred)
+orig_LR_output[key] = {&ldquo;AOD&rdquo;:AOD,&ldquo;EOD&rdquo;:EOD,&ldquo;DI&rdquo;:DI,&ldquo;SPD&rdquo;:SPD}</p>
+<p>#教育程度
+key = &ldquo;教育程度&rdquo;
+parameter = parameters[key]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]</p>
+<p>AOD,EOD = cal_ClassicationMetric(key,dataset_orig,dataset_pred,protected_attributes,privileged_groups,unprivileged_groups)
+DI,SPD = fairness_metrics(key,dataset_pred)
+orig_LR_output[key] = {&ldquo;AOD&rdquo;:AOD,&ldquo;EOD&rdquo;:EOD,&ldquo;DI&rdquo;:DI,&ldquo;SPD&rdquo;:SPD}</p>
+<h3 id="3-檢查light-gbm的預測結果中是否有bias3-檢查light-gbm的預測結果中是否有bias">3. 檢查Light-GBM的預測結果中是否有bias<a href="#3.-%e6%aa%a2%e6%9f%a5Light-GBM%e7%9a%84%e9%a0%90%e6%b8%ac%e7%b5%90%e6%9e%9c%e4%b8%ad%e6%98%af%e5%90%a6%e6%9c%89bias">¶</a></h3>
+<h4 id="predict-output-by-lgbmpredict-output-by-lgbm">Predict Output by LGBM<a href="#Predict-Output-by-LGBM">¶</a></h4>
+<p>In [176]:</p>
+<p># X_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_train.csv&rdquo;))
+# y_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_train.csv&rdquo;),names=[&ldquo;TARGET&rdquo;])
+# X_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_test.csv&rdquo;))
+# y_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_test.csv&rdquo;),names=[&ldquo;TARGET&rdquo;])
+param = {&lsquo;boosting_type&rsquo;: &lsquo;gbdt&rsquo;,
+&lsquo;is_unbalance&rsquo;: True,
+&lsquo;learning_rate&rsquo;: 0.1,
+&lsquo;max_depth&rsquo;: 5,
+&lsquo;n_estimators&rsquo;: 200}</p>
+<p>lgb = LGBMClassifier(**param)
+bst = lgb.fit(X_train, y_train)
+y_pred = lgb.predict(X_test)
+y_pred_prob =pd.DataFrame(bst.predict_proba(X_test))
+y_pred = pd.Series(y_pred,name = &ldquo;TARGET&rdquo;)</p>
+<h4 id="model-performancemodel-performance-1">Model Performance<a href="#Model-Performance">¶</a></h4>
+<p>In [177]:</p>
+<p>print(&ldquo;Accuracy :&rdquo; , accuracy_score(y_test,y_pred))
+print(&ldquo;Precision : &quot; , metrics.precision_score(y_test, y_pred))
+print(&ldquo;Recall : &quot; , metrics.recall_score(y_test, y_pred))
+print(&ldquo;ROC : &quot; , metrics.roc_auc_score(y_test, y_pred_prob[1]))</p>
+<p>Accuracy : 0.724517577853296
+Precision :  0.1796210751824329
+Recall :  0.6252621766487998
+ROC :  0.7451117825456248</p>
+<p>In [178]:</p>
+<p>dataset_orig = pd.concat([X_test,y_test],axis=1)
+dataset_pred = pd.concat([X_test,y_pred],axis=1)</p>
+<h4 id="bias-metricbias-metric-1">Bias Metric<a href="#Bias-Metric">¶</a></h4>
+<p>In [179]:</p>
+<p>key = &ldquo;性別&rdquo;
+parameter = parameters[key]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]</p>
+<p>AOD,EOD = cal_ClassicationMetric(key,dataset_orig,dataset_pred,protected_attributes,privileged_groups,unprivileged_groups)
+DI,SPD = fairness_metrics(key,dataset_pred)
+orig_LGBM_output [key] = {&ldquo;AOD&rdquo;:AOD,&ldquo;EOD&rdquo;:EOD,&ldquo;DI&rdquo;:DI,&ldquo;SPD&rdquo;:SPD}</p>
+<p>In [180]:</p>
+<p>key = &ldquo;年齡&rdquo;
+parameter = parameters[key]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]</p>
+<p>AOD,EOD = cal_ClassicationMetric(key,dataset_orig,dataset_pred,protected_attributes,privileged_groups,unprivileged_groups)
+DI,SPD = fairness_metrics(key,dataset_pred)
+orig_LGBM_output [key] = {&ldquo;AOD&rdquo;:AOD,&ldquo;EOD&rdquo;:EOD,&ldquo;DI&rdquo;:DI,&ldquo;SPD&rdquo;:SPD}</p>
+<h3 id="4-比較logistic-regression-model-與-light-gbm預測結果中的bias大小4-比較logistic-regression-model-與-light-gbm預測結果中的bias大小">4. 比較Logistic Regression Model 與 Light-GBM預測結果中的Bias大小<a href="#4.-%e6%af%94%e8%bc%83Logistic-Regression-Model-%e8%88%87-Light-GBM%e9%a0%90%e6%b8%ac%e7%b5%90%e6%9e%9c%e4%b8%ad%e7%9a%84Bias%e5%a4%a7%e5%b0%8f">¶</a></h3>
+<p>Figure 1:Comparison of bias between Logistic regression and Light-GBM</p>
+<p>        我們分別使用兩種模型 Logistic regression 與 Light-GBM 欲比較不同的演算法對於 bias 是否會有影響，因此這邊透過這兩個模型預測結果分別計算: SPD, DI, AOD, EDO 這四種衡量偏差大小的指標， 由於樣本大小很大使得估計值變方接近為0，因此不論是性別、年齡、或是教育程度哪一面向，兩個模型的所產生的偏差都十分顯著，然而在訓練資料中就已經看見不同的群體中:男性 v.s. 女性、年輕較輕 v.s. 年紀較長、大學以下 v.s. 大學以上，確實有偏差存在，因此使用這個本身就帶有偏差的訓練資料集，很可能會使得訓練出來的模型沿襲抽樣資料中固有的偏差。<br>
+        不過從 Figure 1 可以明顯地看出，不論在性別、年齡或是教育程度哪一方面，Light-GBM 模型中四種指標的 bias 都比 Logistic regression 來的更加嚴重，可見不僅僅抽樣資料本身的結構會影響機器學習的公正性，不同的演算法影響偏差的效應也不盡相同，在我們的例子中顯然 Light-GBM 模型會放大資料中的偏差。</p>
+<h2 id="六-mitigation-algorithms-in-practice六-mitigation-algorithms-in-practice">(六) Mitigation Algorithms in Practice<a href="#%28%e5%85%ad%29-Mitigation-Algorithms-in-Practice">¶</a></h2>
+<h3 id="1-which-mitigation-algorithm-is-prefered1-which-mitigation-algorithm-is-prefered">1. Which mitigation algorithm is prefered?<a href="#1.-Which-mitigation-algorithm-is-prefered?">¶</a></h3>
+<p>         AIF360 提供了減少機器學習 bias 的方法，這些方法根據機器學習的三個階段區分類，依序可以分為:適用在 training data 上的 pre-processing 演算法；適用在機器學習模型的 in-processing 演算法;以及適用在模型輸出結果後的 post-processing 演算法。<br>
+         我們參考介紹 AIF360 的論文中，對於各個方法的評估與建議，in-processing 的方法準確度都太差；而 post-processing 的方法，其中兩個 equal odds post-processing 對於減少偏差沒什麼效果，而第三種雖然可以有效減少 bias，不過同時也會大大犧牲模型預測的準確度，因此論文中建議若是操作者可以操作訓練資料，建議使用 pre-processing 中的 Reweighing method ， Reweighing 可以有效降低偏差，也不會對模型預測能力造成太大的影響，因此我們在這次的報告中採用 AIF360 設計者所推薦的 Reweighing method 來削減 bias。</p>
+<p>Figure 2. Fairness vs. Balanced Accuracy before (top panel) and after (bottom panel) applying various bias mitigation algorithms. Four different fairness metrics are shown. In most cases two classifiers (Logistic regression - LR or Random forest classifier - RF) were used. The ideal fair value of disparate impact is 1, whereas for all other metrics it is 0. The circles indicate the mean value and bars indicate the extent of ±1 standard deviation. Dataset: Adult, Protected attribute: race.</p>
+<p>(Bellamy et al.,2018 :<a href="https://arxiv.org/pdf/1810.01943.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1810.01943.pdf</a>)</p>
+<h3 id="2-prediction-output-by-lgbm-after-reweighing2-prediction-output-by-lgbm-after--reweighing">2. Prediction Output by LGBM After Reweighing<a href="#2.-Prediction-Output-by-LGBM-After--Reweighing">¶</a></h3>
+<p>In [220]:</p>
+<p>def train_rw_output(key):
+X_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_train.csv&rdquo;))
+y_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_train.csv&rdquo;))
+X_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_test.csv&rdquo;))
+y_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_test.csv&rdquo;))</p>
+<pre><code>X\_train \= X\_train.drop(&quot;Unnamed: 0&quot;,axis\=1)
+X\_test \= X\_test.drop(&quot;SK\_ID\_CURR&quot;,axis\=1)
+y\_train \= y\_train.drop(&quot;Unnamed: 0&quot;,axis\=1)
+y\_test \= y\_test.drop(&quot;SK\_ID\_CURR&quot;,axis\=1)
+
+key \= key
+parameter \= parameters\[key\]
+protected\_attributes \= parameter\['protected\_attributes'\]
+privileged\_groups \= parameter\['privileged\_groups'\]
+unprivileged\_groups \= parameter\['unprivileged\_groups'\]
+
+RW \= Reweighing(unprivileged\_groups\=unprivileged\_groups,
+                privileged\_groups\=privileged\_groups)
+data\_train \= pd.concat(\[X\_train,y\_train\],axis\=1)
+data\_train\_orig \= aif360.datasets.BinaryLabelDataset(favorable\_label\=0, unfavorable\_label\=1,df \= data\_train,label\_names \= \[&quot;TARGET&quot;\],protected\_attribute\_names \= protected\_attributes )
+dataset\_transf\_train\_RW \= RW.fit\_transform(data\_train\_orig)
+
+x\_rw \= dataset\_transf\_train\_RW.features
+
+param \= {'boosting\_type': 'gbdt',
+</code></pre>
+<p>&lsquo;is_unbalance&rsquo;: True,
+&lsquo;learning_rate&rsquo;: 0.1,
+&lsquo;max_depth&rsquo;: 5,
+&lsquo;n_estimators&rsquo;: 200}</p>
+<pre><code>y\_train \= dataset\_transf\_train\_RW.labels.ravel()
+w\_train \= dataset\_transf\_train\_RW.instance\_weights.ravel()
+
+lgb \= LGBMClassifier(\*\*param)
+bst \= lgb.fit(x\_rw, y\_train,sample\_weight\=w\_train)
+y\_pred\_rw \= lgb.predict(X\_test)
+y\_pred\_rw\_prob \=pd.DataFrame(bst.predict\_proba(X\_test))
+y\_pred\_rw \= pd.Series(y\_pred\_rw,name \= &quot;TARGET&quot;)
+
+dataset\_orig \= pd.concat(\[X\_test,y\_test\],axis\=1)
+dataset\_pred \= pd.concat(\[X\_test,y\_pred\_rw\],axis\=1)
+
+AOD,EOD \= cal\_ClassicationMetric(key,dataset\_orig,dataset\_pred,protected\_attributes,privileged\_groups,unprivileged\_groups)
+DI,SPD \= fairness\_metrics(key,dataset\_pred)
+
+rw\_LGBM\_output\[key\] \= {&quot;AOD&quot;:AOD,&quot;EOD&quot;:EOD,&quot;DI&quot;:DI,&quot;SPD&quot;:SPD}
+</code></pre>
+<p>In [183]:</p>
+<p>key = &ldquo;性別&rdquo;
+train_rw_output(key)
+key = &ldquo;年齡&rdquo;
+train_rw_output(key)
+key = &ldquo;教育程度&rdquo;
+train_rw_output(key)</p>
+<p>In [229]:</p>
+<p>X_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_train.csv&rdquo;))
+y_train= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_train.csv&rdquo;))
+X_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;X_test.csv&rdquo;))
+y_test= pd.read_csv(path.join(&ldquo;Final Project Data&rdquo;,&ldquo;y_test.csv&rdquo;))</p>
+<p>X_train = X_train.drop(&ldquo;Unnamed: 0&rdquo;,axis=1)
+X_test = X_test.drop(&ldquo;SK_ID_CURR&rdquo;,axis=1)
+y_train = y_train.drop(&ldquo;Unnamed: 0&rdquo;,axis=1)
+y_test = y_test.drop(&ldquo;SK_ID_CURR&rdquo;,axis=1)</p>
+<p>key = key
+parameter = parameters[key]
+protected_attributes = parameter[&lsquo;protected_attributes&rsquo;]
+privileged_groups = parameter[&lsquo;privileged_groups&rsquo;]
+unprivileged_groups = parameter[&lsquo;unprivileged_groups&rsquo;]</p>
+<p>RW = Reweighing(unprivileged_groups=unprivileged_groups,
+privileged_groups=privileged_groups)
+data_train = pd.concat([X_train,y_train],axis=1)
+data_train_orig = aif360.datasets.BinaryLabelDataset(favorable_label=0, unfavorable_label=1,df = data_train,label_names = [&ldquo;TARGET&rdquo;],protected_attribute_names = protected_attributes )
+dataset_transf_train_RW = RW.fit_transform(data_train_orig)</p>
+<p>x_rw = dataset_transf_train_RW.features</p>
+<p>param = {&lsquo;boosting_type&rsquo;: &lsquo;gbdt&rsquo;,
+&lsquo;is_unbalance&rsquo;: True,
+&lsquo;learning_rate&rsquo;: 0.1,
+&lsquo;max_depth&rsquo;: 5,
+&lsquo;n_estimators&rsquo;: 200}</p>
+<p>y_train = dataset_transf_train_RW.labels.ravel()
+w_train = dataset_transf_train_RW.instance_weights.ravel()</p>
+<p>lgb = LGBMClassifier(**param)
+bst = lgb.fit(x_rw, y_train,sample_weight=w_train)
+y_pred_rw = lgb.predict(X_test)
+y_pred_rw_prob =pd.DataFrame(bst.predict_proba(X_test))
+y_pred_rw = pd.Series(y_pred_rw,name = &ldquo;TARGET&rdquo;)</p>
+<p>dataset_orig = pd.concat([X_test,y_test],axis=1)
+dataset_pred = pd.concat([X_test,y_pred_rw],axis=1)</p>
+<p>AOD,EOD = cal_ClassicationMetric(key,dataset_orig,dataset_pred,protected_attributes,privileged_groups,unprivileged_groups)
+DI,SPD = fairness_metrics(key,dataset_pred)</p>
+<p>rw_LGBM_output[key] = {&ldquo;AOD&rdquo;:AOD,&ldquo;EOD&rdquo;:EOD,&ldquo;DI&rdquo;:DI,&ldquo;SPD&rdquo;:SPD}</p>
+<p>In [228]:</p>
+<p>rw_LGBM_output</p>
+<p>Out[228]:</p>
+<p>{&lsquo;性別&rsquo;: {&lsquo;AOD&rsquo;: -0.009811354301692943,
+&lsquo;EOD&rsquo;: -0.02213174468847323,
+&lsquo;DI&rsquo;: 0.9603095484484324,
+&lsquo;SPD&rsquo;: -0.028334256410786796},
+&lsquo;年齡&rsquo;: {&lsquo;AOD&rsquo;: -0.04616508654439344,
+&lsquo;EOD&rsquo;: -0.04915548119217872,
+&lsquo;DI&rsquo;: 0.9187406759076221,
+&lsquo;SPD&rsquo;: -0.05954564716468369},
+&lsquo;教育程度&rsquo;: {&lsquo;AOD&rsquo;: -0.055685685893522685,
+&lsquo;EOD&rsquo;: -0.051990800961052686,
+&lsquo;DI&rsquo;: 0.9126775699311283,
+&lsquo;SPD&rsquo;: -0.0657446360241799}}</p>
+<p>In [232]:</p>
+<p>print(&ldquo;Accuracy :&rdquo; , accuracy_score(y_test,y_pred_rw))
+print(&ldquo;Precision : &quot; , metrics.precision_score(y_test, y_pred_rw))
+print(&ldquo;Recall : &quot; , metrics.recall_score(y_test, y_pred_rw))
+print(&ldquo;ROC : &quot; , metrics.roc_auc_score(y_test, y_pred_rw_prob[1]))</p>
+<p>Accuracy : 0.7228879747212782
+Precision :  0.17700595596600416
+Recall :  0.6164064320671172
+ROC :  0.7416701884135779</p>
+<h4 id="prediction-outcome-分佈prediction-outcome-分佈">Prediction outcome 分佈<a href="#Prediction-outcome-%e5%88%86%e4%bd%88">¶</a></h4>
+<p>In [57]:</p>
+<p>dataset_pred = pd.concat([X_test,y_pred],axis=1)</p>
+<p>In [58]:</p>
+<p>print(&ldquo;Female , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==1) &amp; (dataset_pred.GENDER_F==1)].count()[0])
+print(&ldquo;Female , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==1) &amp; (dataset_pred.GENDER_M==1)].count()[0])
+print(&ldquo;Male , TARGET = 0 :&quot;,dataset_pred[(dataset_pred.TARGET==0) &amp; (dataset_pred.GENDER_F==1)].count()[0])
+print(&ldquo;Male , TARGET = 0 :&quot;,dataset_pred[(dataset_pred.TARGET==0) &amp; (dataset_pred.GENDER_M==1)].count()[0])</p>
+<p>Female , TARGET = 1 : 7822
+Female , TARGET = 1 : 7115
+Male , TARGET = 0 : 23235
+Male , TARGET = 0 : 12147</p>
+<p>In [59]:</p>
+<p>print(&ldquo;Education = 1 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==1) &amp; (dataset_pred.education==1)].count()[0])
+print(&ldquo;Education = 0 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==1) &amp; (dataset_pred.education==0)].count()[0])
+print(&ldquo;Education = 1 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==0) &amp; (dataset_pred.education==1)].count()[0])
+print(&ldquo;Education = 0 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==0) &amp; (dataset_pred.education==0)].count()[0])</p>
+<p>Education = 1 , TARGET = 1 : 1840
+Education = 0 , TARGET = 1 : 13097
+Education = 1 , TARGET = 1 : 11458
+Education = 0 , TARGET = 1 : 23924</p>
+<p>In [60]:</p>
+<p>print(&ldquo;age_lt0 = 1 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==1) &amp; (dataset_pred.age_lt0==1)].count()[0])
+print(&ldquo;age_lt0 = 0 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==1) &amp; (dataset_pred.age_lt0==0)].count()[0])
+print(&ldquo;age_lt0 = 1 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==0) &amp; (dataset_pred.age_lt0==1)].count()[0])
+print(&ldquo;age_lt0 = 0 , TARGET = 1 :&quot;,dataset_pred[(dataset_pred.TARGET==0) &amp; (dataset_pred.age_lt0==0)].count()[0])</p>
+<p>age_lt0 = 1 , TARGET = 1 : 9782
+age_lt0 = 0 , TARGET = 1 : 5155
+age_lt0 = 1 , TARGET = 1 : 16081
+age_lt0 = 0 , TARGET = 1 : 19301</p>
+<h3 id="3-comparison-of-model-quality-and-bias-after-mitigation3-comparison-of-model-quality-and-bias-after-mitigation">3. Comparison of model quality and bias after mitigation<a href="#3.-Comparison-of-model-quality-and-bias-after-mitigation">¶</a></h3>
+<p>        根據 Figure 3.發現在 Reweighing 之後，模型預測能力的 precision 下降了，不過 recall 反而往上提升了，表示Reweighing 之後，使得 False negative rate 會減少，而 False positive rate 增加，且整體而言 False positive rate 增加的速度是大過 False negative rate 減少的速度的，因為整體 accuracy 是下修的。在原本的資料中存在嚴重的 imbalance，所以訓練出來的模型會傾向預測 negative，所以雖然 accuracy 達到 86.9%，不過大都都是由 True negative 所貢獻， True positive 的比例很少，從我們的例子中發現在經過 Bias mitigation 之後，會修正資料中 imbalance 的效應，使整個模型的預測結果，向 positive 靠攏。雖然 accuracy 減少了14.6%，不過ROC值並沒有減少多少，而由於資料 imbalance 太嚴重，因此參考 accuracy 並不準確，選擇 ROC 作為衡量模型的指標比較合適，表示透過 Reweighing 減少偏差的同時， 不需要犧牲模型的預測能力，依然可以有不錯的表現</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/machine-learning-fairness/">Machine Learning Fairness</a>
+  
+  <a class="badge badge-light" href="/tag/ai-fairness/">AI Fairness</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/&amp;text=Unlocking%20the%20Secrets%20behind%20Machine%20Learning%20Models%20in%20Financial%20Credit%20Risk%20Modeling%20%281%29%20%e2%80%94%20Binary%20Classification" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/&amp;t=Unlocking%20the%20Secrets%20behind%20Machine%20Learning%20Models%20in%20Financial%20Credit%20Risk%20Modeling%20%281%29%20%e2%80%94%20Binary%20Classification" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Unlocking%20the%20Secrets%20behind%20Machine%20Learning%20Models%20in%20Financial%20Credit%20Risk%20Modeling%20%281%29%20%e2%80%94%20Binary%20Classification&amp;body=https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/&amp;title=Unlocking%20the%20Secrets%20behind%20Machine%20Learning%20Models%20in%20Financial%20Credit%20Risk%20Modeling%20%281%29%20%e2%80%94%20Binary%20Classification" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Unlocking%20the%20Secrets%20behind%20Machine%20Learning%20Models%20in%20Financial%20Credit%20Risk%20Modeling%20%281%29%20%e2%80%94%20Binary%20Classification%20https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/&amp;title=Unlocking%20the%20Secrets%20behind%20Machine%20Learning%20Models%20in%20Financial%20Credit%20Risk%20Modeling%20%281%29%20%e2%80%94%20Binary%20Classification" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://andwct.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_270x270_fill_q75_lanczos_center.jpg" alt="Anderson Wu"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://andwct.github.io/">Anderson Wu</a></h5>
+      <h6 class="card-subtitle">Machine Learning Engineer <!-- raw HTML omitted -->| Cloud Devops Engineer</h6>
+      <p class="card-text">My research interests lie in Machine Learning, Cloud Architecture of Distributed Systems</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/andwct" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/andwct" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/resume_version_7_anderson.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <!-- raw HTML omitted -->Wowchemy<!-- raw HTML omitted --> — the free, <!-- raw HTML omitted -->open source<!-- raw HTML omitted --> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.d68ecd57c0ec1f1f61d65fd568f1c3a0.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

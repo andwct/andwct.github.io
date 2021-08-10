@@ -11,7 +11,16 @@
     <loc>https://andwct.github.io/event/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://andwct.github.io/aws_projects/amazon_timestream/</loc>
+    <lastmod>2021-08-10T05:47:23+08:00</lastmod>
+  </url><url>
+    <loc>https://andwct.github.io/aws_projects/</loc>
+    <lastmod>2021-08-10T05:47:23+08:00</lastmod>
+  </url><url>
     <loc>https://andwct.github.io/tag/ai-fairness/</loc>
+    <lastmod>2021-08-02T05:27:20+08:00</lastmod>
+  </url><url>
+    <loc>https://andwct.github.io/tag/machine-learning-bias/</loc>
     <lastmod>2021-08-02T05:27:20+08:00</lastmod>
   </url><url>
     <loc>https://andwct.github.io/tag/machine-learning-fairness/</loc>
@@ -21,6 +30,9 @@
     <lastmod>2021-08-02T05:27:20+08:00</lastmod>
   </url><url>
     <loc>https://andwct.github.io/tags/</loc>
+    <lastmod>2021-08-02T05:27:20+08:00</lastmod>
+  </url><url>
+    <loc>https://andwct.github.io/machine_learning_project/credit-risk-modeling-classification/</loc>
     <lastmod>2021-08-02T05:27:20+08:00</lastmod>
   </url><url>
     <loc>https://andwct.github.io/machine_learning_project/ai_fairness/</loc>
@@ -56,10 +68,10 @@
     <loc>https://andwct.github.io/tag/deep-learning/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://andwct.github.io/project/example/</loc>
+    <loc>https://andwct.github.io/projects/example/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://andwct.github.io/project/</loc>
+    <loc>https://andwct.github.io/projects/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://andwct.github.io/publication-type/1/</loc>

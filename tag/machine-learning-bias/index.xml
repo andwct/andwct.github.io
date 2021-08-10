@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning Bias | Anderson Wu</title>
+    <link>https://andwct.github.io/tag/machine-learning-bias/</link>
+      <atom:link href="https://andwct.github.io/tag/machine-learning-bias/index.xml" rel="self" type="application/rss+xml" />
+    <description>Machine Learning Bias</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 02 Aug 2021 05:27:20 +0800</lastBuildDate>
+    <image>
+      <url>https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png</url>
+      <title>Machine Learning Bias</title>
+      <link>https://andwct.github.io/tag/machine-learning-bias/</link>
+    </image>
+    
+    <item>
+      <title>Unlocking the Secrets behind Machine Learning Models in Financial Credit Risk Modeling (2) — Machine Learning Bias Exploration</title>
+      <link>https://andwct.github.io/machine_learning_project/ai_fairness/</link>
+      <pubDate>Mon, 02 Aug 2021 05:27:20 +0800</pubDate>
+      <guid>https://andwct.github.io/machine_learning_project/ai_fairness/</guid>
+      <description>&lt;div class=&#34;toc&#34;&gt;
+    &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&#34;#1-fairness-and-explainability-in-credit-default-risk-modeling&#34;&gt;1. Fairness and explainability in credit default risk modeling&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#2-analyzing-fairness-of-a-machine-learning-task&#34;&gt;2. Analyzing Fairness of a Machine Learning Task&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#1-individual-fairness-vs-group-fairness&#34;&gt;(1) Individual Fairness vs. Group Fairness&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#2-data-vs-model&#34;&gt;(2) Data vs. Model&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#3-group-fairness-were-all-equal-vs-what-you-see-is-what-you-get&#34;&gt;(3) Group Fairness: We’re All Equal vs. What You See Is What You Get&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#4-group-fairness-ratios-vs-differences&#34;&gt;(4) Group Fairness: Ratios vs. Differences&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#3-introducing-evaluation-metrics&#34;&gt;3. Introducing Evaluation Metrics&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#1-statistical-parity-difference&#34;&gt;(1) Statistical Parity Difference&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#2-disparate-impact&#34;&gt;(2) Disparate Impact&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#3-average-odds-differnece&#34;&gt;(3) Average Odds Differnece&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#4-equal-opportunity-difference&#34;&gt;(4) Equal Opportunity Difference&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#4--introducing-our-protected-attributes&#34;&gt;4.  Introducing our Protected Attributes:&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#5-bias-in-data&#34;&gt;5. Bias in Data&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#1檢查訓練資料中是否有bias存在&#34;&gt;(1)檢查訓練資料中是否有bias存在&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#disparate-impact-statistical-parity-difference-in-training-dataset&#34;&gt;Disparate Impact, Statistical Parity Difference in training dataset&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#5-comparison-of-bias-in-logistic-regression-and-light-gbm&#34;&gt;5. Comparison of Bias in Logistic Regression and Light-GBM&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#6-mitigation-algorithms-in-practice&#34;&gt;6. Mitigation Algorithms in Practice&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#1-which-mitigation-algorithm-is-prefered&#34;&gt;(1) Which mitigation algorithm is prefered?&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#2-comparison-of-model-quality-and-bias-after-mitigation&#34;&gt;(2). Comparison of Model Quality and Bias after Mitigation&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#7-conclusion&#34;&gt;7. Conclusion&lt;/a&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;hr&gt;
+&lt;p&gt;Dataset: Home Credit Default Risk&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/c/home-credit-default-risk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.kaggle.com/c/home-credit-default-risk&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-fairness-and-explainability-in-credit-default-risk-modeling&#34;&gt;1. Fairness and explainability in credit default risk modeling&lt;/h2&gt;
+&lt;p&gt;        借貸服務是金融業的主要業務之一，當今巨量資料的時代，許多金融機構開始使用顧客的過往資料訓練機器學習模型，並讓模型輸出的結果作為借貸者會不會違約的關鍵指標。但是許多欲貸款的申請人因為不具備有模型偏好的條件，因此即使具有償還貸款的能力，還是會被模型排除在外。&lt;/p&gt;
+&lt;p&gt;        我們在第一個 task 訓練出了一個分類模型，在第二個 task 這個部分，我們會著重在使用 IBM 的 AIF360 套件，衡量我們訓練出的模型在分類過程中會不會產生偏見，這個偏見發生在哪一個 feature 上，能不能夠被解釋?而如果偏見確實有發生，我們會嘗試使用 AIF360 的演算法消弭或減少不公正性。&lt;br&gt;
+ &lt;/p&gt;
+&lt;h2 id=&#34;2-analyzing-fairness-of-a-machine-learning-task&#34;&gt;2. Analyzing Fairness of a Machine Learning Task&lt;/h2&gt;
+&lt;p&gt;        要衡量機器學習的公平性，要先了解下面幾個構面，定義出我們想要探討的議題，我們才知道要如何使用 aif360 的工具。&lt;/p&gt;
+&lt;h4 id=&#34;1-individual-fairness-vs-group-fairness&#34;&gt;(1) Individual Fairness vs. Group Fairness&lt;/h4&gt;
+&lt;p&gt;         Individual fairness 是在追求相近的個體，能夠被機器學習模型公平的對待；而 Group fainess 強調的是透過我們自己選擇的 protected attributes 將人分成多個 groups，期望機器學習模型可以公平的看待這些不同的 groups。我們想要探討的是這個 Home Credit Default Risk 資料集中，模型是不是對一個群體比另外一個群體有利，例如:男性與女性兩個群體，模型是公平的看待他們嗎?還是會對其中一個群體比較有利因而比較傾向於借貸給這個群體呢?因此我們會著重在 Group Fariness 的討論。&lt;/p&gt;
+&lt;h4 id=&#34;2-data-vs-model&#34;&gt;(2) Data vs. Model&lt;/h4&gt;
+&lt;p&gt;        aif360的設計上可以讓 Fairness 在機器學習任務過程的三個階段被衡量，pre-processing（直接在training data上衡量）、in-processing (在機器學習模型上衡量)和 post-processing (對機器學習模型的output進行衡量)。分成三個階段是有原因的，主要是我們在執行機器學習任務時，不一定會有權限可以可以更動 training data，有時候我們只能套用不同的模型，或是對模型的輸出做處理。而aif360 tool kit 在三個階段中提供了不同的 mitigation algorithm，aif360 documentation 中有解釋到，如果我們的任務有最大的權限可以直接更動training data，那麼就可以直接使用 pre-processing 階段中的 evaluation metrics 還有消除 bias 的演算法。依照 documentation 的建議，我們會著重在 pre-processing 的階段探索 fainess。&lt;/p&gt;
+&lt;h4 id=&#34;3-group-fairness-were-all-equal-vs-what-you-see-is-what-you-get&#34;&gt;(3) Group Fairness: We’re All Equal vs. What You See Is What You Get&lt;/h4&gt;
+&lt;p&gt;        探索Group Fairness有兩大陣營：We&amp;rsquo;re All Equal(WAE) 和 What You See Is What You Get(WYSIWYG)，兩陣營各自對 Group Fairness 有完全不同的定義。WAE 認為，在一個機器學習任務中，依照 protected attributes 區分的各個 groups 能力都是一樣的;但是 WYSIWYG 認為機器學習任務中，可以透過觀察或衡量的機制去區分每個 group 的能力。 舉一個例子來說，美國大學入學體制採用 SAT 分數作為衡量學生在大學階段是否會成功的關鍵因素。WYSIWYG 會覺得這是一個很好的作法，因為可以透過SAT考試去區分或比較每個學生的學習能力。但是從 WAE 的角度來看，因為他認為每個人的學習能力都是一樣的，所以 SAT 分數的高低不能反應出個人的學習能力的強弱。&lt;/p&gt;
+&lt;p&gt;        為甚麼要討論這兩個面向呢? 因為 aif360 有提供衡量兩個面向的 evaluation metrics ，要怎麼使用這個 metrics，是依照我們想要探討的面向所決定的，而我們會使用到兩個面相做討論。後面內容會明確的解釋兩個 metrics。&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/wusiwug_huf3719fe794bb406678387177821af0cb_94619_bb8458924686d7b4de61c7973d2b515c.png 400w,
+               /machine_learning_project/ai_fairness/wusiwug_huf3719fe794bb406678387177821af0cb_94619_333d92bc133fecb674a0e1e4e3098a2d.png 760w,
+               /machine_learning_project/ai_fairness/wusiwug_huf3719fe794bb406678387177821af0cb_94619_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/wusiwug_huf3719fe794bb406678387177821af0cb_94619_bb8458924686d7b4de61c7973d2b515c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;332&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;4-group-fairness-ratios-vs-differences&#34;&gt;(4) Group Fairness: Ratios vs. Differences&lt;/h4&gt;
+&lt;p&gt;     AIF360 toolkit 提供了 Ratios 和 difference 的 evaluation metrics 。但兩者所表達的意義是一樣的。只是一個是用 ratio 所呈現，一個是由兩個群體的 differences 所呈現。&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;3-introducing-evaluation-metrics&#34;&gt;3. Introducing Evaluation Metrics&lt;/h2&gt;
+&lt;p&gt;如同前面所說，用來衡量 AI fairness 的指標很多，而每個指標所衡量的 bias 的意義不盡相同，以下僅選用 AIF360 中所使用的四種指標做為參考&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h4 id=&#34;1-statistical-parity-difference&#34;&gt;(1) Statistical Parity Difference&lt;/h4&gt;
+&lt;p&gt;$$p_1: \frac{the\, number \, of \, favorable\, outcome}{the\, length\, of\, target\, value}\, in\, priviliged\, group$$$$p_2:\frac{the\, number \, of \, favorable\, outcome}{the\, length\, of\, target\, value}\, in\, unpriviliged\, group$$$$Statistical\, Parity\, Difference=p_2-p_1 $$&lt;/p&gt;
+&lt;p&gt;分別可對 input dataset 或是 predicted dataset 計算其 SPD，若是 SPD=0 表示兩群體的利益相等，若是 SPD&amp;lt;0 表示該資料結構對 privileged group 比較有利，反之若是 SPD&amp;gt;0 則對 unprivileged group 比較有利&lt;/p&gt;
+&lt;h4 id=&#34;2-disparate-impact&#34;&gt;(2) Disparate Impact&lt;/h4&gt;
+&lt;p&gt;$$p_1,\, p_2 \, are\, identical\, to\ those\, in\,Statistical\, Parity\, Difference $$$$Disparate Impact= \frac{p_2}{p_1} $$&lt;/p&gt;
+&lt;p&gt;同樣地在 input dataset 或是 predicted dataset 都可計算其 Disparate Impact，若是 DI=1 表示兩群體的利益相等，若是 DI&amp;lt;1 表示該資料結構傾向偏袒 privileged group，反之若是 DI&amp;gt;1 則傾向維護 unprivileged group&lt;/p&gt;
+&lt;h4 id=&#34;3-average-odds-differnece&#34;&gt;(3) Average Odds Differnece&lt;/h4&gt;
+&lt;p&gt;$TPR_i=true\, positive\, rate,\, FPR_i=false\, positive\, rate\,$&lt;/p&gt;
+&lt;p&gt;$i =1,2\,$&lt;/p&gt;
+&lt;p&gt;$1\, denotes\, privileged\, group;\,$
+$2\, denotes\, unprivileged\, group\,$
+$$ Average\, odds\, differnece(AOD)= $$$$\frac{(FPR_2-FPR_1)+(TPR_2-TPR_1)}{2}$$&lt;/p&gt;
+&lt;p&gt;計算Average\, odds\, differnece 需要 input dataset 以及 predicted dataset。若是 AOD=0 表示兩群體的利益相等，若是 AOD&amp;lt;0 表示該資料結構對 privileged group 比較有利，相反地若是 AOD&amp;gt;0 則對 unprivileged group 比較有利。&lt;/p&gt;
+&lt;h4 id=&#34;4-equal-opportunity-difference&#34;&gt;(4) Equal Opportunity Difference&lt;/h4&gt;
+&lt;p&gt;$$Equal\, opportunity\, difference= TPR_2-TPR_1 $$&lt;/p&gt;
+&lt;p&gt;同樣地計算 Equal opportunity difference 時需要 input 以及 predicted 兩個資料集。若是 EOD=0 表示兩群體的利益相等，若是 EOD&amp;lt;0 顯示該資料結構有利於 privileged group，若是 EOD&amp;gt;0 則對 unprivileged group 比較有利。其中 Statistical Parity Difference 與 Disparate Impact 兩線指標是由 We’re All Equal 的價值觀出發所設計，且兩個指標的就衡量 bias 的意義上十分接近，認為不論是哪一群體，其預測出favorable outcome的比例應該要相同。而 Average odds differnece 與 Equal opportunity difference 則是基於 What You See Is What You Get 的理念所設計，認為在群體之內，其預測出 favorable outcome 的比例要相同，因此用 TPR, FPR衡量 bias 大小。&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;4--introducing-our-protected-attributes&#34;&gt;4.  Introducing our Protected Attributes:&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/protectedattribuates_hua82bde973f5ed5dc92811f1e7673b975_128136_c1a1dd0a7c111addbef5370e9165406a.png 400w,
+               /machine_learning_project/ai_fairness/protectedattribuates_hua82bde973f5ed5dc92811f1e7673b975_128136_34b709cb0df761263bf648c8aa49b7df.png 760w,
+               /machine_learning_project/ai_fairness/protectedattribuates_hua82bde973f5ed5dc92811f1e7673b975_128136_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/protectedattribuates_hua82bde973f5ed5dc92811f1e7673b975_128136_c1a1dd0a7c111addbef5370e9165406a.png&#34;
+               width=&#34;760&#34;
+               height=&#34;393&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;性別&lt;/li&gt;
+&lt;li&gt;年齡&lt;/li&gt;
+&lt;li&gt;學歷&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;        銀行在貸款審核的過程會參考幾項重要的核貸條件，像是:無擔保貸款餘額是否超過月收的22倍、無法提供收入證明，或是貸款過去12個月曾遲繳&amp;hellip;等等，這些指標確實可以幫助銀行合理且客觀地評判申請者的還款能力，以及違約的風險。然而我們在探索資料的過程中，發現年齡、性別與教育程度這3項個人基本資料的變數，在 feacture impotance 中都排名在前10名以內，表示在機器學習的過程中，年齡、性別與教育程度對於模型的預測能力影響甚多，不過客觀而言這3個變數與還款能力並沒有絕對相關，若是根據這3變數衡量客戶的違約風險，恐怕有失公允，因此我們選擇年齡、性別與教育程度作為 protected attributes，分別觀察在不同 protected attributes 中是否確實有 bias 存在，以及如何消弭 bias 的效應。&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_4a5a0c8472b00d6cecf70122c9fb19a7.png 400w,
+               /machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_a70dd1612134c0fe9c2339ef217a5556.png 760w,
+               /machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_4a5a0c8472b00d6cecf70122c9fb19a7.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;在這裡，我們定義不同面向中的 privileged, unprivileged groups:&lt;/p&gt;
+
+
+  
+
+  
+
+  
+
+
+
+&lt;table  class=&#34;bordered&#34; data-sample=&#34;10&#34; id=&#34;sample&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;性別&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;年齡&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;教育程度&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;privileged&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;女&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;平均以上&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;大專以上&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;unprivileged&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;男&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;平均以下&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;大專以下&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;5-bias-in-data&#34;&gt;5. Bias in Data&lt;/h2&gt;
+&lt;h4 id=&#34;1檢查訓練資料中是否有bias存在&#34;&gt;(1)檢查訓練資料中是否有bias存在&lt;/h4&gt;
+&lt;h4 id=&#34;disparate-impact-statistical-parity-difference-in-training-dataset&#34;&gt;Disparate Impact, Statistical Parity Difference in training dataset&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;性別&lt;/th&gt;
+&lt;th&gt;年齡&lt;/th&gt;
+&lt;th&gt;教育程度&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;DI&lt;/td&gt;
+&lt;td&gt;0.9699&lt;/td&gt;
+&lt;td&gt;0.9609&lt;/td&gt;
+&lt;td&gt;0.9467&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPD&lt;/td&gt;
+&lt;td&gt;-0.0276&lt;/td&gt;
+&lt;td&gt;-0.0362&lt;/td&gt;
+&lt;td&gt;-0.0503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPD&lt;/td&gt;
+&lt;td&gt;-0.0276&lt;/td&gt;
+&lt;td&gt;-0.0362&lt;/td&gt;
+&lt;td&gt;-0.0503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SPD&lt;/td&gt;
+&lt;td&gt;-0.0276&lt;/td&gt;
+&lt;td&gt;-0.0362&lt;/td&gt;
+&lt;td&gt;-0.0503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/1_hu057e40ed41e16b69fd3920afc1e8ae0e_45558_e9e8a8df19c3c37df1c4905560af3a66.png 400w,
+               /machine_learning_project/ai_fairness/1_hu057e40ed41e16b69fd3920afc1e8ae0e_45558_9bb5be714e87f30e72795b44b7a61fe1.png 760w,
+               /machine_learning_project/ai_fairness/1_hu057e40ed41e16b69fd3920afc1e8ae0e_45558_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/1_hu057e40ed41e16b69fd3920afc1e8ae0e_45558_e9e8a8df19c3c37df1c4905560af3a66.png&#34;
+               width=&#34;760&#34;
+               height=&#34;396&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+ 
+        Disparate Impact 以及 Statistical Parity Difference 兩種指標可以用來衡量不論是 training dataset 或是 predicted output 中的 bias ，而 DI 若是&amp;lt;1，或是 SPD&amp;lt;0 表示該資料結構不利於 unprivileged groups。在我們訓練資料中觀察到不論是性別、年齡、或是教育程度三個面向中 DI 都小於1，SPD 都&amp;lt;0，且經過檢定都有統計顯著，表示在這筆訓練資料中男性沒有違約的比例顯著低於女性、年輕族群沒有違約的比例顯著低於年紀較長的族群、學歷在高中以下的人沒有違約的比例也顯著低於學歷在大專以上的人。而這樣的資料結構可能會讓該筆資料訓練出來的模型帶有相同的偏差，因此銀行會認為女性、年紀較長、或是教育程度高的客戶違約風險較低，而比較願意借貸給這些人，相反地，男性、年輕、或是教育程度較低的客戶則比較不容易申請到貸款。&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;5-comparison-of-bias-in-logistic-regression-and-light-gbm&#34;&gt;5. Comparison of Bias in Logistic Regression and Light-GBM&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/sex_hufd6b63183a15397ad1c989f57144b39d_27778_2dd932dfb47e67d7e39a02d3e175eaa5.png 400w,
+               /machine_learning_project/ai_fairness/sex_hufd6b63183a15397ad1c989f57144b39d_27778_20928937f7aefa87e6ade1c805b6ffdd.png 760w,
+               /machine_learning_project/ai_fairness/sex_hufd6b63183a15397ad1c989f57144b39d_27778_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/sex_hufd6b63183a15397ad1c989f57144b39d_27778_2dd932dfb47e67d7e39a02d3e175eaa5.png&#34;
+               width=&#34;477&#34;
+               height=&#34;381&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/age_hu888149039c4addf0a4268fb1dce78211_29805_ad9acfa0fa5e152fccdffccf99e13dc4.png 400w,
+               /machine_learning_project/ai_fairness/age_hu888149039c4addf0a4268fb1dce78211_29805_2db271ebc811c4679913c43a7cb6552a.png 760w,
+               /machine_learning_project/ai_fairness/age_hu888149039c4addf0a4268fb1dce78211_29805_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/age_hu888149039c4addf0a4268fb1dce78211_29805_ad9acfa0fa5e152fccdffccf99e13dc4.png&#34;
+               width=&#34;477&#34;
+               height=&#34;379&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/education_hu8690de77ed899d8964da7ad4eac05efb_29597_5d79d036766d4c292d30cd061ff6f6e6.png 400w,
+               /machine_learning_project/ai_fairness/education_hu8690de77ed899d8964da7ad4eac05efb_29597_bd2137fa75d5d272098989f32b892b41.png 760w,
+               /machine_learning_project/ai_fairness/education_hu8690de77ed899d8964da7ad4eac05efb_29597_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/education_hu8690de77ed899d8964da7ad4eac05efb_29597_5d79d036766d4c292d30cd061ff6f6e6.png&#34;
+               width=&#34;477&#34;
+               height=&#34;385&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;        我們分別使用兩種模型 Logistic regression 與 Light-GBM 欲比較不同的演算法對於 bias 是否會有影響，因此這邊透過這兩個模型預測結果分別計算: SPD, DI, AOD, EDO 這四種衡量偏差大小的指標， 由於樣本大小很大使得估計值變方接近為0，因此不論是性別、年齡、或是教育程度哪一面向，兩個模型的所產生的偏差都十分顯著，然而在訓練資料中就已經看見不同的群體中:男性 v.s. 女性、年輕較輕 v.s. 年紀較長、大學以下 v.s. 大學以上，確實有偏差存在，因此使用這個本身就帶有偏差的訓練資料集，很可能會使得訓練出來的模型沿襲抽樣資料中固有的偏差。&lt;br&gt;
+        不過從上方三張圖可以明顯地看出，不論在性別、年齡或是教育程度哪一方面，Light-GBM 模型中四種指標的 bias 都比 Logistic regression 來的更加嚴重，可見不僅僅抽樣資料本身的結構會影響機器學習的公正性，不同的演算法影響偏差的效應也不盡相同，在我們的例子中顯然 Light-GBM 模型會放大資料中的偏差。&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;6-mitigation-algorithms-in-practice&#34;&gt;6. Mitigation Algorithms in Practice&lt;/h2&gt;
+&lt;h4 id=&#34;1-which-mitigation-algorithm-is-prefered&#34;&gt;(1) Which mitigation algorithm is prefered?&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_4a5a0c8472b00d6cecf70122c9fb19a7.png 400w,
+               /machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_a70dd1612134c0fe9c2339ef217a5556.png 760w,
+               /machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/2_hu3dc3ebee5cf0b6553fa5aa827fc298bd_179154_4a5a0c8472b00d6cecf70122c9fb19a7.png&#34;
+               width=&#34;760&#34;
+               height=&#34;397&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;         AIF360 提供了減少機器學習 bias 的方法，這些方法根據機器學習的三個階段區分類，依序可以分為:適用在 training data 上的 pre-processing 演算法；適用在機器學習模型的 in-processing 演算法;以及適用在模型輸出結果後的 post-processing 演算法。&lt;br&gt;
+         我們參考介紹 AIF360 的論文中，對於各個方法的評估與建議，in-processing 的方法準確度都太差；而 post-processing 的方法，其中兩個 equal odds post-processing 對於減少偏差沒什麼效果，而第三種雖然可以有效減少 bias，不過同時也會大大犧牲模型預測的準確度，因此論文中建議若是操作者可以操作訓練資料，建議使用 pre-processing 中的 Reweighing method ， Reweighing 可以有效降低偏差，也不會對模型預測能力造成太大的影響，因此我們在這次的報告中採用 AIF360 設計者所推薦的 Reweighing method 來削減 bias。&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/mitigation_huc91a6aa632123be46db918fe191ac1d9_168901_b166dd2d054491db3d01ac1e49a342c0.png 400w,
+               /machine_learning_project/ai_fairness/mitigation_huc91a6aa632123be46db918fe191ac1d9_168901_a10395fea52d7045e73357478e2204ba.png 760w,
+               /machine_learning_project/ai_fairness/mitigation_huc91a6aa632123be46db918fe191ac1d9_168901_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/mitigation_huc91a6aa632123be46db918fe191ac1d9_168901_b166dd2d054491db3d01ac1e49a342c0.png&#34;
+               width=&#34;760&#34;
+               height=&#34;348&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Fairness vs. Balanced Accuracy before (top panel) and after (bottom panel) applying various bias mitigation algorithms. Four different fairness metrics are shown. In most cases two classifiers (Logistic regression - LR or Random forest classifier - RF) were used. The ideal fair value of disparate impact is 1, whereas for all other metrics it is 0. The circles indicate the mean value and bars indicate the extent of ±1 standard deviation. Dataset: Adult, Protected attribute: race.&lt;/p&gt;
+&lt;p&gt;(Bellamy et al.,2018 :&lt;a href=&#34;https://arxiv.org/pdf/1810.01943.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://arxiv.org/pdf/1810.01943.pdf&lt;/a&gt;)&lt;/p&gt;
+&lt;h4 id=&#34;2-comparison-of-model-quality-and-bias-after-mitigation&#34;&gt;(2). Comparison of Model Quality and Bias after Mitigation&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/figure3_hu3725c1a2d825541c38f10f6f39704f50_134809_e26c0d08c2b32abcb93b0035f4a6e70f.png 400w,
+               /machine_learning_project/ai_fairness/figure3_hu3725c1a2d825541c38f10f6f39704f50_134809_d97f22efbe404e55aa12e17bc2b386fe.png 760w,
+               /machine_learning_project/ai_fairness/figure3_hu3725c1a2d825541c38f10f6f39704f50_134809_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/figure3_hu3725c1a2d825541c38f10f6f39704f50_134809_e26c0d08c2b32abcb93b0035f4a6e70f.png&#34;
+               width=&#34;760&#34;
+               height=&#34;445&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/modelcaomparison_huab450c6866526d6a589301f0e552bc3c_111344_9a70628e533df886936fe6325ae00800.png 400w,
+               /machine_learning_project/ai_fairness/modelcaomparison_huab450c6866526d6a589301f0e552bc3c_111344_05afceb3ab747b5fd6291c375ab35bcb.png 760w,
+               /machine_learning_project/ai_fairness/modelcaomparison_huab450c6866526d6a589301f0e552bc3c_111344_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/modelcaomparison_huab450c6866526d6a589301f0e552bc3c_111344_9a70628e533df886936fe6325ae00800.png&#34;
+               width=&#34;760&#34;
+               height=&#34;378&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;        根據 Figure 3.發現在 Reweighing 之後，模型預測能力的 precision 下降了，不過 recall 反而往上提升了，表示Reweighing 之後，使得 False negative rate 會減少，而 False positive rate 增加，且整體而言 False positive rate 增加的速度是大過 False negative rate 減少的速度的，因為整體 accuracy 是下修的。在原本的資料中存在嚴重的 imbalance，所以訓練出來的模型會傾向預測 negative，所以雖然 accuracy 達到 86.9%，不過大都都是由 True negative 所貢獻， True positive 的比例很少，從我們的例子中發現在經過 Bias mitigation 之後，會修正資料中 imbalance 的效應，使整個模型的預測結果，向 positive 靠攏。雖然 accuracy 減少了14.6%，不過ROC值並沒有減少多少，而由於資料 imbalance 太嚴重，因此參考 accuracy 並不準確，選擇 ROC 作為衡量模型的指標比較合適，表示透過 Reweighing 減少偏差的同時， 不需要犧牲模型的預測能力，依然可以有不錯的表現。&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/cool1_hu5e7456d347a131ac0905bdf528eaeaae_5696_f34fd46f6c39e19dd48e1c0269332284.png 400w,
+               /machine_learning_project/ai_fairness/cool1_hu5e7456d347a131ac0905bdf528eaeaae_5696_fb84a3769003412ba5f9c15270b3d778.png 760w,
+               /machine_learning_project/ai_fairness/cool1_hu5e7456d347a131ac0905bdf528eaeaae_5696_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/cool1_hu5e7456d347a131ac0905bdf528eaeaae_5696_f34fd46f6c39e19dd48e1c0269332284.png&#34;
+               width=&#34;715&#34;
+               height=&#34;431&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/cool2_huce43141cbe1a054a878a3fd5a4864055_5970_20583a7ab33c4abaf3b5930f4830c2fc.png 400w,
+               /machine_learning_project/ai_fairness/cool2_huce43141cbe1a054a878a3fd5a4864055_5970_56f10c131bedab4da5ffdc35cb4934ba.png 760w,
+               /machine_learning_project/ai_fairness/cool2_huce43141cbe1a054a878a3fd5a4864055_5970_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/cool2_huce43141cbe1a054a878a3fd5a4864055_5970_20583a7ab33c4abaf3b5930f4830c2fc.png&#34;
+               width=&#34;715&#34;
+               height=&#34;431&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /machine_learning_project/ai_fairness/cool3_hue0348f8363cb9db7332a54b0f44f55c4_6468_c2efed41e5cf905916451250927639eb.png 400w,
+               /machine_learning_project/ai_fairness/cool3_hue0348f8363cb9db7332a54b0f44f55c4_6468_d1e78c4cdbc2823e6d20f04dd6bd5902.png 760w,
+               /machine_learning_project/ai_fairness/cool3_hue0348f8363cb9db7332a54b0f44f55c4_6468_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/machine_learning_project/ai_fairness/cool3_hue0348f8363cb9db7332a54b0f44f55c4_6468_c2efed41e5cf905916451250927639eb.png&#34;
+               width=&#34;715&#34;
+               height=&#34;431&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;從上方三個圖可見訓練資料在經過 Reweighing 之後，不論在性別、年齡或是教育程度三個面向而言，AOD, DI ,EOD, SPD 四種指標bias都明顯地下降，而這四種指標分別是基於 We’re All Equal 跟 What You See Is What You Get 兩種公平性價值觀所設計，可見透過 Reweighing 來減少bias可以同時滿足基於 WAE 或 WYSWYG 兩種價值觀所認定的公平性。&lt;/p&gt;
+&lt;h2 id=&#34;7-conclusion&#34;&gt;7. Conclusion&lt;/h2&gt;
+&lt;p&gt;        我們首先發現機器學習演算法中過度解釋某些個人基本信息，尤其是性別、年齡以及教育程度這三個變數，其 feature impotance 都在前 30名，表示對於機器學習演算法倚賴這些變數作為預測時的重要依據，然而這三個變數跟該顧客的還款能力並沒有直接相關，因此若是過分解釋這些變數，可能會讓銀行判斷顧客的違約風險時有所偏頗，進而剝奪了特定族群的權益。由此我們回過頭去檢視訓練資料的結構中對於不同性別、年齡或是教育程度的族群，其正常履行合約的比例確實有顯著差異:女性顯著高於男性；年紀較長的族群顯著高於年輕族群；大專學歷以上的人顯著高於高中學歷以下的人。因此用該筆訓練資料所建立的模型就很有可能會沿襲這樣的偏差，例如傾向認為女性比起男性的違約風險更低，因此女性會比起男性更容易申請到貸款。為此我們接著檢視原先模型的預測結果是否真的受到訓練資料偏差的影響，同時比較不同的預測模型會不會影響 bias 大小，在這裡我們比較了 Logistic regression 跟 Light-GBM 兩種模型，發現兩個模型都確實承襲了訓練資料中的偏差，另外也發現 Light-GBM 比起 Logistic regression 不管是在三種面向，或是不同的 bias metrics 中偏差都更嚴重，表示不僅抽樣資料的結構會造成不公正的預測結果，選擇不同的演算法有可能會進而放大資料中的偏差。&lt;/p&gt;
+&lt;p&gt;        在發現我們的模型的預測結果對於不同族群的準確度有顯著不同時，我們參考 AIF360 所建議的削減偏差的演算法，希望在降低偏差的同時，不會犧牲太多模型的預測能力。根據 AIF360 對於不同演算法的評估，認為在有權取得訓練資料的狀況下，事先對訊資料做 Reweighing 的前處裡，可以最有效地降低偏差，同時不會影響預測能力。因此針對我們預測能力最高的模型 Light-GBM 進行 Reweighing 之後，比較處理前後模型的預測能力，發現 ROC 確實沒有太大的影響，不過 Percision 跟 Accuracy 都有明顯下降，然而 Recall 反之上升，表示 False positive rate 增加的速率比起 False negative rate 減少的速率更大，反映出 Reweighing 之後模型預測客戶違約的比例增加，稍微修正了訓練資料中 Imbalance 的效應，雖然會因此降低 Accuracy ，但這樣相對保守的預測結果對銀行而言或許不完全是會壞事，因為銀行在拒絕優良顧客的同時，也減少了貸款給違約風險高的族群的風險，減少追不回貸款的狀況。而對於不同性別、年齡以及教育程度的群體而言，經過 Reweighing 之後模型的預測結果也確實可以讓預測結果針對:女性 v.s. 男性、長輩 v.s. 年輕人、大專以上 v.s. 高中以下 不同群體的人得到同樣公正的預測結果，而且不管是哪一種衡量偏差的指標， Reweighing 都確實有效，而這些指標是根據對於公正性不同的認知所定義的，而透過這個方法修正之後的模型也可以符合對於多元的公平性的期望。&lt;/p&gt;
+&lt;p&gt;        這份報告中我們主要是參考 IBM 所提供的 AIF360 其中主要用來衡量偏差大小的指標，以及其整理多篇文章所提供的降低 bias 的演算法，不過 IBM 也提醒使用者目前對於 AI Fairness 的定義還沒有共識，因此也沒有一個通用的量化 bias 的指標，自然 AIF360 無法涵蓋所有 bias metrics 或是 mitigation algorithm ，這些方法也不一定適用於所有社會正義的機器學習任務上，不過 AIF360 確實提供了一個使用友善的工具，讓關心機器學習公正性的人們可以花較少的學習成本來探索這個議題。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
