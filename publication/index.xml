@@ -5,7 +5,7 @@
     <link>https://andwct.github.io/publication/</link>
       <atom:link href="https://andwct.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jul 2013 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 19 Aug 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png</url>
       <title>Publications</title>
@@ -13,13 +13,47 @@
     </image>
     
     <item>
-      <title>An example conference paper</title>
+      <title>Image Reconstruction from Hierarchical Representations of Human Visual Cortex Activities</title>
       <link>https://andwct.github.io/publication/my-master-thesis/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
       <guid>https://andwct.github.io/publication/my-master-thesis/</guid>
       <description>&lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h1 id=&#34;abstract&#34;&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;Reconstructing stimuli images from brain activity has been a rising topic in the field of computational neuroscience due to the advent of deep learning algorithms and the advancement in functional Magnetic Resonance Imaging (fMRI) techniques. The application of deep neural networks on larger fMRI-image-paired dataset has demonstrated significant improvement in brain decoding tasks recently. Moreover, perceptive contents being hierarchically encoded in human brain has been the key to many research breakthroughs in the field. This concept provides a new window into the internal mechanisms of brain system for scientists.In this work, we follow the current state-of-the-art method “divide-and-conquer” proposed by Fang (2020). We are able to reproduce reconstruction results within 10% of the state-of-the-art performance. &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Based on the reproduced work, we further enhance our performance by introducing K-means image clustering method that captures more accurate semantic features for reconstructed images. Our experiments demonstrate the feasibility and flexibility of “divide-and-conquer” method in image reconstruction task. Most importantly, incorporating fMRI signals from different regions of visual cortex with different decoders improves the image reconstruction performance. Such implementation results map to the concept of hierarchical structure of visual cortex, giving us a medium to ex-plore more about how human brain handles visual stimuli.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /publication/my-master-thesis/results_hu0041071ebcd95ef052f344bb16f7b09d_470622_319da42d2ac2611f13370397512d81cb.png 400w,
+               /publication/my-master-thesis/results_hu0041071ebcd95ef052f344bb16f7b09d_470622_605ed53583106f4b7f4d04762ac750c1.png 760w,
+               /publication/my-master-thesis/results_hu0041071ebcd95ef052f344bb16f7b09d_470622_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/publication/my-master-thesis/results_hu0041071ebcd95ef052f344bb16f7b09d_470622_319da42d2ac2611f13370397512d81cb.png&#34;
+               width=&#34;637&#34;
+               height=&#34;640&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Refer to my github repository for &lt;a href=&#34;https://github.com/andwct/Image-Reconstruction-from-Hierarchical-Representations-of-Human-Visual-Cortex&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
