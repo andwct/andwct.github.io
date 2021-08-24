@@ -13,11 +13,150 @@
     </image>
     
     <item>
-      <title>Amazon_Timestream</title>
+      <title>Telegraf  with Minecraft Input Plugin &amp; Amazon Timestream Output Plugin</title>
       <link>https://andwct.github.io/aws_projects/amazon_timestream/</link>
       <pubDate>Tue, 10 Aug 2021 05:47:23 +0800</pubDate>
       <guid>https://andwct.github.io/aws_projects/amazon_timestream/</guid>
-      <description></description>
+      <description>&lt;div class=&#34;toc&#34;&gt;
+    &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&#34;#purpose&#34;&gt;Purpose&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#implementation&#34;&gt;Implementation&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#1-minecraft-server-configuration&#34;&gt;1. Minecraft Server Configuration&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#2-telegraf-agent-configuration&#34;&gt;2. Telegraf Agent Configuration&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#3-query-data-for-amazon-timestream&#34;&gt;3. Query data for Amazon Timestream&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#4-visualization-with-amazon-quicksight&#34;&gt;4. Visualization with Amazon QuickSight&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#results&#34;&gt;Results&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#part-1&#34;&gt;Part 1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#part-2&#34;&gt;Part 2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#part-3&#34;&gt;Part 3&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;h2 id=&#34;purpose&#34;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;The purpose of this proof of concept aims at delivering a general view of how Amazon Timestream, a fully managed time-series database, can easily cooperate with some open source data collectors and visualization tools.
+Task:
+We will build a data streaming workflow incorporating open source data collector Telegraf as a bridge between our Minecraft Server and our Amazon Timestream database.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;implementation&#34;&gt;Implementation&lt;/h2&gt;
+&lt;h4 id=&#34;1-minecraft-server-configuration&#34;&gt;1. Minecraft Server Configuration&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Step1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We first launch an Ubuntu ec2 instance as a host for our Minecraft Server. Luanching a Minecraft Server is not as difficult as it might sound. Simply follow this guide: How to install Minecraft Server on Ubuntu (&lt;a href=&#34;https://www.fosslinux.com/18063/how-to-install-minecraft-server-on-ubuntu.htm&#34;&gt;https://www.fosslinux.com/18063/how-to-install-minecraft-server-on-ubuntu.htm&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;After finished setting up our Minecraft Server Java Edition, we look to build stable RCON connections by configuring server.properties file in our Minecraft Server directory. RCON protocol allows server owners to apply in-game console even if they do not have access to the server.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;enable-rcon=true
+rcon.password=12345678
+rcon.port=25575
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;Step3&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Now, we want to index what objective statistic we are interested the most in Minecraft. For instance, we would like to know how many times players in my Minecraft server “jumps”. There’s a Minecraft built-in application we want to make use of called “Scoreboard”. With the help of Scoreboard, we can index “number of jumps” as our target objective through this command. Check out more objectives to add on this web page (&lt;a href=&#34;https://minecraft.gamepedia.com/Scoreboard&#34;&gt;https://minecraft.gamepedia.com/Scoreboard&lt;/a&gt;)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/scoreboard objectives add jumps stat.jump
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; &lt;/p&gt;
+&lt;h4 id=&#34;2-telegraf-agent-configuration&#34;&gt;2. Telegraf Agent Configuration&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Step1&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;We launch another Ubuntu ec2 instance as a host for Telegraf. Do remember to configure security group to allow inbound connection from our Minecraft server.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Step2&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Telegraf release notes (&lt;a href=&#34;https://docs.influxdata.com/telegraf/v1.16/about_the_project/release-notes-changelog/#outputs&#34;&gt;https://docs.influxdata.com/telegraf/v1.16/about_the_project/release-notes-changelog/#outputs&lt;/a&gt;) point out the release of Amazon Timestream output plugin on 2020/10/21. With the help of Telegraf community, we can now bridge Amazon Timestream with all the Telegraf input plugins.
+Telegraf configuration is easy. All we have to do is to make a little adjustments from Amazon Timestream Developer Guide (&lt;a href=&#34;https://docs.aws.amazon.com/timestream/latest/developerguide/Telegraf.running-output-plugin.title.html)&#34;&gt;https://docs.aws.amazon.com/timestream/latest/developerguide/Telegraf.running-output-plugin.title.html)&lt;/a&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Generating configuration file using TelegrafThis command takes minecraft plugin as input filter and timestream plugin as output filter. You then create a minecraft.config file in your current directory.
+telegraf —section-filter agent:inputs:outputs &amp;ndash;input-filter minecraft —output-filter timestream config &amp;gt; minecraft.config&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a database in Timestream through management console&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Configure minecraft.config
+minecraft.config can be split into two parts, one for input plugins and the other for output plugins.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For output plugins, we configure access_key and secret_key in order to let Telegraf ingest data to Timestream database.&lt;/p&gt;
+&lt;p&gt;For input plugins, we configure our Minecraft server IP address, RCON port and RCON password.&lt;/p&gt;
+&lt;p&gt;Finally we start Telegraf service through this command
+telegraf —config minecraft.config&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h4 id=&#34;3-query-data-for-amazon-timestream&#34;&gt;3. Query data for Amazon Timestream&lt;/h4&gt;
+&lt;p&gt;Amazon Timestream supports SQL query. For more detailed instructions on efficient query command, please check out Timestream Query Language Reference (&lt;a href=&#34;https://docs.aws.amazon.com/timestream/latest/developerguide/reference.html&#34;&gt;https://docs.aws.amazon.com/timestream/latest/developerguide/reference.html&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h4 id=&#34;4-visualization-with-amazon-quicksight&#34;&gt;4. Visualization with Amazon QuickSight&lt;/h4&gt;
+&lt;p&gt;Amazon QuickSight shines when it comes to data visualization. To incorporate QuickSight in our workflow, we need to go to Security &amp;amp; permissions setting and add Amazon Timestream.&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;h4 id=&#34;part-1&#34;&gt;Part 1&lt;/h4&gt;
+&lt;p&gt;Demonstrates data written from minecraft server to Amazon Timestream through Telegraf.
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+&lt;video controls  &gt;
+  &lt;source src=&#34;https://andwct.github.io/aws_projects/amazon_timestream/Telegraf_Timestream_1.mp4&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;&lt;/p&gt;
+&lt;h4 id=&#34;part-2&#34;&gt;Part 2&lt;/h4&gt;
+&lt;p&gt;Demonstrates SQL command run on Amazon Timestream to retrieve &amp;ldquo;numbder of jumps&amp;rdquo; over time.
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+&lt;video controls  &gt;
+  &lt;source src=&#34;https://andwct.github.io/aws_projects/amazon_timestream/Telegraf_Timestream_2.mp4&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;&lt;/p&gt;
+&lt;h4 id=&#34;part-3&#34;&gt;Part 3&lt;/h4&gt;
+&lt;p&gt;Demonstrates data visualization with Amazon Quicksight.
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+&lt;video controls  &gt;
+  &lt;source src=&#34;https://andwct.github.io/aws_projects/amazon_timestream/Telegraf_Timestream_3.mp4&#34; type=&#34;video/mp4&#34;&gt;
+&lt;/video&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

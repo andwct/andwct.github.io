@@ -30,7 +30,7 @@
   
     
   
-  <meta name="description" content="" />
+  <meta name="description" content="Purpose Implementation    1. Minecraft Server Configuration 2. Telegraf Agent Configuration 3. Query data for Amazon Timestream 4. Visualization with Amazon QuickSight     Results    Part 1 Part 2 Part 3        Purpose The purpose of this proof of concept aims at delivering a general view of how Amazon Timestream, a fully managed time-series database, can easily cooperate with some open source data collectors and visualization tools." />
 
   
   <link rel="alternate" hreflang="en-us" href="https://andwct.github.io/aws_projects/amazon_timestream/" />
@@ -288,16 +288,15 @@
   
   
     
-    
   
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="Anderson Wu" />
   <meta property="og:url" content="https://andwct.github.io/aws_projects/amazon_timestream/" />
-  <meta property="og:title" content="Amazon_Timestream | Anderson Wu" />
-  <meta property="og:description" content="" /><meta property="og:image" content="https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png" />
-    <meta property="twitter:image" content="https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:title" content="Telegraf  with Minecraft Input Plugin &amp; Amazon Timestream Output Plugin | Anderson Wu" />
+  <meta property="og:description" content="Purpose Implementation    1. Minecraft Server Configuration 2. Telegraf Agent Configuration 3. Query data for Amazon Timestream 4. Visualization with Amazon QuickSight     Results    Part 1 Part 2 Part 3        Purpose The purpose of this proof of concept aims at delivering a general view of how Amazon Timestream, a fully managed time-series database, can easily cooperate with some open source data collectors and visualization tools." /><meta property="og:image" content="https://andwct.github.io/aws_projects/amazon_timestream/featured.png" />
+    <meta property="twitter:image" content="https://andwct.github.io/aws_projects/amazon_timestream/featured.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -322,7 +321,7 @@
 
 
 
-  <title>Amazon_Timestream | Anderson Wu</title>
+  <title>Telegraf  with Minecraft Input Plugin &amp; Amazon Timestream Output Plugin | Anderson Wu</title>
 </head>
 
 
@@ -640,22 +639,40 @@
 
 
 
-  
+
+
+
+
+
+
+
 
   
-  
-  
-<div class="article-container pt-3">
-  <h1>Amazon_Timestream</h1>
-
-  
-
   
     
+  
+
+
+<div class="article-container pt-3">
+  <h1>Telegraf  with Minecraft Input Plugin &amp; Amazon Timestream Output Plugin</h1>
+
+  
+
+  
 
 
 <div class="article-metadata">
 
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Anderson Wu</span>
+  </div>
   
   
 
@@ -682,16 +699,27 @@
 
   
   
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/amazon-timestream/">Amazon Timestream</a>, <a href="/category/database/">Database</a></span>
+  
 
 </div>
 
-    
-
-
-
-
-
   
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 185px;">
+  <div style="position: relative">
+    <img src="/aws_projects/amazon_timestream/featured_hu365566e6a9ac9e43b0284273b9abc868_203523_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    
+  </div>
 </div>
 
 
@@ -699,7 +727,146 @@
   <div class="article-container">
 
     <div class="article-style">
-      
+      <div class="toc">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#purpose">Purpose</a></li>
+    <li><a href="#implementation">Implementation</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#1-minecraft-server-configuration">1. Minecraft Server Configuration</a></li>
+            <li><a href="#2-telegraf-agent-configuration">2. Telegraf Agent Configuration</a></li>
+            <li><a href="#3-query-data-for-amazon-timestream">3. Query data for Amazon Timestream</a></li>
+            <li><a href="#4-visualization-with-amazon-quicksight">4. Visualization with Amazon QuickSight</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#results">Results</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#part-1">Part 1</a></li>
+            <li><a href="#part-2">Part 2</a></li>
+            <li><a href="#part-3">Part 3</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+  </div>
+<h2 id="purpose">Purpose</h2>
+<p>The purpose of this proof of concept aims at delivering a general view of how Amazon Timestream, a fully managed time-series database, can easily cooperate with some open source data collectors and visualization tools.
+Task:
+We will build a data streaming workflow incorporating open source data collector Telegraf as a bridge between our Minecraft Server and our Amazon Timestream database.</p>
+<p> </p>
+<h2 id="implementation">Implementation</h2>
+<h4 id="1-minecraft-server-configuration">1. Minecraft Server Configuration</h4>
+<p><strong>Step1</strong></p>
+<p>We first launch an Ubuntu ec2 instance as a host for our Minecraft Server. Luanching a Minecraft Server is not as difficult as it might sound. Simply follow this guide: How to install Minecraft Server on Ubuntu (<a href="https://www.fosslinux.com/18063/how-to-install-minecraft-server-on-ubuntu.htm">https://www.fosslinux.com/18063/how-to-install-minecraft-server-on-ubuntu.htm</a>)</p>
+<p><strong>Step2</strong></p>
+<p>After finished setting up our Minecraft Server Java Edition, we look to build stable RCON connections by configuring server.properties file in our Minecraft Server directory. RCON protocol allows server owners to apply in-game console even if they do not have access to the server.</p>
+<pre><code>enable-rcon=true
+rcon.password=12345678
+rcon.port=25575
+</code></pre><p><strong>Step3</strong></p>
+<p>Now, we want to index what objective statistic we are interested the most in Minecraft. For instance, we would like to know how many times players in my Minecraft server “jumps”. There’s a Minecraft built-in application we want to make use of called “Scoreboard”. With the help of Scoreboard, we can index “number of jumps” as our target objective through this command. Check out more objectives to add on this web page (<a href="https://minecraft.gamepedia.com/Scoreboard">https://minecraft.gamepedia.com/Scoreboard</a>)</p>
+<pre><code>/scoreboard objectives add jumps stat.jump
+</code></pre><p> </p>
+<h4 id="2-telegraf-agent-configuration">2. Telegraf Agent Configuration</h4>
+<p><strong>Step1</strong></p>
+<p>We launch another Ubuntu ec2 instance as a host for Telegraf. Do remember to configure security group to allow inbound connection from our Minecraft server.</p>
+<p><strong>Step2</strong></p>
+<p>Telegraf release notes (<a href="https://docs.influxdata.com/telegraf/v1.16/about_the_project/release-notes-changelog/#outputs">https://docs.influxdata.com/telegraf/v1.16/about_the_project/release-notes-changelog/#outputs</a>) point out the release of Amazon Timestream output plugin on 2020/10/21. With the help of Telegraf community, we can now bridge Amazon Timestream with all the Telegraf input plugins.
+Telegraf configuration is easy. All we have to do is to make a little adjustments from Amazon Timestream Developer Guide (<a href="https://docs.aws.amazon.com/timestream/latest/developerguide/Telegraf.running-output-plugin.title.html)">https://docs.aws.amazon.com/timestream/latest/developerguide/Telegraf.running-output-plugin.title.html)</a>.</p>
+<ol>
+<li>
+<p>Generating configuration file using TelegrafThis command takes minecraft plugin as input filter and timestream plugin as output filter. You then create a minecraft.config file in your current directory.
+telegraf —section-filter agent:inputs:outputs &ndash;input-filter minecraft —output-filter timestream config &gt; minecraft.config</p>
+</li>
+<li>
+<p>Create a database in Timestream through management console</p>
+</li>
+<li>
+<p>Configure minecraft.config
+minecraft.config can be split into two parts, one for input plugins and the other for output plugins.</p>
+</li>
+</ol>
+<p>For output plugins, we configure access_key and secret_key in order to let Telegraf ingest data to Timestream database.</p>
+<p>For input plugins, we configure our Minecraft server IP address, RCON port and RCON password.</p>
+<p>Finally we start Telegraf service through this command
+telegraf —config minecraft.config</p>
+<p> </p>
+<h4 id="3-query-data-for-amazon-timestream">3. Query data for Amazon Timestream</h4>
+<p>Amazon Timestream supports SQL query. For more detailed instructions on efficient query command, please check out Timestream Query Language Reference (<a href="https://docs.aws.amazon.com/timestream/latest/developerguide/reference.html">https://docs.aws.amazon.com/timestream/latest/developerguide/reference.html</a>)</p>
+<p> </p>
+<h4 id="4-visualization-with-amazon-quicksight">4. Visualization with Amazon QuickSight</h4>
+<p>Amazon QuickSight shines when it comes to data visualization. To incorporate QuickSight in our workflow, we need to go to Security &amp; permissions setting and add Amazon Timestream.</p>
+<p> </p>
+<h2 id="results">Results</h2>
+<h4 id="part-1">Part 1</h4>
+<p>Demonstrates data written from minecraft server to Amazon Timestream through Telegraf.
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<video controls  >
+  <source src="/aws_projects/amazon_timestream/Telegraf_Timestream_1.mp4" type="video/mp4">
+</video></p>
+<h4 id="part-2">Part 2</h4>
+<p>Demonstrates SQL command run on Amazon Timestream to retrieve &ldquo;numbder of jumps&rdquo; over time.
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<video controls  >
+  <source src="/aws_projects/amazon_timestream/Telegraf_Timestream_2.mp4" type="video/mp4">
+</video></p>
+<h4 id="part-3">Part 3</h4>
+<p>Demonstrates data visualization with Amazon Quicksight.
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<video controls  >
+  <source src="/aws_projects/amazon_timestream/Telegraf_Timestream_3.mp4" type="video/mp4">
+</video></p>
+
     </div>
 
     
@@ -708,6 +875,12 @@
 
 
 
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/database/">Database</a>
+  
+</div>
 
 
 
@@ -722,33 +895,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://andwct.github.io/aws_projects/amazon_timestream/&amp;text=Amazon_Timestream" target="_blank" rel="noopener" class="share-btn-twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://andwct.github.io/aws_projects/amazon_timestream/&amp;t=Amazon_Timestream" target="_blank" rel="noopener" class="share-btn-facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="mailto:?subject=Amazon_Timestream&amp;body=https://andwct.github.io/aws_projects/amazon_timestream/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:andwctneuro@gmail.com" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -761,34 +908,8 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://andwct.github.io/aws_projects/amazon_timestream/&amp;title=Amazon_Timestream" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://linkedin.com/in/andwct" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="whatsapp://send?text=Amazon_Timestream%20https://andwct.github.io/aws_projects/amazon_timestream/" target="_blank" rel="noopener" class="share-btn-whatsapp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://andwct.github.io/aws_projects/amazon_timestream/&amp;title=Amazon_Timestream" target="_blank" rel="noopener" class="share-btn-weibo">
-          <i class="fab fa-weibo"></i>
         </a>
       </li>
     
@@ -807,100 +928,12 @@
 
   
   
+    
+
 
 
 
   
-  
-  
-    
-  
-  
-  
-  <div class="media author-card content-widget-hr">
-    
-      
-      <a href="https://andwct.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_270x270_fill_q75_lanczos_center.jpg" alt="Anderson Wu"></a>
-    
-
-    <div class="media-body">
-      <h5 class="card-title"><a href="https://andwct.github.io/">Anderson Wu</a></h5>
-      <h6 class="card-subtitle">Machine Learning Engineer <!-- raw HTML omitted -->| Cloud Devops Engineer</h6>
-      <p class="card-text">My research interests lie in Machine Learning, Cloud Architecture of Distributed Systems</p>
-      <ul class="network-icon" aria-hidden="true">
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="/#contact" >
-        <i class="fas fa-envelope"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://github.com/andwct" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-      
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="https://www.linkedin.com/in/andwct" target="_blank" rel="noopener">
-        <i class="fab fa-linkedin"></i>
-      </a>
-    </li>
-  
-    
-    
-    
-    
-    
-    
-    
-      
-    
-    <li>
-      <a href="/uploads/resume_version_7_anderson.pdf" >
-        <i class="ai ai-cv"></i>
-      </a>
-    </li>
-  
-</ul>
-
-    </div>
-  </div>
-
-
 
 
 
