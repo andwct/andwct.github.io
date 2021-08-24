@@ -138,7 +138,8 @@
 &lt;p&gt;&lt;a href=&#34;https://www.kaggle.com/c/home-credit-default-risk&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://www.kaggle.com/c/home-credit-default-risk&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;1--frame-the-problem-and-look-at-the-big-picture&#34;&gt;1.  Frame the Problem and Look at the Big Picture&lt;/h2&gt;
-&lt;p&gt;        我們目標在於使用監督式學習的模型，根據貸款者得申請資料及歷史資料，來協助我們判斷他在銀行放貸後是否有可能會違約。由於在大部分的情況銀行都是會放行貸款，且真正的違約的案例相比沒有違約的案例還少非常多，因此此問題為 Imbalanced Binary Classification 的問題。有鑑於資料的不平衡，在分類的效果評估上就不能單純仰賴 Precision 及 Recall，因為若我們直接把 test 的 data 全部 label 成不會違約，此兩個值就已經非常高。因此我們主要會使用 ROC_AUC 及 F1 去訓練一個效果不錯但在預測上相對不會太偏差的模型。此資料集在 kaggle 前幾名的 ROC AUC 大致為 0.8，我們會以此來評估我們效能表現。由於我們缺乏信貸相關的 domain knowledge，因此沒有辦法以使用者的角度來看更高層次的問題，也無法以專家的角度評估分類器是否有用，我們只能說分析的workflow 似乎可以套用於其他會碰到 imbalanced data 的專案中，這個專案也讓我們了解到，僅了解數據分析的工具是遠遠不夠的，必須要與一個有 domain knowledge 的人協作才能有更多的 insight 。
+&lt;p&gt;        我們目標在於使用監督式學習的模型，根據貸款者得申請資料及歷史資料，來協助我們判斷他在銀行放貸後是否有可能會違約。由於在大部分的情況銀行都是會放行貸款，且真正的違約的案例相比沒有違約的案例還少非常多，因此此問題為 Imbalanced Binary Classification 的問題。有鑑於資料的不平衡，在分類的效果評估上就不能單純仰賴 Precision 及 Recall，因為若我們直接把 test 的 data 全部 label 成不會違約，此兩個值就已經非常高。因此我們主要會使用 ROC_AUC 及 F1 去訓練一個效果不錯但在預測上相對不會太偏差的模型。
+此資料集在 kaggle 前幾名的 ROC AUC 大致為 0.8，我們會以此來評估我們效能表現。由於我們缺乏信貸相關的 domain knowledge，因此沒有辦法以使用者的角度來看更高層次的問題，也無法以專家的角度評估分類器是否有用，我們只能說分析的workflow 似乎可以套用於其他會碰到 imbalanced data 的專案中，這個專案也讓我們了解到，僅了解數據分析的工具是遠遠不夠的，必須要與一個有 domain knowledge 的人協作才能有更多的 insight 。
  &lt;/p&gt;
 &lt;h2 id=&#34;2-analyzing-fairness-of-a-machine-learning-task&#34;&gt;2. Analyzing Fairness of a Machine Learning Task&lt;/h2&gt;
 &lt;p&gt;        要衡量機器學習的公平性，要先了解下面幾個構面，定義出我們想要探討的議題，我們才知道要如何使用 aif360 的工具。&lt;/p&gt;
