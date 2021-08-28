@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Analytics | Anderson Wu</title>
+    <link>https://andwct.github.io/category/analytics/</link>
+      <atom:link href="https://andwct.github.io/category/analytics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Analytics</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 13 May 2021 05:47:23 +0800</lastBuildDate>
+    <image>
+      <url>https://andwct.github.io/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_512x512_fill_lanczos_center_2.png</url>
+      <title>Analytics</title>
+      <link>https://andwct.github.io/category/analytics/</link>
+    </image>
+    
+    <item>
+      <title>Analyzing Big Data with Amazon EMR</title>
+      <link>https://andwct.github.io/aws_projects/analyzing-data-with-emr/</link>
+      <pubDate>Thu, 13 May 2021 05:47:23 +0800</pubDate>
+      <guid>https://andwct.github.io/aws_projects/analyzing-data-with-emr/</guid>
+      <description>&lt;div class=&#34;toc&#34;&gt;
+    &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&#34;#purpose&#34;&gt;Purpose&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#objectives&#34;&gt;Objectives&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#implementation&#34;&gt;Implementation&lt;/a&gt;
+      &lt;ol&gt;
+        &lt;li&gt;&lt;a href=&#34;#1-prepare-storage-for-amazon-emr&#34;&gt;1. Prepare Storage for Amazon EMR&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#2-luanching-of-an-emr-cluster&#34;&gt;2. Luanching of an EMR Cluster&lt;/a&gt;
+          &lt;ol&gt;
+            &lt;li&gt;&lt;a href=&#34;#set-up-emr-node-types-instance-types-and-instance-counts&#34;&gt;Set up EMR node types, instance types and instance counts&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#set-up-networking&#34;&gt;Set up Networking&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#cluster-general-settings&#34;&gt;Cluster general settings&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#set-up-security-options&#34;&gt;Set up security options&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#set-up-ec2-security-groups&#34;&gt;Set up EC2 security groups&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;#finally-luanch-the-cluster&#34;&gt;Finally! Luanch the cluster&lt;/a&gt;&lt;/li&gt;
+          &lt;/ol&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#3-processing-data-with-hive-script&#34;&gt;3. Processing Data with Hive Script&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#4-view-the-results&#34;&gt;4. View the results&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#5-performing-hiveql-for-data-querying&#34;&gt;5. Performing HiveQL for Data Querying&lt;/a&gt;&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+  &lt;/div&gt;
+&lt;h2 id=&#34;purpose&#34;&gt;Purpose&lt;/h2&gt;
+&lt;p&gt;In this project, we look to deploy a Haddop cluster with &lt;strong&gt;Amazon EMR&lt;/strong&gt; for analyzing log data stored in S3. A SQL analagous query language &lt;strong&gt;HiveQL&lt;/strong&gt; is incorporated for data processing and analytics.&lt;/p&gt;
+&lt;h2 id=&#34;objectives&#34;&gt;Objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Get familiar with Amazon EMR&lt;/li&gt;
+&lt;li&gt;Get familiar with analyzing data using HiveQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h2 id=&#34;implementation&#34;&gt;Implementation&lt;/h2&gt;
+&lt;h3 id=&#34;1-prepare-storage-for-amazon-emr&#34;&gt;1. Prepare Storage for Amazon EMR&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a S3 bucket.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_4fac48ca9da784153914ae1225aa8554.png 400w,
+               /aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_edd2283817afcc0ffce79f0c60e095c1.png 760w,
+               /aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_4fac48ca9da784153914ae1225aa8554.png&#34;
+               width=&#34;760&#34;
+               height=&#34;315&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&#34;2-luanching-of-an-emr-cluster&#34;&gt;2. Luanching of an EMR Cluster&lt;/h3&gt;
+&lt;p&gt;Launch an EMR cluster
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_20d05b6043f80b58db8722805ba1fac3.png 400w,
+               /aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_d1b9057ef6d235b9a14b7594af173cac.png 760w,
+               /aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_20d05b6043f80b58db8722805ba1fac3.png&#34;
+               width=&#34;760&#34;
+               height=&#34;362&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;set-up-emr-node-types-instance-types-and-instance-counts&#34;&gt;Set up EMR node types, instance types and instance counts&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_add05b88fe386a8c3fef385bea71588a.png 400w,
+               /aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_581cde6bf30452fb957f9728258dc0d1.png 760w,
+               /aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_add05b88fe386a8c3fef385bea71588a.png&#34;
+               width=&#34;760&#34;
+               height=&#34;269&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+In this case, we have 2 nodes in this specific cluster: a master node and a core node&lt;/p&gt;
+&lt;h4 id=&#34;set-up-networking&#34;&gt;Set up Networking&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_1f39f19e9e9e931370acea8d829df259.png 400w,
+               /aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_a528c85c854308f33a7874fc4f469bcc.png 760w,
+               /aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_1f39f19e9e9e931370acea8d829df259.png&#34;
+               width=&#34;760&#34;
+               height=&#34;204&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;cluster-general-settings&#34;&gt;Cluster general settings&lt;/h4&gt;
+&lt;p&gt;set up cluster name and choose the S3 bucket we&amp;rsquo;ve just created. &amp;ldquo;Termination protection&amp;rdquo; is to prevent the cluster from accidental termination. This needs to be turn off if we were to shut down the cluster in the end.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_a54f2ddff07f50fda5e3ea5dd895f6e9.png 400w,
+               /aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_1745170851602f56d41248083183412b.png 760w,
+               /aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_a54f2ddff07f50fda5e3ea5dd895f6e9.png&#34;
+               width=&#34;760&#34;
+               height=&#34;233&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;set-up-security-options&#34;&gt;Set up security options&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_740d76f718ae244d5be5da917055d214.png 400w,
+               /aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_df18185cd53cf80cbe8ed482294d0db1.png 760w,
+               /aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_740d76f718ae244d5be5da917055d214.png&#34;
+               width=&#34;760&#34;
+               height=&#34;259&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;set-up-ec2-security-groups&#34;&gt;Set up EC2 security groups&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_43568c98ae579e94dfc0b84fbfa71abf.png 400w,
+               /aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_1392c0406c39b51ebe51afa273fac015.png 760w,
+               /aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_43568c98ae579e94dfc0b84fbfa71abf.png&#34;
+               width=&#34;760&#34;
+               height=&#34;213&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h4 id=&#34;finally-luanch-the-cluster&#34;&gt;Finally! Luanch the cluster&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_38b28b1c430f2da56fcbe07da5b54b08.png 400w,
+               /aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_958d2254d91ec43f0a66cb539d598cd0.png 760w,
+               /aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_38b28b1c430f2da56fcbe07da5b54b08.png&#34;
+               width=&#34;760&#34;
+               height=&#34;269&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+
+Wait patiently while status &amp;ldquo;starting&amp;rdquo; shifts to &amp;ldquo;waiting&amp;rdquo;.
+ &lt;/p&gt;
+&lt;h3 id=&#34;3-processing-data-with-hive-script&#34;&gt;3. Processing Data with Hive Script&lt;/h3&gt;
+&lt;p&gt;A step in Amazon EMR is a unit of work that includeds one or more Hadoop jobs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_38f457141b55f0c8bcdffc955782f03c.png 400w,
+               /aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_d7f4b917af9cbe607b4ba6215d37204c.png 760w,
+               /aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_38f457141b55f0c8bcdffc955782f03c.png&#34;
+               width=&#34;760&#34;
+               height=&#34;390&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&#34;4-view-the-results&#34;&gt;4. View the results&lt;/h3&gt;
+&lt;p&gt;Results of the Hive Script are stored in S3 bucket. Download and view the text files of .&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 id=&#34;5-performing-hiveql-for-data-querying&#34;&gt;5. Performing HiveQL for Data Querying&lt;/h3&gt;
+&lt;p&gt;Other than performing Hive script through steps defined in EMR, we can also ssh connect to EMR cluster and conduct HiveQL through terminal.&lt;/p&gt;
+&lt;p&gt;Use EMR.pem to ssh connect to the public DNS of the cluster.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_874cede328fe9805e4f014cde66e74b2.png 400w,
+               /aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_c7d28da629124caebb8b46876b20813a.png 760w,
+               /aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_874cede328fe9805e4f014cde66e74b2.png&#34;
+               width=&#34;760&#34;
+               height=&#34;434&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Hive application is already installed for us in the cluster. Start Hive application and input HiveQL to query log data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;image info&#34; srcset=&#34;
+               /aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_2b2caec36f04fca5ff830198ab95a20b.png 400w,
+               /aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_d2279544af35d811846065f089687fcb.png 760w,
+               /aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_1200x1200_fit_lanczos_2.png 1200w&#34;
+               src=&#34;https://andwct.github.io/aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_2b2caec36f04fca5ff830198ab95a20b.png&#34;
+               width=&#34;760&#34;
+               height=&#34;400&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

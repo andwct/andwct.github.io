@@ -1,0 +1,1361 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.3.0 for Hugo" />
+  
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Anderson Wu" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Building Haddop clusters from scratch for large-scale data is no easy task. Amazon EMR is a managed Analytics service born to make big data analytics simple and efficient. Amazon EMR also supports relevant known tools such as Presto, Hive, Pig and many more." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://andwct.github.io/aws_projects/analyzing-data-with-emr/" />
+
+  
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    <meta name="theme-color" content="#EF525B" />
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.1e75974c6945afa9e52fa8182894548d.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light" media="print" onload="this.media='all'">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" media="print" onload="this.media='all'" disabled>
+        
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Lora:wght@400;700&family=Roboto:wght@400;700&display=swap&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.ebafa0b7fe0678dfb3aa7eeb0870f306.css" />
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  <link rel="icon" type="image/png" href="/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_32x32_fill_lanczos_center_2.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu27f7dc34c9db8fd2b063f3fba6be9864_112545_180x180_fill_lanczos_center_2.png" />
+
+  <link rel="canonical" href="https://andwct.github.io/aws_projects/analyzing-data-with-emr/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="Anderson Wu" />
+  <meta property="og:url" content="https://andwct.github.io/aws_projects/analyzing-data-with-emr/" />
+  <meta property="og:title" content="Analyzing Big Data with Amazon EMR | Anderson Wu" />
+  <meta property="og:description" content="Building Haddop clusters from scratch for large-scale data is no easy task. Amazon EMR is a managed Analytics service born to make big data analytics simple and efficient. Amazon EMR also supports relevant known tools such as Presto, Hive, Pig and many more." /><meta property="og:image" content="https://andwct.github.io/aws_projects/analyzing-data-with-emr/featured.png" />
+    <meta property="twitter:image" content="https://andwct.github.io/aws_projects/analyzing-data-with-emr/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-05-13T05:47:23&#43;08:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-05-13T05:47:23&#43;08:00">
+  
+
+  
+
+
+
+  
+
+  
+
+  
+
+
+
+
+
+  <title>Analyzing Big Data with Amazon EMR | Anderson Wu</title>
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="0b25f2aefd1b35556c527ac3427f33c3" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.8988fb2a4bba758785868cfcb5244555.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container-xl">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Anderson Wu</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Anderson Wu</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+      
+      
+        
+      
+
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Analyzing Big Data with Amazon EMR</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  <span >
+      Anderson Wu</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    May 13, 2021
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/amazon-emr/">Amazon EMR</a>, <a href="/category/analytics/">Analytics</a>, <a href="/category/hiveql/">HiveQL</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 496px;">
+  <div style="position: relative">
+    <img src="/aws_projects/analyzing-data-with-emr/featured_hua0789043a0eb06d90d61394755ad1687_40427_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <div class="toc">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#purpose">Purpose</a></li>
+    <li><a href="#objectives">Objectives</a></li>
+    <li><a href="#implementation">Implementation</a>
+      <ol>
+        <li><a href="#1-prepare-storage-for-amazon-emr">1. Prepare Storage for Amazon EMR</a></li>
+        <li><a href="#2-luanching-of-an-emr-cluster">2. Luanching of an EMR Cluster</a>
+          <ol>
+            <li><a href="#set-up-emr-node-types-instance-types-and-instance-counts">Set up EMR node types, instance types and instance counts</a></li>
+            <li><a href="#set-up-networking">Set up Networking</a></li>
+            <li><a href="#cluster-general-settings">Cluster general settings</a></li>
+            <li><a href="#set-up-security-options">Set up security options</a></li>
+            <li><a href="#set-up-ec2-security-groups">Set up EC2 security groups</a></li>
+            <li><a href="#finally-luanch-the-cluster">Finally! Luanch the cluster</a></li>
+          </ol>
+        </li>
+        <li><a href="#3-processing-data-with-hive-script">3. Processing Data with Hive Script</a></li>
+        <li><a href="#4-view-the-results">4. View the results</a></li>
+        <li><a href="#5-performing-hiveql-for-data-querying">5. Performing HiveQL for Data Querying</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+  </div>
+<h2 id="purpose">Purpose</h2>
+<p>In this project, we look to deploy a Haddop cluster with <strong>Amazon EMR</strong> for analyzing log data stored in S3. A SQL analagous query language <strong>HiveQL</strong> is incorporated for data processing and analytics.</p>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Get familiar with Amazon EMR</li>
+<li>Get familiar with analyzing data using HiveQL</li>
+</ul>
+<p> </p>
+<h2 id="implementation">Implementation</h2>
+<h3 id="1-prepare-storage-for-amazon-emr">1. Prepare Storage for Amazon EMR</h3>
+<ul>
+<li>Create a S3 bucket.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_4fac48ca9da784153914ae1225aa8554.png 400w,
+               /aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_edd2283817afcc0ffce79f0c60e095c1.png 760w,
+               /aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/S3_hu04a93489640e89dffa73c2a4e7d0e3dc_40329_4fac48ca9da784153914ae1225aa8554.png"
+               width="760"
+               height="315"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</li>
+</ul>
+<p> </p>
+<h3 id="2-luanching-of-an-emr-cluster">2. Luanching of an EMR Cluster</h3>
+<p>Launch an EMR cluster
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_20d05b6043f80b58db8722805ba1fac3.png 400w,
+               /aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_d1b9057ef6d235b9a14b7594af173cac.png 760w,
+               /aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/Create_cluster_huc7002a7cffc5f5fdeebaec79d417c5be_87499_20d05b6043f80b58db8722805ba1fac3.png"
+               width="760"
+               height="362"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h4 id="set-up-emr-node-types-instance-types-and-instance-counts">Set up EMR node types, instance types and instance counts</h4>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_add05b88fe386a8c3fef385bea71588a.png 400w,
+               /aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_581cde6bf30452fb957f9728258dc0d1.png 760w,
+               /aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/node_type_hu0df221c179eb35e9885d9ffde520a096_79459_add05b88fe386a8c3fef385bea71588a.png"
+               width="760"
+               height="269"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+In this case, we have 2 nodes in this specific cluster: a master node and a core node</p>
+<h4 id="set-up-networking">Set up Networking</h4>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_1f39f19e9e9e931370acea8d829df259.png 400w,
+               /aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_a528c85c854308f33a7874fc4f469bcc.png 760w,
+               /aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/network_hu8020dc269c381b467483684018c8d63f_50014_1f39f19e9e9e931370acea8d829df259.png"
+               width="760"
+               height="204"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h4 id="cluster-general-settings">Cluster general settings</h4>
+<p>set up cluster name and choose the S3 bucket we&rsquo;ve just created. &ldquo;Termination protection&rdquo; is to prevent the cluster from accidental termination. This needs to be turn off if we were to shut down the cluster in the end.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_a54f2ddff07f50fda5e3ea5dd895f6e9.png 400w,
+               /aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_1745170851602f56d41248083183412b.png 760w,
+               /aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/cluster_name_huf66981bb31f2f45e293a1c0fb3fcbcdd_46968_a54f2ddff07f50fda5e3ea5dd895f6e9.png"
+               width="760"
+               height="233"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h4 id="set-up-security-options">Set up security options</h4>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_740d76f718ae244d5be5da917055d214.png 400w,
+               /aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_df18185cd53cf80cbe8ed482294d0db1.png 760w,
+               /aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/Security_options_hufe576c45ca1691af62f57913b54b8579_51392_740d76f718ae244d5be5da917055d214.png"
+               width="760"
+               height="259"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<h4 id="set-up-ec2-security-groups">Set up EC2 security groups</h4>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_43568c98ae579e94dfc0b84fbfa71abf.png 400w,
+               /aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_1392c0406c39b51ebe51afa273fac015.png 760w,
+               /aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/security_group_hua008d4008c34a28e2f28b9731c1465da_82092_43568c98ae579e94dfc0b84fbfa71abf.png"
+               width="760"
+               height="213"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h4 id="finally-luanch-the-cluster">Finally! Luanch the cluster</h4>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_38b28b1c430f2da56fcbe07da5b54b08.png 400w,
+               /aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_958d2254d91ec43f0a66cb539d598cd0.png 760w,
+               /aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/start_cluster_hudd68e8864e1227cb6e623baeccce4ec3_66080_38b28b1c430f2da56fcbe07da5b54b08.png"
+               width="760"
+               height="269"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+Wait patiently while status &ldquo;starting&rdquo; shifts to &ldquo;waiting&rdquo;.
+ </p>
+<h3 id="3-processing-data-with-hive-script">3. Processing Data with Hive Script</h3>
+<p>A step in Amazon EMR is a unit of work that includeds one or more Hadoop jobs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_38f457141b55f0c8bcdffc955782f03c.png 400w,
+               /aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_d7f4b917af9cbe607b4ba6215d37204c.png 760w,
+               /aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/step_hu15e53e8d34c58969dc7cd91c48493637_71202_38f457141b55f0c8bcdffc955782f03c.png"
+               width="760"
+               height="390"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p> </p>
+<h3 id="4-view-the-results">4. View the results</h3>
+<p>Results of the Hive Script are stored in S3 bucket. Download and view the text files of .</p>
+<p> </p>
+<h3 id="5-performing-hiveql-for-data-querying">5. Performing HiveQL for Data Querying</h3>
+<p>Other than performing Hive script through steps defined in EMR, we can also ssh connect to EMR cluster and conduct HiveQL through terminal.</p>
+<p>Use EMR.pem to ssh connect to the public DNS of the cluster.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_874cede328fe9805e4f014cde66e74b2.png 400w,
+               /aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_c7d28da629124caebb8b46876b20813a.png 760w,
+               /aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/login_EMR_hue6bab8a9636214c69c471baddb97ffd4_128789_874cede328fe9805e4f014cde66e74b2.png"
+               width="760"
+               height="434"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>Hive application is already installed for us in the cluster. Start Hive application and input HiveQL to query log data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="image info" srcset="
+               /aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_2b2caec36f04fca5ff830198ab95a20b.png 400w,
+               /aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_d2279544af35d811846065f089687fcb.png 760w,
+               /aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_1200x1200_fit_lanczos_2.png 1200w"
+               src="/aws_projects/analyzing-data-with-emr/query_results_terminal_hu80bd03f3207e3761053ef5fbc4c52a15_68329_2b2caec36f04fca5ff830198ab95a20b.png"
+               width="760"
+               height="400"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p> </p>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/analytics/">Analytics</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:andwctneuro@gmail.com" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://linkedin.com/in/andwct" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <!-- raw HTML omitted -->Wowchemy<!-- raw HTML omitted --> — the free, <!-- raw HTML omitted -->open source<!-- raw HTML omitted --> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    <script src="/js/vendor-bundle.min.b73dfaac3b6499dc997741748a7c3fe2.js"></script>
+
+    
+    
+    
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      
+      
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js" crossorigin="anonymous"></script>
+        
+      
+
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+      
+      <script id="search-hit-fuse-template" type="text/x-template">
+        <div class="search-hit" id="summary-{{key}}">
+          <div class="search-hit-content">
+            <div class="search-hit-name">
+              <a href="{{relpermalink}}">{{title}}</a>
+              <div class="article-metadata search-hit-type">{{type}}</div>
+              <p class="search-hit-description">{{snippet}}</p>
+            </div>
+          </div>
+        </div>
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+      
+      
+      
+      
+      
+      
+      
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    
+    <script src="/en/js/wowchemy.min.d68ecd57c0ec1f1f61d65fd568f1c3a0.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
