@@ -24,7 +24,7 @@ role: Machine Learning Engineer / Cloud Architect
 # Organizations/Affiliations to display in Biography blox
 organizations:
   - name: TSMC
-    url: https://openai.com/
+    url: https://tsmc.com/
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
@@ -159,7 +159,7 @@ awards:
     awarder: Coursera
     icon: coursera
     summary: |
-      I studied the foundational concept of neural networks and deep learning. By the end, I was familiar with the significant technological trends driving the rise of deep learning; build, train, and apply fully connected deep neural networks; implement efficient (vectorized) neural networks; identify key parameters in a neural network’s architecture; and apply deep learning to your own applications.
+      I am an industrious and agile self-starter with diverse experiences in data driven researches and cloud computing architecture (aws). Looking forward to becoming an avid problem solver as a software engineer, having rich knowledge in machine learning and cloud computing.
   - title: Blockchain Fundamentals
     url: https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals
     date: '2023-07-01'
