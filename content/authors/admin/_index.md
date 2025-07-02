@@ -1,13 +1,12 @@
 ---
 # Display name
-title: 吳健雄
-
+title: Anderson Wu
 # Name pronunciation (optional)
-name_pronunciation: Chien Shiung Wu
+# name_pronunciation:  Wu
 
 # Full name (for SEO)
-first_name: Shiung Wu
-last_name: Chien
+first_name: Anderson (Ching-Ting)
+last_name: Wu
 
 # Status emoji
 status:
@@ -24,7 +23,7 @@ role: Chief Scientist
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: OpenAI
+  - name: TSMC
     url: https://openai.com/
 
 # Social network links
