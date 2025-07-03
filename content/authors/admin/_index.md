@@ -47,8 +47,8 @@ interests:
 education:
   - area: MSc Information Management
     institution: National Taiwan University
-    date_start: 2019
-    date_end: 2021
+    date_start: 2019-08
+    date_end: 2021-08
     summary: |
       Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
     button:
@@ -56,8 +56,8 @@ education:
       url: 'https://example.com'
   - area: BSc Information Management
     institution: National Central University
-    date_start: 2015
-    date_end: 2019
+    date_start: 2015-09
+    date_end: 2019-02
     summary: |
       GPA: 3.8/4.0
 
