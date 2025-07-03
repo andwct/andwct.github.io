@@ -45,7 +45,7 @@ interests:
  
 
 education:
-  - area: Master of Science in Information Management
+  - area: MSc Information Management
     institution: National Taiwan University
     date_start: 2019
     date_end: 2021
@@ -54,7 +54,7 @@ education:
     button:
       text: 'Read Thesis'
       url: 'https://example.com'
-  - area: Information Management
+  - area: BSc Information Management
     institution: National Central University
     date_start: 2015
     date_end: 2019
