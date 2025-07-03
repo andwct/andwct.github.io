@@ -182,4 +182,4 @@ awards:
 
 ## About Me
 
-I'm an industrious and agile self-starter with diverse experiences in data driven researches and cloud computing architecture (aws). Looking forward to becoming an avid problem solver as a software engineer, having rich knowledge in machine learning and cloud computing.
+I am a Machine Learning Engineer with nearly 5 years of experience across applied ML, cloud architecture, and production-scale infrastructure. I've built and deployed predictive systems in performance-critical settings, leveraging my background in both ML and cloud-native engineering. I enjoy solving complex system challenges and designing scalable, reliable ML platforms that bridge research and real-world impact.
